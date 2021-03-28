@@ -1,16 +1,45 @@
 {
   "name": "some-org",
   "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:vladislav1010/some-org.git",
+  "author": "Vladislav Savchenko <vs101ff@gmail.com>",
   "scripts": {
-    "prepare": "is-ci || husky install",
-    "release": "standard-version"
+    "api-docs": "scripty",
+    "dev": "scripty",
+    "build": "scripty",
+    "clean": "scripty",
+    "lint": "scripty",
+    "test": "scripty",
+    "format": "scripty",
+    "prepare": "is-ci || husky install"
   },
+  "scripty": {
+    "path": "./scripts/workspace"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
+    "@commitlint/config-lerna-scopes": "^12.0.1",
+    "@microsoft/api-documenter": "^7.12.14",
+    "@microsoft/api-extractor": "^7.13.2",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "commitlint": "^12.0.1",
+    "eslint": "^7.23.0",
     "husky": "^5.2.0",
     "is-ci": "^3.0.0",
-    "standard-version": "^9.1.1"
+    "lerna-changelog": "^1.0.1",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "scripty": "^2.0.0"
+  },
+  "volta": {
+    "node": "12.19.0",
+    "yarn": "1.22.10"
   }
 }
