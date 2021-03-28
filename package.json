@@ -1,4 +1,16 @@
 {
   "name": "some-org",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "scripts": {
+    "prepare": "is-ci || husky install",
+    "release": "standard-version"
+  },
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "husky": "^5.2.0",
+    "is-ci": "^3.0.0",
+    "standard-version": "^9.1.1"
+  }
 }
