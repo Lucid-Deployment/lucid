@@ -7,6 +7,7 @@
   "scripts": {
     "api-docs": "scripty",
     "dev": "scripty",
+    "start": "scripty",
     "build": "scripty",
     "clean": "scripty",
     "lint": "scripty",
