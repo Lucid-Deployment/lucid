@@ -1,4 +1,8 @@
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "app1-ui-theme"
+    }
+  ]
 }
