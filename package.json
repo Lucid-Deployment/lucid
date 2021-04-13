@@ -19,7 +19,9 @@
     "path": "./scripts/workspace"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/catalog/api-interfaces",
+    "packages/catalog/data-access"
   ],
   "private": true,
   "devDependencies": {
