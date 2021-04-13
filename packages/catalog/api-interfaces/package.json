@@ -1,6 +1,6 @@
 {
   "name": "@lucid/catalog-api-interfaces",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -11,8 +11,6 @@
     "lint": "scripty",
     "build": "scripty"
   },
-  "dependencies": {},
-  "peerDependencies": {},
   "devDependencies": {
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-typescript": "^7.13.0",
