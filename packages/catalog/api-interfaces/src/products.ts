@@ -6,7 +6,7 @@ interface Product {
   sku: string;
 }
 
-type GetAllProductsResponse = Product[];
+type GetAllProductsData = Product[];
 
 type SortableProductFields = 'id' | 'name' | 'sku';
 interface GetAllProductsRequest extends IGetAllConfig {
@@ -17,4 +17,4 @@ interface GetAllProductsRequest extends IGetAllConfig {
   sort?: SortableProductFields;
 }
 
-export { GetAllProductsResponse, GetAllProductsRequest };
+export { GetAllProductsData, GetAllProductsRequest };
