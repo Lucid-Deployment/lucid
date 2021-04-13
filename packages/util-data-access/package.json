@@ -17,7 +17,8 @@
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-typescript": "^7.13.0",
     "jest": "^26.6.3",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "@types/node": "^14.14.37"
   },
   "scripty": {
     "path": "../../scripts/packages"
