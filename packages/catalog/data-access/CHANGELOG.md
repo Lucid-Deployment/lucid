@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/catalog-data-access@0.1.0...@lucid/catalog-data-access@0.2.0) (2021-04-13)
+
+
+### Features
+
+* **catalog-data-access:** add `useGetAllProducts` ([98505f8](https://github.com/Lucid-Deployment/lucid/commit/98505f8c4904a962fa12a7cac9f6f78730271bf4))
+
+
+
+
+
 # 0.1.0 (2021-04-13)
 
 
