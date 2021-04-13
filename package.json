@@ -44,5 +44,10 @@
   "volta": {
     "node": "12.19.0",
     "yarn": "1.22.10"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
