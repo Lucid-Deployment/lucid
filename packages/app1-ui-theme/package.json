@@ -12,9 +12,9 @@
     "build": "scripty"
   },
   "dependencies": {
-    "@chakra-ui/theme-tools": "^1.1.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@lucid/theme-tools": "^0.2.0",
     "date-fns": "^2.19.0",
     "react": "^17.0.2"
   },
