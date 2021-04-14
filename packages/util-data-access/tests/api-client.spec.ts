@@ -2,6 +2,7 @@ import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import { client } from '../src';
 import 'whatwg-fetch';
+import each from 'jest-each';
 
 const server = setupServer();
 
@@ -109,3 +110,34 @@ test(`when data is provided, but not method, it is stringified and the method de
   // Assert
   expect(await result.json()).toEqual(data);
 });
+
+each(['GET', 'HEAD']).test(
+  `when object, not array, data is provided, method is %s, it is added to url search params, stringifying non-string values`,
+  async (method: 'GET' | 'HEAD') => {
+    // Arrange
+    const endpoint = 'test-endpoint';
+    const apiURL = 'https://test-api-url.ru';
+    const url = `${apiURL}/${endpoint}`;
+
+    server.use(
+      rest[method.toLowerCase()](url, async (req, res, ctx) => {
+        const searchParamsEntries = Array.from(req.url.searchParams.entries());
+
+        return res(ctx.json(searchParamsEntries));
+      }),
+    );
+
+    const data = { a: 'b', b: { c: 'd' } };
+
+    // Act
+    const result = await client(url, { data, method });
+
+    // Assert
+    // By duplicating part of the production code, we can duplicate a mistake, and it's hard to understand
+    // expect(await result.json()).toEqual(Object.entries(data).map(([key, value]) => [key, typeof value !== 'string' ? JSON.stringify(value) : value]))
+    expect(await result.json()).toEqual([
+      ['a', 'b'],
+      ['b', JSON.stringify({ c: 'd' })],
+    ]);
+  },
+);
