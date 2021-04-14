@@ -5,7 +5,6 @@ import type {
   GetAllProductsData,
 } from '@lucid/catalog-api-interfaces';
 import { client } from '@lucid/util-data-access';
-import { UseQueryResult } from 'react-query/types/react/types';
 
 type GetAllProductsOptions = GetAllProductsRequest;
 
@@ -20,7 +19,7 @@ function useGetAllProducts(
       client(`${apiUrl}/catalog/products`, {
         data: requestData,
       }) as Promise<IGetAllResponse<GetAllProductsData>>,
-  ) as UseQueryResult<IGetAllResponse<GetAllProductsData>>;
+  );
 }
 
 export { GetAllProductsOptions, useGetAllProducts };
