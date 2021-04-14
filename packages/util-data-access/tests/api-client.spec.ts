@@ -30,3 +30,26 @@ test('calls fetch at the endpoint with method GET by default', async () => {
   expect(result.ok).toBe(true);
   expect(await result.json()).toEqual(mockResult);
 });
+
+test(`adds auth token when a token is provided`, async () => {
+  // Arrange
+  const token = 'FAKE_TOKEN';
+
+  const apiURL = 'https://test-api-url.ru';
+  const endpoint = 'test-endpoint';
+  const mockResult = { mockValue: 'VALUE' };
+
+  let request;
+  server.use(
+    rest.get(`${apiURL}/${endpoint}`, async (req, res, ctx) => {
+      request = req;
+      return res(ctx.json(mockResult));
+    }),
+  );
+
+  // Act
+  await client(`${apiURL}/${endpoint}`, { token });
+
+  // Assert
+  expect(request.headers.get('Authorization')).toBe(`Bearer ${token}`);
+});
