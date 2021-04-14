@@ -112,7 +112,7 @@ test(`when data is provided, but not method, it is stringified and the method de
 });
 
 each(['GET', 'HEAD']).test(
-  `when object, not array, data is provided, method is %s, it is added to url search params, stringifying non-string values`,
+  `when plain object, not array, data is provided, and method is %s, it is added to url search params, stringifying non-string values`,
   async (method: 'GET' | 'HEAD') => {
     // Arrange
     const endpoint = 'test-endpoint';
@@ -141,3 +141,50 @@ each(['GET', 'HEAD']).test(
     ]);
   },
 );
+
+// arrays, dates, functions, null, undefined, any primitives
+const matrixIgnoredDataByMethods = multiplyArraysEach(
+  ['GET', 'HEAD'],
+  [[1], new Date(), () => {}, null, undefined, 1, '', Symbol(), true],
+);
+each(matrixIgnoredDataByMethods).test(
+  `when data, which isn't plain object, is provided, and method is %s, it is ignored`,
+  async (method: 'GET' | 'HEAD', data: any) => {
+    // Arrange
+    const endpoint = 'test-endpoint';
+    const apiURL = 'https://test-api-url.ru';
+    const url = `${apiURL}/${endpoint}`;
+
+    server.use(
+      rest[method.toLowerCase()](url, async (req, res, ctx) => {
+        const searchParamsEntries = Array.from(req.url.searchParams.entries());
+
+        return res(ctx.json(searchParamsEntries));
+      }),
+    );
+
+    // Act
+    const result = await client(url, { data, method });
+
+    // Assert
+    expect(await result.json()).toEqual([]);
+  },
+);
+
+function multiplyArraysEach(arr1: any[], arr2: any[]) {
+  return flatten(
+    arr1.map((arr1Val) => arr2.map((arr2Val) => [arr1Val, arr2Val])),
+  );
+}
+
+function flatten(arr: any[][]) {
+  const result: any[] = [];
+
+  for (const subArr of arr) {
+    for (const item of subArr) {
+      result.push(item);
+    }
+  }
+
+  return result;
+}
