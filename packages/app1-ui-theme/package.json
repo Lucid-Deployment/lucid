@@ -1,6 +1,6 @@
 {
   "name": "@lucid/app1-ui-theme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -14,7 +14,7 @@
   "dependencies": {
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@lucid/theme-tools": "^0.2.0",
+    "@lucid/theme-tools": "^0.3.0",
     "date-fns": "^2.19.0",
     "react": "^17.0.2"
   },
