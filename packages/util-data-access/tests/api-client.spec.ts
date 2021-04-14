@@ -172,19 +172,21 @@ each(matrixIgnoredDataByMethods).test(
 );
 
 function multiplyArraysEach(arr1: any[], arr2: any[]) {
-  return flatten(
-    arr1.map((arr1Val) => arr2.map((arr2Val) => [arr1Val, arr2Val])),
-  );
-}
+  return flatten(multiplyArrays(arr1, arr2));
 
-function flatten(arr: any[][]) {
-  const result: any[] = [];
-
-  for (const subArr of arr) {
-    for (const item of subArr) {
-      result.push(item);
-    }
+  function multiplyArrays(arr1: any[], arr2: any[]) {
+    return arr1.map((arr1Val) => arr2.map((arr2Val) => [arr1Val, arr2Val]));
   }
 
-  return result;
+  function flatten(arr: any[][]) {
+    const result: any[] = [];
+
+    for (const subArr of arr) {
+      for (const item of subArr) {
+        result.push(item);
+      }
+    }
+
+    return result;
+  }
 }
