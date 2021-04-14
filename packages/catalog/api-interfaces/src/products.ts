@@ -9,11 +9,9 @@ interface Product {
 type GetAllProductsData = Product[];
 
 type SortableProductFields = 'id' | 'name' | 'sku';
-interface GetAllProductsRequest extends IGetAllConfig {
-  idIn?: number[];
-  idNotIn?: number[];
-  name?: string;
-  sku?: string;
+interface GetAllProductsRequest extends IGetAllConfig, Partial<Product> {
+  idIn?: Product['id'][];
+  idNotIn?: Product['id'][];
   sort?: SortableProductFields;
 }
 
