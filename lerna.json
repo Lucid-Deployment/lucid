@@ -1,5 +1,10 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*",
+    "packages/catalog/api-interfaces",
+    "packages/catalog/data-access",
+    "packages/test/handler-resolver"
+  ],
   "npmClient": "yarn",
   "version": "independent",
   "useWorkspaces": true,
