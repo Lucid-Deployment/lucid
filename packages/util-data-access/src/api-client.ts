@@ -24,20 +24,6 @@ async function client(
     headers: {},
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  function addDataToUrlSearchParams(data: object): string {
-    const url = new URL(endpoint);
-
-    for (const [name, value] of Object.entries(data)) {
-      url.searchParams.append(
-        name,
-        typeof value === 'string' ? value : JSON.stringify(value),
-      );
-    }
-
-    return url.toString();
-  }
-
   if (data) {
     if (
       customConfig.method != null &&
@@ -68,6 +54,20 @@ async function client(
   };
 
   return window.fetch(endpoint, config);
+
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  function addDataToUrlSearchParams(data: object): string {
+    const url = new URL(endpoint);
+
+    for (const [name, value] of Object.entries(data)) {
+      url.searchParams.append(
+        name,
+        typeof value === 'string' ? value : JSON.stringify(value),
+      );
+    }
+
+    return url.toString();
+  }
 }
 
 export { client };
