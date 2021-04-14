@@ -21,7 +21,8 @@
   "workspaces": [
     "packages/*",
     "packages/catalog/api-interfaces",
-    "packages/catalog/data-access"
+    "packages/catalog/data-access",
+    "packages/test/handler-resolver"
   ],
   "private": true,
   "devDependencies": {
