@@ -35,6 +35,7 @@ async function client(
     } else {
       config.body = JSON.stringify(data);
       (config.headers as any)['Content-Type'] = 'application/json';
+      config.method = 'POST';
     }
   } else if (!customConfig.method) {
     config.method = 'GET';
