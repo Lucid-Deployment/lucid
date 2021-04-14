@@ -1,6 +1,6 @@
 {
   "name": "@lucid/catalog-data-access",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@lucid/catalog-api-interfaces": "^1.0.0",
-    "@lucid/util-data-access": "^0.1.0",
+    "@lucid/util-data-access": "^0.1.1",
     "react": "^17.0.2",
     "react-query": "^3.13.6"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/util-data-access@0.1.0...@lucid/util-data-access@0.1.1) (2021-04-14)
+
+
+### Bug Fixes
+
+* **util-data-access:** fix in client not setting method POST when it's implied ([350e2d3](https://github.com/Lucid-Deployment/lucid/commit/350e2d33ef4b23ab0f7c242a6f72045705f0a312))
+
+
+
+
+
 # 0.1.0 (2021-04-13)
 
 
