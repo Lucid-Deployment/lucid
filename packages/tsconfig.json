@@ -2,13 +2,22 @@
   "files": [],
   "references": [
     {
-      "path": "catalog/data-access"
+      "path": "./util-data-access"
     },
     {
-      "path": "app1"
+      "path": "./catalog/data-access"
     },
     {
-      "path": "app1-ui-theme"
+      "path": "./catalog/api-interfaces"
+    },
+    {
+      "path": "./app1"
+    },
+    {
+      "path": "./app1-ui-theme"
+    },
+    {
+      "path": "./test/handler-resolver"
     }
   ]
 }

@@ -19,7 +19,10 @@
     "path": "./scripts/workspace"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/catalog/api-interfaces",
+    "packages/catalog/data-access",
+    "packages/test/handler-resolver"
   ],
   "private": true,
   "devDependencies": {
@@ -42,5 +45,10 @@
   "volta": {
     "node": "12.19.0",
     "yarn": "1.22.10"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
