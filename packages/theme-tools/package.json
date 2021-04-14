@@ -1,0 +1,31 @@
+{
+  "name": "@lucid/theme-tools",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "api-report": "scripty",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "test": "scripty",
+    "lint": "scripty",
+    "build": "scripty"
+  },
+  "dependencies": {
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@chakra-ui/utils": "^1.5.2",
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
+    "lerna": "^4.0.0",
+    "@types/react": "^17.0.3"
+  },
+  "scripty": {
+    "path": "../../scripts/packages"
+  }
+}
