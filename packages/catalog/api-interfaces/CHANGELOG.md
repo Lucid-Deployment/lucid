@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/catalog-api-interfaces@1.0.0...@lucid/catalog-api-interfaces@1.1.0) (2021-04-14)
+
+
+### Bug Fixes
+
+* **catalog-data-access:** fix diverged Product ID types ([189380f](https://github.com/Lucid-Deployment/lucid/commit/189380f92b4f39e7573349eb0d06becc113476e0))
+
+
+### Features
+
+* **catalog-data-access:** add isVisible, price, dateModified, availability to Product api interface and get all products request type ([7ee7713](https://github.com/Lucid-Deployment/lucid/commit/7ee77132a92a3c20d82a1e0afda499406242e8dd))
+
+
+
+
+
 # 0.1.0 (2021-04-13)
 
 
