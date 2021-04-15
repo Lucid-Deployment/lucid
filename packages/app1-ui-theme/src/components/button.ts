@@ -1,4 +1,4 @@
-import { mode, transparentize } from '@lucid/theme-tools';
+import { mode, transparentize } from '@chakra-ui/theme-tools';
 
 // Copied from https://github.com/chakra-ui/chakra-ui
 

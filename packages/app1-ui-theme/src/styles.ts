@@ -1,4 +1,4 @@
-import { mode, Styles } from '@lucid/theme-tools';
+import { mode, Styles } from '@chakra-ui/theme-tools';
 
 const styles: Styles = {
   global: (props) => ({
