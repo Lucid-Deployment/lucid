@@ -38,9 +38,9 @@ export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
           .required('Required')
           .max(32, 'Must be 32 characters or less')
           .min(8, 'Must be 8 characters or more')
-          .matches(/\d/, { passwordMustContainSymbolsMessage })
-          .matches(/[A-Z]/, { passwordMustContainSymbolsMessage })
-          .matches(/[a-z]/, { passwordMustContainSymbolsMessage }),
+          .matches(/\d/, { message: passwordMustContainSymbolsMessage })
+          .matches(/[A-Z]/, { message: passwordMustContainSymbolsMessage })
+          .matches(/[a-z]/, { message: passwordMustContainSymbolsMessage }),
       })}
       onSubmit={async (values, actions) => {
         await onLogin(values);
