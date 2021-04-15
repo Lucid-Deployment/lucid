@@ -18,6 +18,9 @@
     },
     {
       "path": "./test/handler-resolver"
+    },
+    {
+      "path": "./theme-tools"
     }
   ]
 }
