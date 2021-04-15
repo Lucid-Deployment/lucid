@@ -186,6 +186,31 @@ const sizes = {
     fontSize: 'xs',
     px: 2,
   },
+  roundedXs: {
+    p: 1,
+    h: 6,
+    w: 6,
+  },
+  roundedSm: {
+    p: 1.5,
+    h: 6.5,
+    w: 6.5,
+  },
+  roundedMd: {
+    p: 2,
+    h: 7,
+    w: 7,
+  },
+  roundedLg: {
+    p: 2,
+    h: 8,
+    w: 8,
+  },
+  roundedXl: {
+    p: 3,
+    h: 8,
+    w: 8,
+  },
 };
 
 const defaultProps = {
