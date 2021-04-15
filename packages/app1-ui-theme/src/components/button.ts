@@ -36,6 +36,15 @@ function variantGhost(props: Dict) {
     };
   }
 
+  if (c === 'white') {
+    return {
+      color: mode(`gray.700`, `whiteAlpha.800`)(props),
+      _hover: {
+        bg: mode(`gray.50`, `whiteAlpha.100`)(props),
+      },
+    };
+  }
+
   const darkHoverBg = transparentize(`${c}.200`, 0.12)(theme);
   const darkActiveBg = transparentize(`${c}.200`, 0.24)(theme);
 
@@ -53,11 +62,20 @@ function variantGhost(props: Dict) {
 
 function variantOutline(props: Dict) {
   const { colorScheme: c } = props;
-  const borderColor = mode(`gray.200`, `whiteAlpha.300`)(props);
+
+  let borderColor = null;
+  if (c === 'gray') {
+    borderColor = mode(`gray.200`, `whiteAlpha.300`)(props);
+  }
+
+  if (c === 'white') {
+    borderColor = mode(`gray.300`, `whiteAlpha.400`)(props);
+  }
+
   return {
     border: '1px solid',
-    borderColor: c === 'gray' ? borderColor : 'currentColor',
     ...variantGhost(props),
+    borderColor: borderColor ?? 'currentColor',
   };
 }
 
