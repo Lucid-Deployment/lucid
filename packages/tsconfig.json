@@ -21,6 +21,9 @@
     },
     {
       "path": "./theme-tools"
+    },
+    {
+      "path": "./app1-ui-password-field"
     }
   ]
 }
