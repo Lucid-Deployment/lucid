@@ -12,12 +12,22 @@ import {
   useDisclosure,
   useMergeRefs,
   useColorModeValue as mode,
+  FormControlProps,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FieldProps } from 'formik';
 
-const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
-  (props, ref) => {
+interface PasswordFieldProps
+  extends Pick<FormControlProps, 'isInvalid'>,
+    InputProps,
+    Pick<FieldProps, 'field'> {
+  errorMessage?: string | null;
+}
+
+const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
+  ({ isInvalid, field, errorMessage, ...inputProps }, ref) => {
     const { isOpen, onToggle } = useDisclosure();
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -37,7 +47,7 @@ const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <FormControl id="password">
+      <FormControl id="password" isInvalid={isInvalid}>
         <Flex justify="space-between">
           <FormLabel>Password</FormLabel>
           <Box
@@ -60,13 +70,14 @@ const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
           </InputRightElement>
           <Input
             ref={mergeRef}
-            name="password"
             type={isOpen ? 'text' : 'password'}
             autoComplete="current-password"
             required
-            {...props}
+            {...inputProps}
+            {...field}
           />
         </InputGroup>
+        <FormErrorMessage>{errorMessage}</FormErrorMessage>
       </FormControl>
     );
   },
