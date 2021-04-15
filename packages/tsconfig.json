@@ -20,7 +20,7 @@
       "path": "./test/handler-resolver"
     },
     {
-      "path": "./app1-ui-password-field"
+      "path": "./app1-ui-shared"
     }
   ]
 }
