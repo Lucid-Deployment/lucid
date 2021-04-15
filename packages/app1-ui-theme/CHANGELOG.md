@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-theme@0.3.0...@lucid/app1-ui-theme@0.4.0) (2021-04-15)
+
+
+### Features
+
+* **app1-ui-theme:** add circle button sizes ([ff79713](https://github.com/Lucid-Deployment/lucid/commit/ff797136f41ae645f99b95647b9ce5778dd4fb45))
+* **app1-ui-theme:** add components to theme override ([a0ee39a](https://github.com/Lucid-Deployment/lucid/commit/a0ee39ad7112e50976ad6536cf15d77fc7c587ed))
+* **app1-ui-theme:** add white color scheme for ghost and outline variants ([cf94af0](https://github.com/Lucid-Deployment/lucid/commit/cf94af08b8df85b93d1577cfafa2d67a4781ee4f))
+* **theme-tools:** add button theme from chakra-ui ([e44a594](https://github.com/Lucid-Deployment/lucid/commit/e44a5948721d2f86d42fde6d103b4682eb90d35c))
+
+
+* feat(app1-ui-theme)!: add dependency on chakra-ui ([2314ec1](https://github.com/Lucid-Deployment/lucid/commit/2314ec1bb102934d0e6a688a861a8ba4ad33f622))
+
+
+### BREAKING CHANGES
+
+* remove Theme from exports
+
+
+
+
+
 # [0.3.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-theme@0.2.0...@lucid/app1-ui-theme@0.3.0) (2021-04-14)
 
 
