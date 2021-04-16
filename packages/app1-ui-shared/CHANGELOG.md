@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-shared@0.3.0...@lucid/app1-ui-shared@0.4.0) (2021-04-16)
+
+
+### Bug Fixes
+
+* **app1-ui-shared:** problem with feature icon in PricingCard ([5d1cc27](https://github.com/Lucid-Deployment/lucid/commit/5d1cc271b6c34262e58f8b9b078360e35fb9c0bc))
+
+
+### Features
+
+* **app1-ui-shared:** add pricing ([d867ae7](https://github.com/Lucid-Deployment/lucid/commit/d867ae733c6de4cf11dce049b590dd4657800ed9))
+
+
+
+
+
 # [0.3.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-shared@0.2.0...@lucid/app1-ui-shared@0.3.0) (2021-04-16)
 
 
