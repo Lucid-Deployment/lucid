@@ -15,11 +15,8 @@ import { Logo } from './Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Testimonial } from './Testimonial';
-import { chakra } from '@chakra-ui/system';
 
 const LoginPage = () => {
-  const ChakraTestimonial = chakra(Testimonial);
-
   return (
     <Flex
       bg={useColorModeValue('gray.50', 'inherit')}
@@ -78,12 +75,11 @@ const LoginPage = () => {
         </Box>
         <Box flexGrow={1} ml="14">
           <Flex direction={'column'} py={'24'}>
-            <ChakraTestimonial
+            <Testimonial
               flex={'1 1 0%'}
-              testimonial={{
+              data={{
                 text:
                   'Lorem dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                userId: '1',
               }}
             />
           </Flex>

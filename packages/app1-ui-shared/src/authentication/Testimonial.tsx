@@ -1,22 +1,20 @@
 import * as React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, FlexProps, Text } from '@chakra-ui/react';
 import { QuoteIcon } from './QuoteIcon';
 import { Avatar } from './Avatar';
 import { useColorModeValue } from '@chakra-ui/system';
 
-interface TestimonialEntity {
+interface TestimonialData {
   text: string;
-  userId: string;
 }
 
-interface TestimonialProps {
-  testimonial: TestimonialEntity;
-  className?: string;
+interface TestimonialProps extends FlexProps {
+  data: TestimonialData;
 }
 
-export const Testimonial = ({ testimonial, className }: TestimonialProps) => {
+export const Testimonial = ({ data, ...rest }: TestimonialProps) => {
   return (
-    <Flex as={'blockquote'} className={className}>
+    <Flex as={'blockquote'} {...rest}>
       <Box
         flex={'0 0 auto'}
         mr={'4'}
@@ -26,11 +24,10 @@ export const Testimonial = ({ testimonial, className }: TestimonialProps) => {
       </Box>
       <Box flex={'1 1 auto'}>
         <Text fontSize="2xl" mt={'4'} mb={'12'}>
-          {testimonial.text}
+          {data.text}
         </Text>
         <Avatar
           user={{
-            id: '1',
             name: 'Kunle Panther',
             bio: 'VP, Product and Engineering @ Wakanda',
             imageUrl:

@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Box, chakra, Flex, Text, useToken } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/system';
 
-interface UserEntity {
-  id: string;
+interface UserData {
   profileUrl: string;
   imageUrl: string;
   name: string;
@@ -12,7 +11,7 @@ interface UserEntity {
 
 interface AvatarProps {
   className?: string;
-  user: UserEntity;
+  user: UserData;
 }
 
 export const Avatar = ({ className, user }: AvatarProps) => {
