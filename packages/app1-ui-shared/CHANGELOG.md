@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-shared@0.2.0...@lucid/app1-ui-shared@0.3.0) (2021-04-16)
+
+
+### Features
+
+* **app1-ui-shared:** add pricing card ([dea30ed](https://github.com/Lucid-Deployment/lucid/commit/dea30eda16050166614a2a50ecc3d56cec8d6bc8))
+
+
+
+
+
 # [0.2.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-shared@0.1.0...@lucid/app1-ui-shared@0.2.0) (2021-04-16)
 
 
