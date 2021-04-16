@@ -11,6 +11,13 @@ export const Card = (props: CardProps) => {
   const { children, isPopular, ...rest } = props;
   const accentColor = usePopularColor();
 
+  const popularProps: BoxProps = {
+    top: { lg: '-8' },
+    zIndex: 1,
+    borderWidth: '2px',
+    borderColor: accentColor,
+  };
+
   return (
     <Box
       bg={useColorModeValue('white', 'gray.700')}
@@ -21,8 +28,7 @@ export const Card = (props: CardProps) => {
       shadow="lg"
       maxW="md"
       width="100%"
-      borderWidth={isPopular ? '2px' : 0}
-      borderColor={isPopular ? accentColor : '#0000'}
+      {...(isPopular ? popularProps : undefined)}
       {...rest}>
       {isPopular && <CardBadge bg={accentColor}>Most popular</CardBadge>}
       {children}
