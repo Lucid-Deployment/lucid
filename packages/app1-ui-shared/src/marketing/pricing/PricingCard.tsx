@@ -24,6 +24,10 @@ interface PricingCardProps extends CardProps {
   data: PricingCardData;
 }
 
+const CheckIcon = (props: { className?: string }) => (
+  <FontAwesomeIcon icon={faCheck} {...props} />
+);
+
 export const usePopularColor = () => useColorModeValue('blue.600', 'blue.200');
 
 export const PricingCard = (props: PricingCardProps) => {
@@ -67,7 +71,7 @@ export const PricingCard = (props: PricingCardProps) => {
           <ListItem fontWeight="medium" key={index}>
             <ListIcon
               fontSize="xl"
-              icon={<FontAwesomeIcon icon={faCheck} />}
+              as={CheckIcon}
               marginEnd={2}
               color={accentColor}
             />
