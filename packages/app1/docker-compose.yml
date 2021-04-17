@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    command: [--auth]
+    ports:
+      - 27017:27017
+    networks:
+      - backend
+    env_file:
+      - .env.dev
+    volumes:
+      - dbdata:/data/db
+
+volumes:
+  dbdata:
+
+networks:
+  backend:
