@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/util-data-access@0.1.4...@lucid/util-data-access@0.2.0) (2021-04-17)
+
+
+* feat(util-data-access)!: add server error parsing and typing to `client` ([af45d95](https://github.com/Lucid-Deployment/lucid/commit/af45d95d803be447d549928ce790b4be4b643447))
+
+
+### BREAKING CHANGES
+
+* `client` has type parameter
+
+
+
+
+
 ## [0.1.4](https://github.com/Lucid-Deployment/lucid/compare/@lucid/util-data-access@0.1.3...@lucid/util-data-access@0.1.4) (2021-04-14)
 
 **Note:** Version bump only for package @lucid/util-data-access

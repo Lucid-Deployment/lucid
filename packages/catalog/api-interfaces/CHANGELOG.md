@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/catalog-api-interfaces@1.1.0...@lucid/catalog-api-interfaces@1.2.0) (2021-04-17)
+
+
+### Features
+
+* **catalog-api-interfaces:** add error type ([c001497](https://github.com/Lucid-Deployment/lucid/commit/c00149783f0b079d118b8832a025a0121abd5d6a))
+
+
+
+
+
 # [1.1.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/catalog-api-interfaces@1.0.0...@lucid/catalog-api-interfaces@1.1.0) (2021-04-14)
 
 
