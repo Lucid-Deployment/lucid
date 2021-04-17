@@ -33,3 +33,7 @@ export interface IGetAllResponse<TDataItem> {
     pagination: IPaginationResponse;
   };
 }
+
+export interface Errors {
+  message: string;
+}
