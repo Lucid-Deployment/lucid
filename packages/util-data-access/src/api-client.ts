@@ -1,74 +1,32 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
-const isPlainObject = (value: unknown): value is object => {
-  return (
-    typeof value === 'object' &&
-    !Array.isArray(value) &&
-    value !== null &&
-    !(value instanceof Function) &&
-    !(value instanceof Date)
-  );
-};
+import { client as baseClient } from './api-client-base';
 
-async function client(
-  endpoint: string,
-  {
-    data,
-    token,
-    ...customConfig
-  }: RequestInit & {
-    data?: unknown;
-    token?: string;
-  } = {},
-): Promise<any> {
-  let config: RequestInit = {
-    headers: {},
-  };
+export type ApiError<ErrorData> =
+  | Error
+  | { status: number; type: 'invalidBody' }
+  | (Response & { _data: ErrorData });
 
-  if (data) {
-    if (
-      customConfig.method != null &&
-      ['GET', 'HEAD'].includes(customConfig.method)
-    ) {
-      if (isPlainObject(data)) {
-        endpoint = addDataToUrlSearchParams(data);
-      }
-    } else {
-      config.body = JSON.stringify(data);
-      (config.headers as any)['Content-Type'] = 'application/json';
-      config.method = 'POST';
-    }
-  } else if (!customConfig.method) {
-    config.method = 'GET';
-  }
-
-  if (token) {
-    (config.headers as any).Authorization = `Bearer ${token}`;
-  }
-
-  config = {
-    ...config,
-    ...customConfig,
-    headers: {
-      ...config.headers,
-      ...customConfig.headers,
-    },
-  };
-
-  return window.fetch(endpoint, config);
-
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  function addDataToUrlSearchParams(data: object): string {
-    const url = new URL(endpoint);
-
-    for (const [name, value] of Object.entries(data)) {
-      url.searchParams.append(
-        name,
-        typeof value === 'string' ? value : JSON.stringify(value),
-      );
+const client = <ErrorData>(
+  url: string,
+  config?: RequestInit & { data?: unknown; token?: string },
+) =>
+  baseClient(url, config).then(async (res) => {
+    let data: any;
+    try {
+      data = await res.json();
+    } catch (err) {
+      const result: ApiError<ErrorData> = {
+        type: 'invalidBody',
+        status: res.status,
+      };
+      return Promise.reject(result);
     }
 
-    return url.toString();
-  }
-}
+    if (res.ok) {
+      return data;
+    }
+
+    (res as Response & { _data: ErrorData })._data = data;
+    return Promise.reject(res);
+  });
 
 export { client };
