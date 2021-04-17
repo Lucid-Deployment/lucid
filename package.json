@@ -22,7 +22,8 @@
     "packages/*",
     "packages/catalog/api-interfaces",
     "packages/catalog/data-access",
-    "packages/test/handler-resolver"
+    "packages/test/handler-resolver",
+    "packages/identity/api-interfaces"
   ],
   "private": true,
   "devDependencies": {

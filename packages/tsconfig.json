@@ -21,6 +21,9 @@
     },
     {
       "path": "./app1-ui-shared"
+    },
+    {
+      "path": "./identity/api-interfaces"
     }
   ]
 }
