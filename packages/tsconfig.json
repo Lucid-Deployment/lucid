@@ -24,6 +24,9 @@
     },
     {
       "path": "./identity/api-interfaces"
+    },
+    {
+      "path": "./util-react"
     }
   ]
 }
