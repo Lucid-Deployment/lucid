@@ -12,10 +12,8 @@ export const parameters = {
   },
 }
 
-export const decorators = [
-  (StoryFn: Function) => (
-    <ChakraProvider theme={theme}>
-      <StoryFn />
-    </ChakraProvider>
-  ),
-]
+const withChakra = (story: Function) => (
+  <ChakraProvider theme={theme}>{story()}</ChakraProvider>
+)
+
+export const decorators = [withChakra]
