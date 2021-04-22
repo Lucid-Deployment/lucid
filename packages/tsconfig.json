@@ -2,31 +2,31 @@
   "files": [],
   "references": [
     {
-      "path": "./util-data-access"
+      "path": "./identity/api-interfaces"
     },
     {
-      "path": "./catalog/data-access"
+      "path": "./util-react"
+    },
+    {
+      "path": "./util-data-access"
     },
     {
       "path": "./catalog/api-interfaces"
     },
     {
-      "path": "./app1"
+      "path": "./catalog/data-access"
     },
     {
       "path": "./app1-ui-theme"
+    },
+    {
+      "path": "./app1"
     },
     {
       "path": "./test/handler-resolver"
     },
     {
       "path": "./app1-ui-shared"
-    },
-    {
-      "path": "./identity/api-interfaces"
-    },
-    {
-      "path": "./util-react"
     }
   ]
 }
