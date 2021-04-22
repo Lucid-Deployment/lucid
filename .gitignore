@@ -120,3 +120,5 @@ dist
 **/temp
 **/temp-*
 _config.yml
+
+storybook-static
