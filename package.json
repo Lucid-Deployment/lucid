@@ -14,9 +14,9 @@
     "test": "scripty",
     "format": "scripty",
     "prepare": "is-ci || husky install",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "scripty",
     "build-storybook": "scripty",
-    "chromatic": "chromatic"
+    "chromatic": "chromatic --project-token CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes"
   },
   "scripty": {
     "path": "./scripts/workspace"
