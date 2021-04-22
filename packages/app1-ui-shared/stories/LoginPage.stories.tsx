@@ -1,12 +1,11 @@
 import * as React from "react"
-import { LoginPage, LoginPage as LoginComponent } from "../src/authentication"
-import { Container } from "@chakra-ui/react"
+import { LoginPage as LoginComponent } from "../src"
+import type { Meta } from "@storybook/react"
 
 export default {
   title: "Pages/Login",
   component: LoginComponent,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  decorators: (story: Function) => <Container mt={4}>{story()}</Container>,
-}
+  decorators: [],
+} as Meta
 
-export const Login = () => <LoginPage />
+export const Login = () => <LoginComponent />
