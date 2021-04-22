@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react"
 import {
   Box,
   Flex,
@@ -14,37 +14,37 @@ import {
   useColorModeValue as mode,
   FormControlProps,
   FormErrorMessage,
-} from '@chakra-ui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { FieldProps } from 'formik';
+} from "@chakra-ui/react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
+import type { FieldProps } from "formik"
 
 interface PasswordFieldProps
-  extends Pick<FormControlProps, 'isInvalid'>,
+  extends Pick<FormControlProps, "isInvalid">,
     InputProps,
-    Pick<FieldProps, 'field'> {
-  errorMessage?: string | null;
+    Pick<FieldProps, "field"> {
+  errorMessage?: string | null
 }
 
 const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
   ({ isInvalid, field, errorMessage, ...inputProps }, ref) => {
-    const { isOpen, onToggle } = useDisclosure();
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const { isOpen, onToggle } = useDisclosure()
+    const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const mergeRef = useMergeRefs(inputRef, ref);
+    const mergeRef = useMergeRefs(inputRef, ref)
 
     const onClickReveal = () => {
-      onToggle();
+      onToggle()
 
-      const input = inputRef.current;
+      const input = inputRef.current
       if (input) {
-        input.focus({ preventScroll: true });
-        const length = input.value.length * 2;
+        input.focus({ preventScroll: true })
+        const length = input.value.length * 2
         requestAnimationFrame(() => {
-          input.setSelectionRange(length, length);
-        });
+          input.setSelectionRange(length, length)
+        })
       }
-    };
+    }
 
     return (
       <FormControl id="password" isInvalid={isInvalid}>
@@ -52,9 +52,10 @@ const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
           <FormLabel>Password</FormLabel>
           <Box
             as="a"
-            color={mode('blue.600', 'blue.200')}
+            color={mode("blue.600", "blue.200")}
             fontWeight="semibold"
-            fontSize="sm">
+            fontSize="sm"
+          >
             Forgot Password?
           </Box>
         </Flex>
@@ -63,14 +64,14 @@ const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
             <IconButton
               bg="transparent !important"
               variant="ghost"
-              aria-label={isOpen ? 'Mask password' : 'Reveal password'}
+              aria-label={isOpen ? "Mask password" : "Reveal password"}
               icon={<FontAwesomeIcon icon={isOpen ? faEye : faEyeSlash} />}
               onClick={onClickReveal}
             />
           </InputRightElement>
           <Input
             ref={mergeRef}
-            type={isOpen ? 'text' : 'password'}
+            type={isOpen ? "text" : "password"}
             autoComplete="current-password"
             required
             {...inputProps}
@@ -79,10 +80,10 @@ const PasswordField = React.forwardRef<HTMLInputElement, PasswordFieldProps>(
         </InputGroup>
         <FormErrorMessage>{errorMessage}</FormErrorMessage>
       </FormControl>
-    );
+    )
   },
-);
+)
 
-PasswordField.displayName = 'PasswordField';
+PasswordField.displayName = "PasswordField"
 
-export { PasswordField };
+export { PasswordField }

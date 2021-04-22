@@ -1,3 +1,3 @@
-export * from './authenticate';
-export * from './signup';
-export * from './errors';
+export * from "./authenticate"
+export * from "./signup"
+export * from "./errors"

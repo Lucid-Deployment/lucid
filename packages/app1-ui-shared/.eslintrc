@@ -2,5 +2,19 @@
   "extends": "../../.eslintrc",
   "parserOptions": {
     "project": "tsconfig.json"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "tests/*.{ts|tsx}",
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx"
+      ],
+      "parserOptions": {
+        "project": "tests/tsconfig.json"
+      }
+    }
+  ]
 }

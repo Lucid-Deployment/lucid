@@ -7,46 +7,47 @@ import {
   HTMLChakraProps,
   Input,
   Stack,
-} from '@chakra-ui/react';
-import * as React from 'react';
-import { PasswordField } from './PasswordField';
-import { Formik, Field } from 'formik';
-import * as Yup from 'yup';
+} from "@chakra-ui/react"
+import * as React from "react"
+import { Formik, Field } from "formik"
+import * as Yup from "yup"
+import { PasswordField } from "./PasswordField"
 
-interface LoginFormProps extends HTMLChakraProps<'form'> {
-  onLogin: (data: LoginFormValues) => Promise<void>;
+interface LoginFormProps extends HTMLChakraProps<"form"> {
+  onLogin: (data: LoginFormValues) => Promise<void>
 }
 
 export interface LoginFormValues {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
   const passwordMustContainSymbolsMessage =
-    'Must contain at least 1 digit, letter in uppercase, in lowercase';
+    "Must contain at least 1 digit, letter in uppercase, in lowercase"
 
   return (
     <Formik
       initialValues={{
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       }}
       validationSchema={Yup.object({
-        email: Yup.string().required('Required').email(),
+        email: Yup.string().required("Required").email(),
         password: Yup.string()
-          .required('Required')
-          .max(32, 'Must be 32 characters or less')
-          .min(8, 'Must be 8 characters or more')
+          .required("Required")
+          .max(32, "Must be 32 characters or less")
+          .min(8, "Must be 8 characters or more")
           .matches(/\d/, { message: passwordMustContainSymbolsMessage })
           .matches(/[A-Z]/, { message: passwordMustContainSymbolsMessage })
           .matches(/[a-z]/, { message: passwordMustContainSymbolsMessage }),
       })}
       onSubmit={async (values, actions) => {
-        await onLogin(values);
+        await onLogin(values)
 
-        actions.setSubmitting(false);
-      }}>
+        actions.setSubmitting(false)
+      }}
+    >
       {(props) => (
         <chakra.form {...formProps}>
           <Stack spacing="6">
@@ -54,7 +55,8 @@ export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
               {({ field, form }: any) => (
                 <FormControl
                   id="email"
-                  isInvalid={form.errors.email && form.touched.email}>
+                  isInvalid={form.errors.email && form.touched.email}
+                >
                   <FormLabel htmlFor="email">Email address</FormLabel>
                   <Input
                     name="email"
@@ -83,12 +85,13 @@ export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
               colorScheme="blue"
               size="lg"
               fontSize="md"
-              isLoading={props.isSubmitting}>
+              isLoading={props.isSubmitting}
+            >
               Sign in
             </Button>
           </Stack>
         </chakra.form>
       )}
     </Formik>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react"
 import {
   Box,
   Flex,
@@ -10,50 +10,52 @@ import {
   HStack,
   chakra,
   SimpleGrid,
-} from '@chakra-ui/react';
-import { useColorModeValue } from '@chakra-ui/system';
-import { PricingCard } from './PricingCard';
+} from "@chakra-ui/react"
+import { useColorModeValue } from "@chakra-ui/system"
+import { PricingCard } from "./PricingCard"
 
 export const Pricing = () => {
   return (
-    <Box px={'8'}>
-      <Heading as={'h1'} fontSize={'5xl'} lineHeight={'1'} textAlign={'center'}>
+    <Box px="8">
+      <Heading as="h1" fontSize="5xl" lineHeight="1" textAlign="center">
         Pricing Plans
       </Heading>
       <Text
-        align={{ md: 'center' }}
-        mt={'4'}
-        maxW={'xl'}
-        mx={'auto'}
-        color={useColorModeValue('gray.600', 'whiteAlpha.700')}>
+        align={{ md: "center" }}
+        mt="4"
+        maxW="xl"
+        mx="auto"
+        color={useColorModeValue("gray.600", "whiteAlpha.700")}
+      >
         Start building for free, then add a site plan to go live. Account plans
         unlock additional features.
       </Text>
-      <Flex align={'center'} direction={'column'} mt={'8'}>
-        <FormControl w={'auto'}>
-          <FormLabel htmlFor={'subscription-duration'} srOnly={true}>
+      <Flex align="center" direction="column" mt="8">
+        <FormControl w="auto">
+          <FormLabel htmlFor="subscription-duration" srOnly>
             Switch price duration
           </FormLabel>
-          <HStack alignItems={'center'} mt={'2'} spacing={'3'}>
-            <Text fontWeight={'semibold'}>Monthly</Text>
-            <Switch size={'md'} id={'subscription-duration'} />
-            <Text fontWeight={'semibold'}>Yearly</Text>
+          <HStack alignItems="center" mt="2" spacing="3">
+            <Text fontWeight="semibold">Monthly</Text>
+            <Switch size="md" id="subscription-duration" />
+            <Text fontWeight="semibold">Yearly</Text>
           </HStack>
         </FormControl>
-        <Flex mt={'2'} color={useColorModeValue('blue.500', 'blue.200')}>
-          <Text fontWeight={'bold'} mr={'2'}>
+        <Flex mt="2" color={useColorModeValue("blue.500", "blue.200")}>
+          <Text fontWeight="bold" mr="2">
             Save up to 30%
           </Text>
           <chakra.svg
             viewBox="0 0 18 20"
-            focusable={'false'}
-            w={'1em'}
-            h={'1em'}
-            display={'inline-block'}
-            lineHeight={'1'}
+            focusable="false"
+            w="1em"
+            h="1em"
+            display="inline-block"
+            lineHeight="1"
             flexShrink={0}
-            verticalAlign={'middle'}
-            color={'currentColor'}>
+            verticalAlign="middle"
+            color="currentColor"
+          >
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -65,60 +67,61 @@ export const Pricing = () => {
       </Flex>
       <SimpleGrid
         columns={{ base: 1, lg: 3 }}
-        spacing={{ base: '8', lg: '12' }}
+        spacing={{ base: "8", lg: "12" }}
         maxW="7xl"
         mx="auto"
         justifyItems="center"
         alignItems="center"
-        mt={'24'}>
+        mt="24"
+      >
         <PricingCard
           data={{
-            price: '$29',
-            name: 'Application UI',
+            price: "$29",
+            name: "Application UI",
             features: [
-              'All application UI components',
-              'Lifetime access',
-              'Use on unlimited projects',
-              'Free Updates',
+              "All application UI components",
+              "Lifetime access",
+              "Use on unlimited projects",
+              "Free Updates",
             ],
             description:
-              'Job board for hiring designers and creative professionals.',
+              "Job board for hiring designers and creative professionals.",
           }}
         />
         <PricingCard
-          isPopular={true}
+          isPopular
           data={{
-            price: '$29',
-            name: 'Application UI',
+            price: "$29",
+            name: "Application UI",
             features: [
-              'All application UI components',
-              'Lifetime access',
-              'Use on unlimited projects',
-              'Free Updates',
-              'Free Updates',
-              'Free Updates',
-              'Free Updates',
-              'Free Updates',
+              "All application UI components",
+              "Lifetime access",
+              "Use on unlimited projects",
+              "Free Updates",
+              "Free Updates",
+              "Free Updates",
+              "Free Updates",
+              "Free Updates",
             ],
             description:
-              'Job board for hiring designers and creative professionals.',
+              "Job board for hiring designers and creative professionals.",
           }}
         />
         <PricingCard
           data={{
-            price: '$29',
-            name: 'Application UI',
+            price: "$29",
+            name: "Application UI",
             features: [
-              'All application UI components',
-              'Lifetime access',
-              'Use on unlimited projects',
-              'Free Updates',
+              "All application UI components",
+              "Lifetime access",
+              "Use on unlimited projects",
+              "Free Updates",
             ],
             description:
-              'Job board for hiring designers and creative professionals.',
+              "Job board for hiring designers and creative professionals.",
           }}
         />
       </SimpleGrid>
     </Box>
-  );
-};
+  )
+}

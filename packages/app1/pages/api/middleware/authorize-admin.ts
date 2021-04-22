@@ -1,5 +1,5 @@
-import nextConnect from 'next-connect';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import nextConnect from "next-connect"
+import type { NextApiRequest, NextApiResponse } from "next"
 
 async function authorizeAdmin(
   _req: NextApiRequest,
@@ -8,12 +8,12 @@ async function authorizeAdmin(
 ) {
   try {
   } catch (err) {
-    return res.status(401).json({ message: 'Not authorized' });
+    return res.status(401).json({ message: "Not authorized" })
   }
 }
 
-const middleware = nextConnect();
+const middleware = nextConnect()
 
-middleware.use(authorizeAdmin);
+middleware.use(authorizeAdmin)
 
-export default middleware;
+export default middleware

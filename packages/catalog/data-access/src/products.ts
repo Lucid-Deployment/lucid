@@ -1,12 +1,12 @@
-import { useQuery } from 'react-query';
+import { useQuery } from "react-query"
 import type {
   GetAllProductsRequest,
   IGetAllResponse,
   GetAllProductsData,
-} from '@lucid/catalog-api-interfaces';
-import { client } from '@lucid/util-data-access';
+} from "@lucid/catalog-api-interfaces"
+import { client } from "@lucid/util-data-access"
 
-type GetAllProductsOptions = GetAllProductsRequest;
+type GetAllProductsOptions = GetAllProductsRequest
 
 // TODO: Think about error responses
 function useGetAllProducts(
@@ -14,12 +14,12 @@ function useGetAllProducts(
   apiUrl: string,
 ) {
   return useQuery<IGetAllResponse<GetAllProductsData>, unknown>(
-    ['products', requestData],
+    ["products", requestData],
     () =>
       client(`${apiUrl}/catalog/products`, {
         data: requestData,
       }) as Promise<IGetAllResponse<GetAllProductsData>>,
-  );
+  )
 }
 
-export { GetAllProductsOptions, useGetAllProducts };
+export { GetAllProductsOptions, useGetAllProducts }

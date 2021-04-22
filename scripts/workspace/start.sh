@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 echo "┏━━━ 🚀 STARTING SERVER ━━━━━━━━━━━━━━━━━━━━━━━━━━"
-lerna run start --scope @lucid/app1 --stream
+yarn tsc -b packages
+lerna run dev --scope @lucid/app1 --stream

@@ -1,3 +1,3 @@
 export interface Errors {
-  message: string;
+  message: string
 }

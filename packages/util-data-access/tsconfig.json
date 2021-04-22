@@ -1,10 +1,17 @@
 {
-  "extends": "../tsconfig.settings.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
     "outDir": "dist",
     "rootDir": "src",
-    "types": ["node"]
+    "types": []
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "tests",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*/*.stories.tsx"
+  ]
 }

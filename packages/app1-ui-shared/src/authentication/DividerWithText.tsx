@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react"
 import {
   Box,
   Divider,
@@ -6,10 +6,10 @@ import {
   FlexProps,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react"
 
 export const DividerWithText = (props: FlexProps) => {
-  const { children, ...flexProps } = props;
+  const { children, ...flexProps } = props
 
   return (
     <Flex align="center" color="gray.300" {...flexProps}>
@@ -19,13 +19,14 @@ export const DividerWithText = (props: FlexProps) => {
       <Text
         as="span"
         px="3"
-        color={useColorModeValue('gray.600', 'gray.400')}
-        fontWeight="medium">
+        color={useColorModeValue("gray.600", "gray.400")}
+        fontWeight="medium"
+      >
         {children}
       </Text>
       <Box flex="1">
         <Divider color="currentcolor" />
       </Box>
     </Flex>
-  );
-};
+  )
+}

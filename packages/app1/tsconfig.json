@@ -1,19 +1,21 @@
 {
-  "extends": "../tsconfig.settings.json",
   "compilerOptions": {
+    "composite": true,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "rootDir": ".",
     "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "esModuleInterop": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "declaration": false,
-    "sourceMap": false,
-    "skipLibCheck": true
+    "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/index.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

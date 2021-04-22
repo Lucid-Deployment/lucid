@@ -1,13 +1,13 @@
-import { Box, BoxProps, useColorModeValue } from '@chakra-ui/react';
-import * as React from 'react';
+import { Box, BoxProps, useColorModeValue } from "@chakra-ui/react"
+import * as React from "react"
 
 export const Card = (props: BoxProps) => (
   <Box
-    bg={useColorModeValue('white', 'gray.700')}
+    bg={useColorModeValue("white", "gray.700")}
     py="8"
-    px={{ base: '4', md: '10' }}
+    px={{ base: "4", md: "10" }}
     shadow="lg"
-    rounded={{ sm: 'lg' }}
+    rounded={{ sm: "lg" }}
     {...props}
   />
-);
+)

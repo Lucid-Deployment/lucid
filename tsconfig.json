@@ -1,16 +1,36 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
     "composite": true,
-    "target": "ES2018",
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
     "strict": true,
+    "importsNotUsedAsValues": "error",
+    "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "declaration": true,
-    "importsNotUsedAsValues": "error",
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "jsx": "react",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "rootDir": "."
   },
-  "exclude": ["**/node_modules/**"]
+  "include": ["packages"],
+  "exclude": ["**/node_modules/**"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "resolveJsonModule": true,
+      "noImplicitAny": false
+    }
+  }
 }
