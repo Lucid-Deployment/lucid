@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/util-data-access@0.2.0...@lucid/util-data-access@0.2.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* **util-data-access:** adding data to url search params ([74434ea](https://github.com/Lucid-Deployment/lucid/commit/74434eade828e569174ee7966cec8ea6e953fb23))
+
+
+
+
+
 # [0.2.0](https://github.com/Lucid-Deployment/lucid/compare/@lucid/util-data-access@0.1.4...@lucid/util-data-access@0.2.0) (2021-04-17)
 
 
