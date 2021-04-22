@@ -67,7 +67,7 @@ async function client(
       )
     }
 
-    return url.toString()
+    return newUrl.toString()
   }
 }
 
