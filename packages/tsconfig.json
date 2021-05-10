@@ -20,7 +20,7 @@
       "path": "./app1-ui-theme"
     },
     {
-      "path": "./dashboard-shell"
+      "path": "./ui-dashboard-shell"
     },
     {
       "path": "./app1"
