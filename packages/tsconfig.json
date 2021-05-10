@@ -5,6 +5,9 @@
       "path": "./feature-component"
     },
     {
+      "path": "./ui-table"
+    },
+    {
       "path": "./identity/api-interfaces"
     },
     {
