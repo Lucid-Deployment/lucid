@@ -46,4 +46,5 @@ yarn storybook
 3. React Query;
 4. Authentication (in progress);
 5. Lerna;
-6. React testing library.
+6. React testing library;
+7. Software Design.
