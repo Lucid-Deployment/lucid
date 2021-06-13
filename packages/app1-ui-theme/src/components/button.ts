@@ -120,6 +120,20 @@ function variantSolid(props: Dict) {
     }
   }
 
+  if (c === "purple") {
+    const bg = mode(`purple1.500`, "purple2.500")(props)
+
+    return {
+      bg,
+      _hover: {
+        bg: mode(`purple1.600`, "purple2.600")(props),
+        _disabled: {
+          bg,
+        },
+      },
+    }
+  }
+
   const {
     bg = `${c}.500`,
     color = "white",
