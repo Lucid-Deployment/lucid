@@ -10,12 +10,25 @@ services:
     networks:
       - backend
     env_file:
-      - .env.dev
+      - .env.local
     volumes:
       - dbdata:/data/db
-
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - dbdata1:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: main
+      POSTGRES_PASSWORD: main
+      POSTGRES_DB: main
+    ports:
+      - 5432:5432
+    env_file:
+      - .env.local
 volumes:
   dbdata:
+  db1data:
 
 networks:
   backend:
