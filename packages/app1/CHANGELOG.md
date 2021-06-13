@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1@0.3.1...@lucid/app1@0.4.0) (2021-06-13)
+
+
+### Bug Fixes
+
+* **app1:** replace `Errors` ([85bc02e](https://github.com/vladislav1010/lucid/commit/85bc02e38e65c56e773fc8a124fc5465a8692c54))
+* **app1:** strict typescript ([a7a8069](https://github.com/vladislav1010/lucid/commit/a7a806968385161b52a7c9b04f40dbddf996f7d0))
+
+
+### Features
+
+* **app1:** add auth validation lib ([ed01180](https://github.com/vladislav1010/lucid/commit/ed0118006ce308f65ee77433891c0c57961a7a6f))
+* **app1:** add cart api query ([8dc62a1](https://github.com/vladislav1010/lucid/commit/8dc62a1eb0476bf94bd097dc91aa7788ee8b2070))
+* **app1:** add filters output basic structure ([6cedd05](https://github.com/vladislav1010/lucid/commit/6cedd05505ca08739ec4190eadb736180e231e09))
+* **app1:** add firebase signup ([4c87ee2](https://github.com/vladislav1010/lucid/commit/4c87ee2ee5d29857e422852bfb910b1b05976f09))
+* **app1:** add NavLink ([cc76e4c](https://github.com/vladislav1010/lucid/commit/cc76e4c3812d0ab92d8d8ff2f402ac05fbb9b5a1))
+* **app1:** add postgres docker service ([c792c67](https://github.com/vladislav1010/lucid/commit/c792c679377331a36b0615ffb213b55955be37d1))
+* **app1:** enclose app in stacking context with 0 z-index ([fa6dee4](https://github.com/vladislav1010/lucid/commit/fa6dee432b078f152fe66ab263fc6230e2184cf1))
+
+
+
+
+
 ## [0.3.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1@0.3.0...@lucid/app1@0.3.1) (2021-04-22)
 
 **Note:** Version bump only for package @lucid/app1

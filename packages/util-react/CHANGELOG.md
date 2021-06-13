@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/vladislav1010/lucid/compare/@lucid/util-react@0.1.1...@lucid/util-react@0.2.0) (2021-06-13)
+
+
+### Features
+
+* **util-react:** add async, safe-dispatch ([a10ddce](https://github.com/vladislav1010/lucid/commit/a10ddce3d60a85b673875f291e0535aa33a0d41d))
+
+
+
+
+
 ## [0.1.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/util-react@0.1.0...@lucid/util-react@0.1.1) (2021-04-22)
 
 **Note:** Version bump only for package @lucid/util-react

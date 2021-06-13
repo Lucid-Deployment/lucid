@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1-ui-theme@0.4.1...@lucid/app1-ui-theme@0.5.0) (2021-06-13)
+
+
+### Features
+
+* **app1-ui-theme:** add colors ([9a33c8b](https://github.com/vladislav1010/lucid/commit/9a33c8bba2fd997b087246368b16478611531831))
+* **app1-ui-theme:** add colors abstraction per mode ([02fda32](https://github.com/vladislav1010/lucid/commit/02fda328a58f63a288cc82204ff9904b776d743a))
+* **app1-ui-theme:** add purple solid button ([21b803d](https://github.com/vladislav1010/lucid/commit/21b803d6dfaeabcdd0549da2fb10dfd3aad56da7))
+
+
+
+
+
 ## [0.4.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-theme@0.4.0...@lucid/app1-ui-theme@0.4.1) (2021-04-22)
 
 **Note:** Version bump only for package @lucid/app1-ui-theme
