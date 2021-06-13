@@ -70,6 +70,7 @@
     "react-hooks/exhaustive-deps": "error",
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "@typescript-eslint/no-implicit-any-catch": "error"
   }
 }
