@@ -13,4 +13,6 @@ const theme = extendTheme({
   components,
 })
 
+export * as colors from "./colors"
+
 export default theme
