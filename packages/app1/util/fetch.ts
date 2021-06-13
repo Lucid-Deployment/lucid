@@ -1,5 +1,5 @@
 import { client } from "@lucid/util-data-access"
-import { Errors } from "@lucid/identity-api-interfaces"
+import { Error } from "./api-interfaces"
 
 const apiURL = process.env.NEXT_API_URL
 
@@ -9,6 +9,6 @@ const publicFetch = (
     data?: unknown
     token?: string
   },
-) => client<Errors>(`${apiURL}/${endpoint}`, config)
+) => client<Error>(`${apiURL}/${endpoint}`, config)
 
 export { publicFetch }

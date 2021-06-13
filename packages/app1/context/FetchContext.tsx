@@ -1,9 +1,9 @@
 import * as React from "react"
-import { publicFetch } from "../util/fetch"
 import { ApiError } from "@lucid/util-data-access"
-import { Errors } from "@lucid/identity-api-interfaces"
+import { publicFetch } from "../util/fetch"
+import type { Error } from "../util/api-interfaces"
 
-export type AuthFetchError = ApiError<Errors> | { message: string }
+export type AuthFetchError = ApiError<Error> | { message: string }
 
 type FetchContextValue = {
   authFetch: (
