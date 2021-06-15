@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { ApiError, client } from "@lucid/util-data-access"
-import { Error } from "../../util/api-interfaces"
+import { Error } from "../../../util/api-interfaces"
 
 interface CartInput {
   include: "redirect_urls"[]

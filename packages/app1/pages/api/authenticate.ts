@@ -9,7 +9,7 @@ import {
   verifyPassword,
 } from "./util"
 import type { NextApiResponse } from "next"
-import { User } from "../../identity"
+import { User } from "../../features/identity"
 import { AuthenticateInput } from "@lucid/identity-api-interfaces"
 
 const handler = nextConnect()

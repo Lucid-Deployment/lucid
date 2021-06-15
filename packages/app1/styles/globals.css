@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --text-primary: theme("colors.gray.700");
+    --brand-500: theme("colors.purple.500");
+  }
+
+  .dark {
+    --text-primary: theme("colors.white");
+    /* TODO: */
+    --brand-500: theme("colors.purple.500");
+  }
+}
+
+@layer components {
+  .container {
+    max-width: 1280px;
+    @apply my-auto px-20;
+  }
+
+  .nav-link {
+    @apply font-medium leading-snug text-primary transition-colors duration-300 ease-in-out hover:text-brand-500 focus-visible:ring-2 focus-visible:ring-brand-500 focus:outline-none focus-visible:outline-none;
+  }
+
+  .btn {
+    @apply relative whitespace-nowrap inline-flex items-center justify-center select-none appearance-none disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none hover:disabled:bg-initial outline-none focus:outline-none focus-visible:outline-none;
+  }
+
+  .btn-ghost-gray {
+    @apply focus-visible:ring-gray-100 text-gray-700 bg-transparent hover:bg-gray-100;
+  }
+
+  .btn-y-full {
+    @apply leading-none self-stretch;
+  }
+}

@@ -2,6 +2,7 @@ import type { AppProps } from "next/app"
 import { ChakraProvider, chakra } from "@chakra-ui/react"
 import theme from "@lucid/app1-ui-theme"
 import * as React from "react"
+import "../styles/tailwind.build.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
