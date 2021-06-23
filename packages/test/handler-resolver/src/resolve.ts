@@ -2,6 +2,7 @@ import { match } from "node-match-path"
 import type { ResponseComposition, RestContext, RestRequest } from "msw"
 import type { RestHandler } from "msw/lib/types/handlers/RestHandler"
 import type { ResponseError } from "./response-error"
+import { isResponseError } from "./response-error"
 
 let sleep: (time?: number) => Promise<void>
 if (process.env.CI) {
@@ -35,7 +36,7 @@ function shouldFail(req: RestRequest) {
     failConfig = JSON.parse(
       window.localStorage.getItem("__store_request_fail_config__") || "[]",
     )
-  } catch (err) {
+  } catch (err: unknown) {
     window.localStorage.removeItem("__store_request_fail_config__")
   }
 
@@ -93,8 +94,12 @@ async function resolve(
     }
 
     return await originalResolver()
-  } catch (err) {
-    return errorResponse(err)
+  } catch (err: unknown) {
+    if (isResponseError(err)) {
+      return errorResponse(err)
+    } else {
+      throw err
+    }
   } finally {
     await sleep()
   }

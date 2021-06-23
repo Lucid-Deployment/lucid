@@ -36,6 +36,9 @@
     },
     {
       "path": "./app1-ui-shared"
+    },
+    {
+      "path": "./app2"
     }
   ]
 }

@@ -57,14 +57,14 @@ const verifyPassword = (passwordAttempt: string, hashedPassword: string) => {
 }
 
 export type NextApiRequestWithDb<
-  TRequest extends NextApiRequest = NextApiRequest
+  TRequest extends NextApiRequest = NextApiRequest,
 > = TRequest & {
   dbClient: MongoClient
   db: Db
 }
 
 export type NextApiRequestWithUser<
-  TRequest extends NextApiRequest = NextApiRequest
+  TRequest extends NextApiRequest = NextApiRequest,
 > = TRequest & {
   user: UserInfo
 }

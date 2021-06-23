@@ -13,7 +13,7 @@ const client = <ErrorData>(
     let data: any
     try {
       data = await res.json()
-    } catch (err) {
+    } catch (err: unknown) {
       const result: ApiError<ErrorData> = {
         type: "invalidBody",
         status: res.status,
