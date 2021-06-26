@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    color: theme("textColor.primary");
+  }
+}
+
+@layer components {
+  .nav__link {
+    @apply hover:text-brand-600 active:text-brand-600 font-normal transition-colors duration-200 no-underline focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 text-sm py-2 px-6 inline text-primary;
+  }
+
+  .nav__item {
+    @apply leading-[4.8125rem] relative;
+  }
+}
