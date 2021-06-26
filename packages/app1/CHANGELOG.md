@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1@0.4.0...@lucid/app1@0.5.0) (2021-06-26)
+
+
+### Features
+
+* **app1:** add TailwindCSS, Header, Button1, ConfigWebsite, EditArea ([c414aae](https://github.com/vladislav1010/lucid/commit/c414aaed2faab9281b46a2344369ab9d3b89f0c3))
+* **app2:** init with TailwindCSS ([9a190bc](https://github.com/vladislav1010/lucid/commit/9a190bc6f4e60691b571a1dc8525798bc1122a14))
+
+
+
+
+
+
 # [0.4.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1@0.3.1...@lucid/app1@0.4.0) (2021-06-13)
 
 

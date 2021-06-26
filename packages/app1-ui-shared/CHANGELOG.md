@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1-ui-shared@0.4.1...@lucid/app1-ui-shared@0.5.0) (2021-06-26)
+
+
+### Features
+
+* **app2:** init with TailwindCSS ([9a190bc](https://github.com/vladislav1010/lucid/commit/9a190bc6f4e60691b571a1dc8525798bc1122a14))
+
+
+
+
+
+
 ## [0.4.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/app1-ui-shared@0.4.0...@lucid/app1-ui-shared@0.4.1) (2021-04-22)
 
 **Note:** Version bump only for package @lucid/app1-ui-shared
