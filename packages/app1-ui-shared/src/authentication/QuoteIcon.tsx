@@ -1,8 +1,9 @@
 import * as React from "react"
-import type { HTMLChakraProps } from "@chakra-ui/system"
-import { chakra } from "@chakra-ui/react"
+import { chakra, ChakraProps, OmitCommonProps } from "@chakra-ui/react"
 
-export const QuoteIcon = (props: HTMLChakraProps<"svg">) => {
+export const QuoteIcon = (
+  props: OmitCommonProps<React.SVGProps<SVGSVGElement>, keyof ChakraProps>,
+) => {
   return (
     <chakra.svg
       w="1em"
