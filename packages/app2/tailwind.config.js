@@ -42,7 +42,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      divideColor: ["group-hover", "group-active"],
+    },
   },
   plugins: [],
 }

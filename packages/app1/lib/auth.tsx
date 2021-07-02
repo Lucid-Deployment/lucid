@@ -57,10 +57,9 @@ const useProvideAuth = (): AuthContextValue => {
     Exclude<AuthContextValue["error"], null>
   >({ data: null, error: null })
 
-  const setUser = React.useCallback(
-    (user: User) => setData(formatUser(user)),
-    [setData],
-  )
+  const setUser = React.useCallback((user: User) => setData(formatUser(user)), [
+    setData,
+  ])
 
   const handleUser = React.useCallback(
     (promise: Promise<UserCredential>): Promise<void> =>
