@@ -70,9 +70,10 @@ function useAsync<TData, TError>(initialState: Partial<State<TData, TError>>) {
     (error) => dispatch({ type: "rejected", error }),
     [dispatch],
   )
-  const setIsLoading = React.useCallback(() => dispatch({ type: "pending" }), [
-    dispatch,
-  ])
+  const setIsLoading = React.useCallback(
+    () => dispatch({ type: "pending" }),
+    [dispatch],
+  )
 
   return {
     setData,
