@@ -1,28 +1,28 @@
-import * as React from "react"
-import { Box, chakra, Flex, Text, useToken } from "@chakra-ui/react"
-import { useColorModeValue } from "@chakra-ui/system"
+import * as React from "react";
+import { Box, chakra, Flex, Text, useToken } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/system";
 
 interface UserData {
-  profileUrl: string
-  imageUrl: string
-  name: string
-  bio: string
+  profileUrl: string;
+  imageUrl: string;
+  name: string;
+  bio: string;
 }
 
 interface AvatarProps {
-  className?: string
-  user: UserData
+  className?: string;
+  user: UserData;
 }
 
 export const Avatar = ({ className, user }: AvatarProps) => {
   const [gray900, whiteAlpha900] = useToken("colors", [
     "gray.900",
     "whiteAlpha.900",
-  ])
+  ]);
   const [gray600, whiteAlpha700] = useToken("colors", [
     "gray.700",
     "whiteAlpha.800",
-  ])
+  ]);
 
   return (
     <chakra.a
@@ -66,5 +66,5 @@ export const Avatar = ({ className, user }: AvatarProps) => {
         </Box>
       </Flex>
     </chakra.a>
-  )
-}
+  );
+};

@@ -1,15 +1,15 @@
-import * as React from "react"
-import "../../../styles/tailwind.build.css"
-import cn from "classnames"
-import { Button1 } from "./Button1"
+import * as React from "react";
+import "../../../styles/tailwind.build.css";
+import cn from "classnames";
+import { Button1 } from "./Button1";
 
 const ButtonsWrapper = ({
   children,
   className,
 }: {
-  children?: React.ReactNode
-  className?: string
-}) => <div className={cn("m-[9px] flex", className)}>{children}</div>
+  children?: React.ReactNode;
+  className?: string;
+}) => <div className={cn("m-[9px] flex", className)}>{children}</div>;
 
 export const ConfigWebsite = () => {
   return (
@@ -61,5 +61,5 @@ export const ConfigWebsite = () => {
         </ButtonsWrapper>
       </div>
     </div>
-  )
-}
+  );
+};

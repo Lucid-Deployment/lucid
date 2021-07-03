@@ -1,8 +1,8 @@
-import * as React from "react"
-import { useMutation } from "react-query"
+import * as React from "react";
+import { useMutation } from "react-query";
 
 const Zz = () => {
-  const [data, setData] = React.useState<string>()
+  const [data, setData] = React.useState<string>();
 
   const { mutate } = useMutation<
     string,
@@ -16,28 +16,28 @@ const Zz = () => {
           "Content-Type": "application/json",
         },
         method: "POST",
-      })
+      });
 
-      const data1 = await res.json()
-      return data1.pid
+      const data1 = await res.json();
+      return data1.pid;
     },
     {
       onSuccess(data) {
-        setData(data)
+        setData(data);
       },
-    },
-  )
+    }
+  );
 
   return (
     <div>
       <form
         onSubmit={(e: any) => {
-          e.preventDefault()
+          e.preventDefault();
 
           mutate({
             field1: e.target.elements.field1.value,
             field2: e.target.elements.field2.value,
-          })
+          });
         }}
       >
         <input
@@ -50,7 +50,7 @@ const Zz = () => {
       </form>
       <span dangerouslySetInnerHTML={{ __html: data ?? "" }} />
     </div>
-  )
-}
+  );
+};
 
-export default Zz
+export default Zz;

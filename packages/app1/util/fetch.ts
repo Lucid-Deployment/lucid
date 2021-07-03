@@ -1,14 +1,14 @@
-import { client } from "@lucid/util-data-access"
-import { Error } from "./api-interfaces"
+import { client } from "@lucid/util-data-access";
+import { Error } from "./api-interfaces";
 
-const apiURL = process.env.NEXT_API_URL
+const apiURL = process.env.NEXT_API_URL;
 
 const publicFetch = (
   endpoint: string,
   config?: RequestInit & {
-    data?: unknown
-    token?: string
-  },
-) => client<Error>(`${apiURL}/${endpoint}`, config)
+    data?: unknown;
+    token?: string;
+  }
+) => client<Error>(`${apiURL}/${endpoint}`, config);
 
-export { publicFetch }
+export { publicFetch };

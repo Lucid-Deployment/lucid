@@ -1,11 +1,10 @@
-import type { AppProps } from "next/app"
-import { ChakraProvider, chakra } from "@chakra-ui/react"
-import theme from "@lucid/app1-ui-theme"
-import * as React from "react"
-import "../styles/tailwind.build.css"
-import { QueryClient, QueryClientProvider } from "react-query"
+import type { AppProps } from "next/app";
+import { ChakraProvider, chakra } from "@chakra-ui/react";
+import theme from "@lucid/app1-ui-theme";
+import * as React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </chakra.div>
       </ChakraProvider>
     </QueryClientProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

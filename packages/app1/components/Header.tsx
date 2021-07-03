@@ -1,5 +1,5 @@
-import * as React from "react"
-import Link from "next/link"
+import * as React from "react";
+import Link from "next/link";
 
 // It says exactly what it's doing
 const Header = () => (
@@ -12,6 +12,6 @@ const Header = () => (
       </li>
     </ul>
   </div>
-)
+);
 
-export default Header
+export default Header;

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
   Box,
   Button,
@@ -6,15 +6,15 @@ import {
   Heading,
   Text,
   useColorModeValue,
-} from "@chakra-ui/react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons"
-import { Card } from "./Card"
-import { DividerWithText } from "./DividerWithText"
-import { Link } from "./Link"
-import { LoginForm } from "./LoginForm"
-import { Logo } from "./Logo"
-import { Testimonial } from "./Testimonial"
+} from "@chakra-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { Card } from "./Card";
+import { DividerWithText } from "./DividerWithText";
+import { Link } from "./Link";
+import { LoginForm } from "./LoginForm";
+import { Logo } from "./Logo";
+import { Testimonial } from "./Testimonial";
 
 const LoginPage = () => {
   return (
@@ -90,7 +90,7 @@ const LoginPage = () => {
         </Box>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export { LoginPage }
+export { LoginPage };

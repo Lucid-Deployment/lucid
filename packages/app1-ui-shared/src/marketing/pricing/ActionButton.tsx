@@ -1,5 +1,5 @@
-import { Button, ButtonProps } from "@chakra-ui/react"
-import * as React from "react"
+import { Button, ButtonProps } from "@chakra-ui/react";
+import * as React from "react";
 
 export const ActionButton = (props: ButtonProps) => (
   <Button
@@ -9,4 +9,4 @@ export const ActionButton = (props: ButtonProps) => (
     py={{ md: "8" }}
     {...props}
   />
-)
+);

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
   Box,
   Flex,
@@ -10,9 +10,9 @@ import {
   HStack,
   chakra,
   SimpleGrid,
-} from "@chakra-ui/react"
-import { useColorModeValue } from "@chakra-ui/system"
-import { PricingCard } from "./PricingCard"
+} from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/system";
+import { PricingCard } from "./PricingCard";
 
 export const Pricing = () => {
   return (
@@ -123,5 +123,5 @@ export const Pricing = () => {
         />
       </SimpleGrid>
     </Box>
-  )
-}
+  );
+};

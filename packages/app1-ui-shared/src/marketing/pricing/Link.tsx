@@ -1,5 +1,5 @@
-import { chakra, HTMLChakraProps, useColorModeValue } from "@chakra-ui/system"
-import * as React from "react"
+import { chakra, HTMLChakraProps, useColorModeValue } from "@chakra-ui/system";
+import * as React from "react";
 
 export const Link = (props: HTMLChakraProps<"a">) => (
   <chakra.a
@@ -12,4 +12,4 @@ export const Link = (props: HTMLChakraProps<"a">) => (
     display="inline-flex"
     {...props}
   />
-)
+);

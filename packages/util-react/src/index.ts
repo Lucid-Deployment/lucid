@@ -1,2 +1,2 @@
-export * from "./async"
-export * from "./safe-dispatch"
+export * from "./async";
+export * from "./safe-dispatch";

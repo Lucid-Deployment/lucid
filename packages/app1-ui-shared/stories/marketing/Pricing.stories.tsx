@@ -1,11 +1,11 @@
-import * as React from "react"
-import { Pricing as PricingComponent } from "../../src"
-import type { Meta } from "@storybook/react"
+import * as React from "react";
+import { Pricing as PricingComponent } from "../../src";
+import type { Meta } from "@storybook/react";
 
 export default {
   title: "Organisms/Marketing/Pricing",
   component: PricingComponent,
   decorators: [],
-} as Meta
+} as Meta;
 
-export const Pricing = () => <PricingComponent />
+export const Pricing = () => <PricingComponent />;

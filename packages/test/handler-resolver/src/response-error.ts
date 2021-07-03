@@ -1,5 +1,5 @@
 export interface ResponseError extends Error {
-  status?: number
+  status?: number;
 }
 
 export const isResponseError = (err: unknown): err is ResponseError => {
@@ -7,5 +7,5 @@ export const isResponseError = (err: unknown): err is ResponseError => {
     err instanceof Error &&
     ((err as any).status === undefined ||
       typeof (err as any).status === "number")
-  )
-}
+  );
+};

@@ -1,8 +1,8 @@
-import { Text, TextProps, useColorModeValue } from "@chakra-ui/react"
-import * as React from "react"
+import { Text, TextProps, useColorModeValue } from "@chakra-ui/react";
+import * as React from "react";
 
 export const CardBadge = (props: TextProps) => {
-  const { children, ...rest } = props
+  const { children, ...rest } = props;
 
   return (
     <Text
@@ -24,5 +24,5 @@ export const CardBadge = (props: TextProps) => {
     >
       {children}
     </Text>
-  )
-}
+  );
+};

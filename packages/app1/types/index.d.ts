@@ -4,7 +4,7 @@ declare namespace NodeJS {
   // Merge the existing `ProcessEnv` definition with ours
   // https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
   export interface ProcessEnv {
-    ATLAS_URL: string
-    NEXT_API_URL: string
+    ATLAS_URL: string;
+    NEXT_API_URL: string;
   }
 }

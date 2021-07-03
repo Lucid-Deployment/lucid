@@ -1,29 +1,29 @@
-import * as React from "react"
-import cn from "classnames"
-import { Button1 } from "./Button1"
+import * as React from "react";
+import cn from "classnames";
+import { Button1 } from "./Button1";
 
 const Top = ({
   children,
   className,
   style,
 }: {
-  children?: React.ReactNode
-  className?: string
-  style?: React.CSSProperties
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 }) => (
   <div
     className={cn(
       className,
-      "inline-flex absolute top-0 -translate-y-full transform",
+      "inline-flex absolute top-0 -translate-y-full transform"
     )}
     style={style}
   >
     {children}
   </div>
-)
+);
 
 export interface EditAreaProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 export const EditArea = ({ children }: EditAreaProps) => (
   <div className="relative">
@@ -62,4 +62,4 @@ export const EditArea = ({ children }: EditAreaProps) => (
     </div>
     <div className="border-2 border-blue-500">{children}</div>
   </div>
-)
+);

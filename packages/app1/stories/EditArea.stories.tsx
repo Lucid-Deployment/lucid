@@ -1,6 +1,6 @@
-import * as React from "react"
-import type { Meta } from "@storybook/react"
-import { EditArea as EditAreaComponent } from "../features/dashboard"
+import * as React from "react";
+import type { Meta } from "@storybook/react";
+import { EditArea as EditAreaComponent } from "../features/dashboard";
 
 export default {
   title: "Lucid Space/Edit Area",
@@ -23,6 +23,6 @@ export default {
       </div>
     ),
   ],
-} as Meta
+} as Meta;
 
-export const EditArea = () => <EditAreaComponent>Text</EditAreaComponent>
+export const EditArea = () => <EditAreaComponent>Text</EditAreaComponent>;

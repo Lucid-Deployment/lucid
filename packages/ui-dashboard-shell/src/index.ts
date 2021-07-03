@@ -1,1 +1,1 @@
-export * from "./DashboardShell"
+export * from "./DashboardShell";

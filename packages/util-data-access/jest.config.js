@@ -1,4 +1,4 @@
-const preset = require("../../jest.preset")
+const preset = require("../../jest.preset");
 
 module.exports = {
   ...preset,
@@ -9,4 +9,4 @@ module.exports = {
   },
   setupFilesAfterEnv: ["<rootDir>/tests/setupTests.ts"],
   testEnvironment: "jsdom",
-}
+};

@@ -1,4 +1,4 @@
-import type { ComponentProps } from "@lucid/feature-component"
+import type { ComponentProps } from "@lucid/feature-component";
 import {
   Grid,
   GridItem,
@@ -6,9 +6,9 @@ import {
   useColorModeValue,
   GridItemProps,
   Flex,
-} from "@chakra-ui/react"
-import * as React from "react"
-import type { Column } from "./column"
+} from "@chakra-ui/react";
+import * as React from "react";
+import type { Column } from "./column";
 
 export function TableCell(props: GridItemProps) {
   return (
@@ -17,12 +17,12 @@ export function TableCell(props: GridItemProps) {
       borderColor={useColorModeValue("gray.400", "whiteAlpha.500")}
       {...props}
     />
-  )
+  );
 }
 
 export interface TableProps extends ComponentProps {
-  columns: Column[]
-  data: any
+  columns: Column[];
+  data: any;
 }
 export function Table({ columns, data }: TableProps) {
   return (
@@ -31,7 +31,7 @@ export function Table({ columns, data }: TableProps) {
         {data.map((x: any, i: number) =>
           columns.map((c) => (
             <TableCell key={`${i}_${c.id}`}>${x[i][c.id]}</TableCell>
-          )),
+          ))
         )}
       </Grid>
       <Flex
@@ -43,5 +43,5 @@ export function Table({ columns, data }: TableProps) {
         <Box>{data.length} results</Box>
       </Flex>
     </Box>
-  )
+  );
 }

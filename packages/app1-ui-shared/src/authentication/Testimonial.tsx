@@ -1,15 +1,15 @@
-import * as React from "react"
-import { Box, Flex, FlexProps, Text } from "@chakra-ui/react"
-import { useColorModeValue } from "@chakra-ui/system"
-import { QuoteIcon } from "./QuoteIcon"
-import { Avatar } from "./Avatar"
+import * as React from "react";
+import { Box, Flex, FlexProps, Text } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/system";
+import { QuoteIcon } from "./QuoteIcon";
+import { Avatar } from "./Avatar";
 
 interface TestimonialData {
-  text: string
+  text: string;
 }
 
 interface TestimonialProps extends FlexProps {
-  data: TestimonialData
+  data: TestimonialData;
 }
 
 export const Testimonial = ({ data, ...rest }: TestimonialProps) => {
@@ -38,5 +38,5 @@ export const Testimonial = ({ data, ...rest }: TestimonialProps) => {
         />
       </Box>
     </Flex>
-  )
-}
+  );
+};

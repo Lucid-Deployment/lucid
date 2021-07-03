@@ -1,4 +1,4 @@
-import { mode, Styles } from "@chakra-ui/theme-tools"
+import { mode, Styles } from "@chakra-ui/theme-tools";
 
 const styles: Styles = {
   global: (props) => ({
@@ -17,6 +17,6 @@ const styles: Styles = {
       wordWrap: "break-word",
     },
   }),
-}
+};
 
-export default styles
+export default styles;

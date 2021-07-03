@@ -10,4 +10,4 @@ module.exports = {
     "<rootDir>/packages/util-react",
     "<rootDir>/packages/catalog/api-interfaces",
   ],
-}
+};

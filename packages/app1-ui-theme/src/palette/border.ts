@@ -1,4 +1,4 @@
-import { neutral, error, success, brand } from "./global"
+import { neutral, error, success, brand } from "./global";
 
 export const border = {
   primary: neutral[60],
@@ -10,4 +10,4 @@ export const border = {
   inputChecked: brand[500],
   inputHover: brand[500],
   inputActive: brand[500],
-}
+};

@@ -1,32 +1,32 @@
-import * as React from "react"
-import { useSafeDispatch } from "./safe-dispatch"
+import * as React from "react";
+import { useSafeDispatch } from "./safe-dispatch";
 
 function asyncReducer<TData, TError>(
   state: State<TData, TError>,
-  action: any,
+  action: any
 ): State<TData, TError> {
   switch (action.type) {
     case "pending": {
-      return { ...state, status: "pending", data: null, error: null }
+      return { ...state, status: "pending", data: null, error: null };
     }
     case "resolved": {
-      return { ...state, status: "resolved", data: action.data, error: null }
+      return { ...state, status: "resolved", data: action.data, error: null };
     }
     case "rejected": {
-      return { ...state, status: "rejected", data: null, error: action.error }
+      return { ...state, status: "rejected", data: null, error: action.error };
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
 
-export type AsyncStatus = "idle" | "resolved" | "pending" | "rejected"
+export type AsyncStatus = "idle" | "resolved" | "pending" | "rejected";
 
 interface State<TData, TError> {
-  status: "idle" | "resolved" | "pending" | "rejected"
-  data: TData | null
-  error: TError | null
+  status: "idle" | "resolved" | "pending" | "rejected";
+  data: TData | null;
+  error: TError | null;
 }
 
 function useAsync<TData, TError>(initialState: Partial<State<TData, TError>>) {
@@ -40,40 +40,40 @@ function useAsync<TData, TError>(initialState: Partial<State<TData, TError>>) {
       error: null,
       ...initialState,
     },
-    undefined,
-  )
+    undefined
+  );
 
-  const dispatch = useSafeDispatch(unsafeDispatch)
+  const dispatch = useSafeDispatch(unsafeDispatch);
 
-  const { data, error, status } = state
+  const { data, error, status } = state;
 
   const run = React.useCallback(
     (promise) => {
-      dispatch({ type: "pending" })
+      dispatch({ type: "pending" });
       promise.then(
         (data: TData) => {
-          dispatch({ type: "resolved", data })
+          dispatch({ type: "resolved", data });
         },
         (error: TError) => {
-          dispatch({ type: "rejected", error })
-        },
-      )
+          dispatch({ type: "rejected", error });
+        }
+      );
     },
-    [dispatch],
-  )
+    [dispatch]
+  );
 
   const setData = React.useCallback(
     (data) => dispatch({ type: "resolved", data }),
-    [dispatch],
-  )
+    [dispatch]
+  );
   const setError = React.useCallback(
     (error) => dispatch({ type: "rejected", error }),
-    [dispatch],
-  )
+    [dispatch]
+  );
   const setIsLoading = React.useCallback(
     () => dispatch({ type: "pending" }),
-    [dispatch],
-  )
+    [dispatch]
+  );
 
   return {
     setData,
@@ -83,7 +83,7 @@ function useAsync<TData, TError>(initialState: Partial<State<TData, TError>>) {
     status,
     data,
     run,
-  }
+  };
 }
 
-export { useAsync }
+export { useAsync };

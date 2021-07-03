@@ -1,1 +1,1 @@
-export { ComponentProps } from "./types"
+export { ComponentProps } from "./types";

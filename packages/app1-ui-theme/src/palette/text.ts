@@ -1,4 +1,4 @@
-import { neutral, error, success, brand } from "./global"
+import { neutral, error, success, brand } from "./global";
 
 export const text = {
   primary: neutral[7],
@@ -17,4 +17,4 @@ export const text = {
   inputHover: brand[400],
   groupLabel: neutral[7],
   groupLabelSupporting: neutral[46],
-}
+};

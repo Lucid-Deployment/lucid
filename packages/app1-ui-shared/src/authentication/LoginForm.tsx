@@ -7,24 +7,24 @@ import {
   HTMLChakraProps,
   Input,
   Stack,
-} from "@chakra-ui/react"
-import * as React from "react"
-import { Formik, Field } from "formik"
-import * as Yup from "yup"
-import { PasswordField } from "./PasswordField"
+} from "@chakra-ui/react";
+import * as React from "react";
+import { Formik, Field } from "formik";
+import * as Yup from "yup";
+import { PasswordField } from "./PasswordField";
 
 interface LoginFormProps extends HTMLChakraProps<"form"> {
-  onLogin: (data: LoginFormValues) => Promise<void>
+  onLogin: (data: LoginFormValues) => Promise<void>;
 }
 
 export interface LoginFormValues {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
   const passwordMustContainSymbolsMessage =
-    "Must contain at least 1 digit, letter in uppercase, in lowercase"
+    "Must contain at least 1 digit, letter in uppercase, in lowercase";
 
   return (
     <Formik
@@ -43,9 +43,9 @@ export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
           .matches(/[a-z]/, { message: passwordMustContainSymbolsMessage }),
       })}
       onSubmit={async (values, actions) => {
-        await onLogin(values)
+        await onLogin(values);
 
-        actions.setSubmitting(false)
+        actions.setSubmitting(false);
       }}
     >
       {(props) => (
@@ -93,5 +93,5 @@ export const LoginForm = ({ onLogin, ...formProps }: LoginFormProps) => {
         </chakra.form>
       )}
     </Formik>
-  )
-}
+  );
+};

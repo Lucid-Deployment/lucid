@@ -1,8 +1,8 @@
-import React from "react"
-import { Box, Flex, useColorModeValue } from "@chakra-ui/react"
+import React from "react";
+import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 
 interface DashboardShellProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 const DashboardShell = ({ children }: DashboardShellProps) => {
   return (
@@ -14,7 +14,7 @@ const DashboardShell = ({ children }: DashboardShellProps) => {
       ></Flex>
       {children}
     </Box>
-  )
-}
+  );
+};
 
-export { DashboardShell }
+export { DashboardShell };

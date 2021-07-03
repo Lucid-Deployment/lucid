@@ -1,4 +1,4 @@
-import * as yup from "yup"
+import * as yup from "yup";
 
 // TODO: XSS attacks
 const passwordSchema = yup
@@ -10,12 +10,12 @@ const passwordSchema = yup
   .matches(/[A-Z]/)
   .matches(/\d/)
   .matches(/[.,;:_]/)
-  .label("Password")
+  .label("Password");
 
 const passwordConfirmationSchema = (passwordKey: string) =>
   yup
     .string()
     .oneOf([yup.ref(passwordKey), null], "Passwords must match")
-    .label("Password confirmation")
+    .label("Password confirmation");
 
-export { passwordSchema, passwordConfirmationSchema }
+export { passwordSchema, passwordConfirmationSchema };

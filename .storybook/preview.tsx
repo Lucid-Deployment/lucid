@@ -1,6 +1,6 @@
-import { ChakraProvider } from "@chakra-ui/react"
-import theme from "@lucid/app1-ui-theme"
-import * as React from "react"
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "@lucid/app1-ui-theme";
+import * as React from "react";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -10,10 +10,10 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
 
 const withChakra = (story: Function) => (
   <ChakraProvider theme={theme}>{story()}</ChakraProvider>
-)
+);
 
-export const decorators = [withChakra]
+export const decorators = [withChakra];

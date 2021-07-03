@@ -5,35 +5,35 @@ import {
   ListItem,
   Text,
   useColorModeValue,
-} from "@chakra-ui/react"
-import * as React from "react"
-import { faCheck } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Card, CardProps, usePopularColor } from "./Card"
-import { Link } from "./Link"
-import { ActionButton } from "./ActionButton"
+} from "@chakra-ui/react";
+import * as React from "react";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Card, CardProps, usePopularColor } from "./Card";
+import { Link } from "./Link";
+import { ActionButton } from "./ActionButton";
 
 export interface PricingCardData {
-  features: string[]
-  name: string
-  price: string
-  description: string
+  features: string[];
+  name: string;
+  price: string;
+  description: string;
 }
 
 interface PricingCardProps extends CardProps {
-  data: PricingCardData
+  data: PricingCardData;
 }
 
 const CheckIcon = (props: { className?: string }) => (
   <FontAwesomeIcon icon={faCheck} {...props} />
-)
+);
 
 export const PricingCard = (props: PricingCardProps) => {
-  const { data, ...rest } = props
-  const isPopular = props.isPopular
-  const { features, price, name, description } = data
+  const { data, ...rest } = props;
+  const isPopular = props.isPopular;
+  const { features, price, name, description } = data;
 
-  const accentColor = usePopularColor()
+  const accentColor = usePopularColor();
 
   return (
     <Card rounded={{ sm: "xl" }} {...rest}>
@@ -85,5 +85,5 @@ export const PricingCard = (props: PricingCardProps) => {
         Buy now
       </ActionButton>
     </Card>
-  )
-}
+  );
+};

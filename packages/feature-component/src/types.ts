@@ -1,5 +1,5 @@
-type Id = string
+type Id = string;
 
 export interface ComponentProps {
-  id: Id
+  id: Id;
 }

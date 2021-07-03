@@ -1,5 +1,5 @@
-import * as React from "react"
-import * as yup from "yup"
+import * as React from "react";
+import * as yup from "yup";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -7,42 +7,44 @@ import {
   UserCredential,
   onAuthStateChanged,
   signOut,
-} from "firebase/auth"
-import { AsyncStatus, useAsync } from "@lucid/util-react"
-import { passwordConfirmationSchema, passwordSchema } from "./auth/validation"
-import { ValidationError } from "../util/yup"
+} from "firebase/auth";
+import { AsyncStatus, useAsync } from "@lucid/util-react";
+import { passwordConfirmationSchema, passwordSchema } from "./auth/validation";
+import { ValidationError } from "../util/yup";
 
 interface AuthContextValue {
-  user: User | null
-  error: string | null
-  status: AsyncStatus
-  signout: any
-  signupWithEmailAndPassword: (input: RegisterInput) => Promise<void>
-  signinWithEmailAndPassword: any
+  user: User | null;
+  error: string | null;
+  status: AsyncStatus;
+  signout: any;
+  signupWithEmailAndPassword: (input: RegisterInput) => Promise<void>;
+  signinWithEmailAndPassword: any;
 }
 
-const AuthContext = React.createContext<AuthContextValue | undefined>(undefined)
-AuthContext.displayName = "AuthContext"
+const AuthContext = React.createContext<AuthContextValue | undefined>(
+  undefined
+);
+AuthContext.displayName = "AuthContext";
 
 const useAuth = () => {
-  const context = React.useContext(AuthContext)
+  const context = React.useContext(AuthContext);
   if (!context) {
-    throw new Error("")
+    throw new Error("");
   }
-  return context
-}
+  return context;
+};
 
 type RegisterInput = {
-  email: string
-  password: string
-  passwordConfirmation: string
-}
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
 
 const registerWithEmailAndPasswordSchema = yup.object().shape({
   email: yup.string().email().required().label("Email"),
   password: passwordSchema,
   passwordConfirmation: passwordConfirmationSchema("password"),
-})
+});
 
 const useProvideAuth = (): AuthContextValue => {
   const {
@@ -55,67 +57,67 @@ const useProvideAuth = (): AuthContextValue => {
   } = useAsync<
     Exclude<AuthContextValue["user"], null>,
     Exclude<AuthContextValue["error"], null>
-  >({ data: null, error: null })
+  >({ data: null, error: null });
 
   const setUser = React.useCallback(
     (user: User) => setData(formatUser(user)),
-    [setData],
-  )
+    [setData]
+  );
 
   const handleUser = React.useCallback(
     (promise: Promise<UserCredential>): Promise<void> =>
       promise
         .then((userCredential) => {
-          setUser(userCredential.user)
+          setUser(userCredential.user);
         })
         .catch((error) => {
-          setError(error.message)
+          setError(error.message);
         }),
-    [setError, setUser],
-  )
+    [setError, setUser]
+  );
 
   const signupWithEmailAndPassword = React.useCallback(
     async (input: RegisterInput) => {
-      setIsLoading()
-      const { email, password } = input
+      setIsLoading();
+      const { email, password } = input;
 
       try {
-        await registerWithEmailAndPasswordSchema.validate(input)
+        await registerWithEmailAndPasswordSchema.validate(input);
       } catch (err: unknown) {
-        return Promise.reject((err as ValidationError).errors)
+        return Promise.reject((err as ValidationError).errors);
       }
 
-      const auth = getAuth()
-      return handleUser(createUserWithEmailAndPassword(auth, email, password))
+      const auth = getAuth();
+      return handleUser(createUserWithEmailAndPassword(auth, email, password));
     },
-    [handleUser, setIsLoading],
-  )
+    [handleUser, setIsLoading]
+  );
 
   const signout = React.useCallback(() => {
-    const auth = getAuth()
+    const auth = getAuth();
     signOut(auth)
       .then(() => {
-        setData(null)
+        setData(null);
       })
       .catch(() => {
-        setError(null)
-      })
-  }, [setData, setError])
+        setError(null);
+      });
+  }, [setData, setError]);
 
   React.useEffect(() => {
-    const auth = getAuth()
+    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user)
+        setUser(user);
       } else {
-        setData(null)
+        setData(null);
       }
-    })
+    });
 
     return () => {
-      unsubscribe()
-    }
-  }, [setData, setUser])
+      unsubscribe();
+    };
+  }, [setData, setUser]);
 
   return {
     user,
@@ -124,20 +126,20 @@ const useProvideAuth = (): AuthContextValue => {
     signout,
     signupWithEmailAndPassword,
     signinWithEmailAndPassword: null,
-  }
-}
+  };
+};
 
 interface AuthProviderProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const auth = useProvideAuth()
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+  const auth = useProvideAuth();
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
 
 const formatUser = async (user: User) => {
-  const token = await user.getIdToken()
+  const token = await user.getIdToken();
 
   return {
     uid: user.uid,
@@ -146,7 +148,7 @@ const formatUser = async (user: User) => {
     provider: user.providerData[0].providerId,
     photoUrl: user.photoURL,
     token,
-  }
-}
+  };
+};
 
-export { useAuth, AuthProvider }
+export { useAuth, AuthProvider };

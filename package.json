@@ -6,8 +6,7 @@
   "author": "Vladislav Savchenko <vs101ff@gmail.com>",
   "scripts": {
     "api-docs": "scripty",
-    "dev": "scripty",
-    "start": "scripty",
+    "start": "SCRIPTY_PARALLEL=true scripty",
     "build": "scripty",
     "clean": "scripty",
     "lint": "scripty",
