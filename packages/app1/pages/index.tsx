@@ -12,21 +12,26 @@ import {
   useDisclosure,
   DrawerHeader,
   IconButtonProps,
+  Button,
+  ButtonProps,
+  HTMLChakraProps,
 } from "@chakra-ui/react";
 import { NavLink } from "../components/NavLink";
 import Link from "next/link";
 import * as React from "react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import Head from "next/head";
 
-const Logo = () => {
+const mobileBreakpoint = "sm";
+
+const Logo = (props: HTMLChakraProps<"svg">) => {
   const brandColor = useToken("colors", "brand.400");
   return (
     <chakra.svg
-      h="10"
-      w="auto"
       viewBox="0 0 484 91"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         d="M483.414 77.4142C484.195 76.6332 484.195 75.3668 483.414 74.5858L470.686 61.8579C469.905 61.0768 468.639 61.0768 467.858 61.8579C467.077 62.6389 467.077 63.9052 467.858 64.6863L479.172 76L467.858 87.3137C467.077 88.0948 467.077 89.3611 467.858 90.1421C468.639 90.9232 469.905 90.9232 470.686 90.1421L483.414 77.4142ZM50 78L482 78L482 74L50 74L50 78Z"
@@ -63,6 +68,14 @@ const navItems: NavItem[] = [
   { title: "Services", href: "/services" },
   { title: "Portfolio", href: "/portfolio" },
 ];
+
+const ResumeButton = (props: ButtonProps) => {
+  return (
+    <Button colorScheme="brand" variant="outline" fontSize="sm" {...props}>
+      Resume
+    </Button>
+  );
+};
 
 const headerHeight = "70px";
 
@@ -109,114 +122,123 @@ export default function Home() {
   }, [activeIndex]);
 
   return (
-    <chakra.header h={headerHeight}>
-      <Box display="fixed" h="full" w="full" bg="white" px="4">
-        <Box maxW="90rem" w="full" mx="auto">
-          <Flex alignItems="center" h="full" justifyContent="space-between">
-            <Link href="/">
-              <a
-                style={{
-                  display: "block",
-                  flex: "0 0 auto",
-                }}
-              >
-                <Logo />
-              </a>
-            </Link>
-
-            <Flex flex="0 0 auto" as="nav">
-              <Flex
-                ref={navRef}
-                flexWrap="nowrap"
-                as="ul"
-                alignItems="center"
-                sx={{
-                  "& > :not(:first-child)": {
-                    ml: "2",
-                  },
-                }}
-                listStyleType="none"
-                m={0}
-                p={0}
-                display={{ base: "none", sm: "flex" }}
-              >
-                {navItems.map((x, i) => (
-                  <li key={x.title}>
-                    <NavLink
-                      href={x.href}
-                      onMouseEnter={() => {
-                        setActiveIndex(i);
-                      }}
-                      onMouseLeave={() => {
-                        setActiveIndex(null);
-                      }}
-                      hasSubmenu={false}
-                    >
-                      {x.title}
-                    </NavLink>
-                  </li>
-                ))}
-              </Flex>
-              <chakra.span
-                display={{ base: "none", sm: "block" }}
-                zIndex="10"
-                transition="all"
-                transitionDuration="200ms"
-                transitionTimingFunction="ease"
-                position="absolute"
-                bg={useColorModeValue("brand.500", "brand.500")}
-                sx={{
-                  opacity: activeIndex !== null ? 1 : 0,
-                  ...navUnderlineStyles,
-                  h: "2px",
-                  bottom: "-1px",
-                  transitionDelay: "200ms",
-                }}
-              />
-              <Box display={{ base: "block", sm: "none" }}>
-                <MobileNavTrigger
-                  onClick={() => {
-                    mobileNavDisclosure.onOpen();
+    <>
+      <Head>
+        <title></title>
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap');
+        </style>
+      </Head>
+      <chakra.header h={headerHeight}>
+        <Box display="fixed" h="full" w="full" bg="white" px="4">
+          <Box maxW="90rem" w="full" mx="auto">
+            <Flex alignItems="center" h="full" justifyContent="space-between">
+              <Link href="/">
+                <a
+                  style={{
+                    display: "block",
+                    flex: "0 0 auto",
                   }}
-                  icon={<HamburgerIcon />}
-                />
-                <Drawer
-                  isOpen={mobileNavDisclosure.isOpen}
-                  onClose={mobileNavDisclosure.onClose}
                 >
-                  <DrawerOverlay />
-                  <DrawerContent border={0} rounded={0} w={"full"}>
-                    <DrawerHeader
-                      h={headerHeight}
-                      display="flex"
-                      alignItems={"center"}
-                      justifyContent={"flex-end"}
-                    >
-                      <MobileNavTrigger
-                        onClick={() => {
-                          mobileNavDisclosure.onClose();
+                  <Logo h="36px" w="auto" />
+                </a>
+              </Link>
+
+              <Flex flex="0 0 auto" as="nav" alignItems="center">
+                <Flex
+                  ref={navRef}
+                  flexWrap="nowrap"
+                  as="ul"
+                  alignItems="center"
+                  listStyleType="none"
+                  m={0}
+                  p={0}
+                  display={{ base: "none", [mobileBreakpoint]: "flex" }}
+                >
+                  {navItems.map((x, i) => (
+                    <li key={x.title}>
+                      <NavLink
+                        href={x.href}
+                        onMouseEnter={() => {
+                          setActiveIndex(i);
                         }}
-                        icon={<CloseIcon />}
-                      />
-                    </DrawerHeader>
-                    <DrawerBody>
-                      <chakra.ul listStyleType={"none"} m={0} p={0}>
-                        {navItems.map((x, i) => (
-                          <li key={x.title}>
-                            <NavLink href={x.href} hasSubmenu={false}>
-                              {x.title}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </chakra.ul>
-                    </DrawerBody>
-                  </DrawerContent>
-                </Drawer>
-              </Box>
+                        onMouseLeave={() => {
+                          setActiveIndex(null);
+                        }}
+                        hasSubmenu={false}
+                      >
+                        {x.title}
+                      </NavLink>
+                    </li>
+                  ))}
+                </Flex>
+                <ResumeButton
+                  display={{ [mobileBreakpoint]: "block", base: "none" }}
+                  ml="4"
+                />
+                <chakra.span
+                  display={{ base: "none", [mobileBreakpoint]: "block" }}
+                  zIndex="10"
+                  transition="all"
+                  transitionDuration="200ms"
+                  transitionTimingFunction="ease"
+                  position="absolute"
+                  bg={useColorModeValue("brand.500", "brand.500")}
+                  sx={{
+                    opacity: activeIndex !== null ? 1 : 0,
+                    ...navUnderlineStyles,
+                    h: "2px",
+                    bottom: "-1px",
+                    transitionDelay: "200ms",
+                  }}
+                />
+                <Box display={{ base: "block", [mobileBreakpoint]: "none" }}>
+                  <MobileNavTrigger
+                    onClick={() => {
+                      mobileNavDisclosure.onOpen();
+                    }}
+                    icon={<HamburgerIcon />}
+                  />
+                  <Drawer
+                    isOpen={mobileNavDisclosure.isOpen}
+                    onClose={mobileNavDisclosure.onClose}
+                  >
+                    <DrawerOverlay />
+                    <DrawerContent border={0} rounded={0} w={"full"}>
+                      <DrawerHeader
+                        h={headerHeight}
+                        display="flex"
+                        alignItems={"center"}
+                        justifyContent={"flex-end"}
+                      >
+                        <MobileNavTrigger
+                          onClick={() => {
+                            mobileNavDisclosure.onClose();
+                          }}
+                          icon={<CloseIcon />}
+                        />
+                      </DrawerHeader>
+                      <DrawerBody textAlign="center">
+                        <chakra.ul listStyleType={"none"} m={0} p={0} mb="4">
+                          {navItems.map((x, i) => (
+                            <li key={x.title}>
+                              <NavLink href={x.href} hasSubmenu={false}>
+                                {x.title}
+                              </NavLink>
+                            </li>
+                          ))}
+                        </chakra.ul>
+                        <ResumeButton />
+                      </DrawerBody>
+                    </DrawerContent>
+                  </Drawer>
+                </Box>
+              </Flex>
             </Flex>
-          </Flex>
+          </Box>
         </Box>
-      </Box>
-    </chakra.header>
+      </chakra.header>
+    </>
   );
 }

@@ -1,13 +1,11 @@
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools";
 
-// Copied from https://github.com/chakra-ui/chakra-ui
-
 type Dict = Record<string, any>;
 
 const baseStyle = {
   lineHeight: "1.2",
   borderRadius: "md",
-  fontWeight: "semibold",
+  fontWeight: "medium",
   "--chakra-ring-offset-width": "0px",
   "--chakra-ring-offset-color": "white",
   _focus: {
@@ -30,8 +28,13 @@ const baseStyle = {
 function variantGhost(props: Dict) {
   const { colorScheme: c, theme } = props;
 
+  const base = {
+    "--chakra-ring-offset": "2px",
+  };
+
   if (c === "gray") {
     return {
+      ...base,
       color: mode(`inherit`, `whiteAlpha.900`)(props),
       "--chakra-ring-color": getColor(
         theme,
@@ -46,6 +49,7 @@ function variantGhost(props: Dict) {
 
   if (c === "white") {
     return {
+      ...base,
       color: mode(`gray.700`, `whiteAlpha.800`)(props),
       _hover: {
         bg: mode(`gray.50`, `whiteAlpha.100`)(props),
@@ -56,9 +60,13 @@ function variantGhost(props: Dict) {
   const darkHoverBg = transparentize(`${c}.200`, 0.12)(theme);
   const darkActiveBg = transparentize(`${c}.200`, 0.24)(theme);
 
+  const fg = mode(`${c}.600`, `${c}.200`)(props);
+
   return {
-    color: mode(`${c}.600`, `${c}.200`)(props),
+    ...base,
+    color: fg,
     bg: "transparent",
+    "--chakra-ring-color": getColor(theme, fg),
     _hover: {
       bg: mode(`${c}.50`, darkHoverBg)(props),
     },
@@ -81,7 +89,7 @@ function variantOutline(props: Dict) {
   }
 
   return {
-    border: "1px solid",
+    border: "2px solid",
     ...variantGhost(props),
     borderColor: borderColor ?? "currentColor",
   };
