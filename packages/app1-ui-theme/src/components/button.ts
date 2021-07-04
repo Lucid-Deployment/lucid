@@ -1,4 +1,6 @@
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools";
+import { accents6, accents8, textSecondary } from "../colors";
+import { ringShadow } from "../foundations/shadows";
 
 type Dict = Record<string, any>;
 
@@ -9,8 +11,7 @@ const baseStyle = {
   "--chakra-ring-offset-width": "0px",
   "--chakra-ring-offset-color": "white",
   _focus: {
-    boxShadow:
-      "var(--chakra-ring-inset) 0 0 0 var(--chakra-ring-offset) var(--chakra-ring-offset-color, transparent), var(--chakra-ring-inset) 0 0 0 calc(var(--chakra-ring-width) + var(--chakra-ring-offset)) var(--chakra-ring-color), 0 0 transparent",
+    boxShadow: ringShadow,
     outline: "none",
   },
   _disabled: {
@@ -136,16 +137,41 @@ function variantSolid(props: Dict) {
     };
   }
 
-  if (c === "purple") {
-    const bg = mode(`purple1.500`, "purple2.500")(props);
+  if (c === "blue") {
+    const bg = mode(`blue.500`, "blue.500")(props);
+    const hoverActiveBg = mode(`purple1.500`, "purple1.500")(props);
 
     return {
+      "--chakra-ring-color": getColor(props.theme, "black"),
       bg,
       _hover: {
-        bg: mode(`purple1.600`, "purple2.600")(props),
+        bg: hoverActiveBg,
         _disabled: {
           bg,
         },
+      },
+      _active: {
+        bg: hoverActiveBg,
+      },
+    };
+  }
+
+  if (c === "darkGray") {
+    const bg = accents8(props);
+    const hoverActiveBg = accents6(props);
+
+    return {
+      "--chakra-ring-color": getColor(props.theme, bg),
+      color: textSecondary(props),
+      bg,
+      _hover: {
+        bg: hoverActiveBg,
+        _disabled: {
+          bg,
+        },
+      },
+      _active: {
+        bg: hoverActiveBg,
       },
     };
   }

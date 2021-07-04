@@ -1,4 +1,11 @@
 import { useColorModeValue } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
+
+type Dict = Record<string, any>;
+
+export const accents8 = (props: Dict) => mode("gray1.800", "gray1.100")(props);
+export const accents6 = (props: Dict) => mode("gray1.600", "gray1.300")(props);
+export const textSecondary = (props: Dict) => mode("white", "black")(props);
 
 export const usePrimary = () => useColorModeValue("white", "black");
 
