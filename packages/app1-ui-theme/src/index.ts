@@ -11,6 +11,10 @@ const theme = extendTheme({
   styles,
   palette,
   components,
+  config: {
+    initialColorMode: "light",
+    useSystemColorMode: true,
+  },
 });
 
 export * as colors from "./colors";

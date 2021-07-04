@@ -1,17 +1,27 @@
 import { getColor, mode, transparentize } from "@chakra-ui/theme-tools";
-import { accents6, accents8, textSecondary } from "../colors";
-import { ringShadow } from "../foundations/shadows";
+import { secondary } from "../colors";
 
 type Dict = Record<string, any>;
+
+const ringShadow = (
+  offset: string,
+  offsetColor: string | undefined,
+  width: string,
+  color: string
+) =>
+  `0 0 0 ${offset} ${
+    offsetColor ?? "transparent"
+  }, 0 0 0 calc(${width} + ${offset}) ${color}, 0 0 transparent`;
 
 const baseStyle = {
   lineHeight: "1.2",
   borderRadius: "md",
   fontWeight: "medium",
-  "--chakra-ring-offset-width": "0px",
-  "--chakra-ring-offset-color": "white",
   _focus: {
-    boxShadow: ringShadow,
+    boxShadow: "none",
+    outline: "none",
+  },
+  _focusVisible: {
     outline: "none",
   },
   _disabled: {
@@ -29,31 +39,20 @@ const baseStyle = {
 function variantGhost(props: Dict) {
   const { colorScheme: c, theme } = props;
 
-  const base = {
-    "--chakra-ring-offset": "2px",
-  };
-
   if (c === "gray") {
     return {
-      ...base,
       color: mode(`inherit`, `whiteAlpha.900`)(props),
-      "--chakra-ring-color": getColor(
-        theme,
-        mode(`gray.100`, `whiteAlpha.200`)(props)
-      ),
       _hover: {
         bg: mode(`gray.100`, `whiteAlpha.200`)(props),
       },
       _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
-    };
-  }
-
-  if (c === "white") {
-    return {
-      ...base,
-      color: mode(`gray.700`, `whiteAlpha.800`)(props),
-      _hover: {
-        bg: mode(`gray.50`, `whiteAlpha.100`)(props),
+      _focusVisible: {
+        boxShadow: ringShadow(
+          "2px",
+          undefined,
+          "2px",
+          getColor(theme, mode(`gray.100`, `whiteAlpha.200`)(props))
+        ),
       },
     };
   }
@@ -64,10 +63,11 @@ function variantGhost(props: Dict) {
   const fg = mode(`${c}.600`, `${c}.200`)(props);
 
   return {
-    ...base,
     color: fg,
     bg: "transparent",
-    "--chakra-ring-color": getColor(theme, fg),
+    _focusVisible: {
+      boxShadow: ringShadow("2px", undefined, "2px", getColor(theme, fg)),
+    },
     _hover: {
       bg: mode(`${c}.50`, darkHoverBg)(props),
     },
@@ -83,10 +83,6 @@ function variantOutline(props: Dict) {
   let borderColor = null;
   if (c === "gray") {
     borderColor = mode(`gray.200`, `whiteAlpha.300`)(props);
-  }
-
-  if (c === "white") {
-    borderColor = mode(`gray.300`, `whiteAlpha.400`)(props);
   }
 
   return {
@@ -137,45 +133,6 @@ function variantSolid(props: Dict) {
     };
   }
 
-  if (c === "blue") {
-    const bg = mode(`blue.500`, "blue.500")(props);
-    const hoverActiveBg = mode(`purple1.500`, "purple1.500")(props);
-
-    return {
-      "--chakra-ring-color": getColor(props.theme, "black"),
-      bg,
-      _hover: {
-        bg: hoverActiveBg,
-        _disabled: {
-          bg,
-        },
-      },
-      _active: {
-        bg: hoverActiveBg,
-      },
-    };
-  }
-
-  if (c === "darkGray") {
-    const bg = accents8(props);
-    const hoverActiveBg = accents6(props);
-
-    return {
-      "--chakra-ring-color": getColor(props.theme, bg),
-      color: textSecondary(props),
-      bg,
-      _hover: {
-        bg: hoverActiveBg,
-        _disabled: {
-          bg,
-        },
-      },
-      _active: {
-        bg: hoverActiveBg,
-      },
-    };
-  }
-
   const {
     bg = `${c}.500`,
     color = "white",
@@ -186,6 +143,14 @@ function variantSolid(props: Dict) {
   const background = mode(bg, `${c}.200`)(props);
 
   return {
+    _focusVisible: {
+      boxShadow: ringShadow(
+        "2px",
+        undefined,
+        "2px",
+        transparentize(background, 0.5)(props.theme)
+      ),
+    },
     bg: background,
     color: mode(color, `gray.800`)(props),
     _hover: {
@@ -207,13 +172,24 @@ function variantLink(props: Dict) {
     verticalAlign: "baseline",
     color: mode(`${c}.500`, `${c}.200`)(props),
     _hover: {
+      color: mode(`${c}.600`, `${c}.300`)(props),
       textDecoration: "underline",
       _disabled: {
         textDecoration: "none",
       },
     },
     _active: {
-      color: mode(`${c}.700`, `${c}.500`)(props),
+      color: mode(`${c}.700`, `${c}.400`)(props),
+    },
+    _focus: {
+      outline: 0,
+      boxShadow: "none",
+    },
+    _focusVisible: {
+      outlineWidth: "2px",
+      outlineStyle: "solid",
+      outlineColor: secondary(props),
+      boxShadow: "none",
     },
   };
 }

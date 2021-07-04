@@ -25,43 +25,53 @@ import {
   VisuallyHidden,
   HeadingProps,
   Link,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Input,
+  Textarea,
+  LinkProps,
+  BoxProps,
+  useBreakpointValue,
+  TextProps,
 } from "@chakra-ui/react";
-import { getColor } from "@chakra-ui/theme-tools";
 import NavLink from "../components/NavLink";
 import NextLink from "next/link";
 import * as React from "react";
-import { HamburgerIcon, CloseIcon, ChatIcon } from "@chakra-ui/icons";
-import Head from "next/head";
 import {
-  useTextPrimary,
-  useAccents5,
-  useAccents3,
-  useTextSecondary,
-} from "../../app1-ui-theme/dist/colors";
+  HamburgerIcon,
+  CloseIcon,
+  ChatIcon,
+  AttachmentIcon,
+} from "@chakra-ui/icons";
+import Head from "next/head";
+import { Formik, Field, Form } from "formik";
+import * as yup from "yup";
+import Image from "next/image";
+import { colors } from "@lucid/app1-ui-theme";
+import { useBrand5 } from "../../app1-ui-theme/dist/colors";
 
 const mobileBreakpoint = "sm";
 
 const Logo = (props: HTMLChakraProps<"svg">) => {
   return (
     <chakra.svg
-      viewBox="0 0 346 84"
+      viewBox="0 0 372 81"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M0.712001 0.799995H5.608V63.584H44.296V68H0.712001V0.799995Z"
-        fill={useToken("colors", useColorModeValue("brand.500", "brand.400"))}
+        d="M9.96875 61.6406H42.3125V69H0.921875V0.75H9.96875V61.6406Z"
+        fill={useToken("colors", colors.useBrand6())}
       />
       <path
-        d="M48.7109 68V28.1875H60.9609C64.4609 28.1875 67.5872 28.9805 70.3398 30.5664C73.1107 32.1341 75.2708 34.3763 76.8203 37.293C78.3698 40.1914 79.1445 43.4909 79.1445 47.1914V49.0234C79.1445 52.724 78.3789 56.0143 76.8477 58.8945C75.3346 61.7747 73.1927 64.0078 70.4219 65.5938C67.651 67.1797 64.5247 67.9818 61.043 68H48.7109ZM56.9141 34.832V61.4102H60.8789C64.0872 61.4102 66.5391 60.362 68.2344 58.2656C69.9297 56.1693 70.7956 53.1706 70.832 49.2695V47.1641C70.832 43.1172 69.9935 40.0547 68.3164 37.9766C66.6393 35.8802 64.1875 34.832 60.9609 34.832H56.9141ZM98.2305 68.5469C93.8919 68.5469 90.3555 67.2161 87.6211 64.5547C84.9049 61.8932 83.5469 58.3477 83.5469 53.918V53.1523C83.5469 50.181 84.1211 47.5286 85.2695 45.1953C86.418 42.8438 88.0404 41.0391 90.1367 39.7812C92.2513 38.5052 94.6576 37.8672 97.3555 37.8672C101.402 37.8672 104.583 39.1432 106.898 41.6953C109.232 44.2474 110.398 47.8659 110.398 52.5508V55.7773H91.5586C91.8138 57.7096 92.5794 59.2591 93.8555 60.4258C95.1497 61.5924 96.7812 62.1758 98.75 62.1758C101.794 62.1758 104.173 61.0729 105.887 58.8672L109.77 63.2148C108.585 64.8919 106.98 66.2044 104.957 67.1523C102.934 68.082 100.691 68.5469 98.2305 68.5469ZM97.3281 44.2656C95.7604 44.2656 94.4844 44.7943 93.5 45.8516C92.5339 46.9089 91.9141 48.4219 91.6406 50.3906H102.633V49.7617C102.596 48.0117 102.122 46.6628 101.211 45.7148C100.299 44.7487 99.0052 44.2656 97.3281 44.2656ZM141.543 53.4805C141.543 58.0378 140.504 61.6927 138.426 64.4453C136.366 67.1797 133.577 68.5469 130.059 68.5469C127.069 68.5469 124.654 67.5078 122.812 65.4297V79.375H114.91V38.4141H122.238L122.512 41.3125C124.426 39.0156 126.923 37.8672 130.004 37.8672C133.65 37.8672 136.484 39.2161 138.508 41.9141C140.531 44.612 141.543 48.3307 141.543 53.0703V53.4805ZM133.641 52.9062C133.641 50.1536 133.148 48.0299 132.164 46.5352C131.198 45.0404 129.785 44.293 127.926 44.293C125.447 44.293 123.742 45.2409 122.812 47.1367V59.25C123.779 61.2005 125.501 62.1758 127.98 62.1758C131.754 62.1758 133.641 59.0859 133.641 52.9062ZM154.805 68H146.875V26H154.805V68ZM160.109 52.9336C160.109 49.9987 160.674 47.3828 161.805 45.0859C162.935 42.7891 164.557 41.0117 166.672 39.7539C168.805 38.4961 171.275 37.8672 174.082 37.8672C178.074 37.8672 181.328 39.0885 183.844 41.5312C186.378 43.974 187.79 47.2917 188.082 51.4844L188.137 53.5078C188.137 58.0469 186.87 61.6927 184.336 64.4453C181.802 67.1797 178.402 68.5469 174.137 68.5469C169.871 68.5469 166.462 67.1797 163.91 64.4453C161.376 61.7109 160.109 57.9922 160.109 53.2891V52.9336ZM168.012 53.5078C168.012 56.3151 168.54 58.4661 169.598 59.9609C170.655 61.4375 172.168 62.1758 174.137 62.1758C176.051 62.1758 177.546 61.4466 178.621 59.9883C179.697 58.5117 180.234 56.1602 180.234 52.9336C180.234 50.181 179.697 48.0482 178.621 46.5352C177.546 45.0221 176.033 44.2656 174.082 44.2656C172.15 44.2656 170.655 45.0221 169.598 46.5352C168.54 48.0299 168.012 50.3542 168.012 53.5078ZM203.613 56.8164L209.082 38.4141H217.559L205.664 72.5938L205.008 74.1523C203.24 78.0169 200.323 79.9492 196.258 79.9492C195.109 79.9492 193.943 79.776 192.758 79.4297V73.4414L193.961 73.4688C195.456 73.4688 196.568 73.2409 197.297 72.7852C198.044 72.3294 198.628 71.5729 199.047 70.5156L199.977 68.082L189.613 38.4141H198.117L203.613 56.8164ZM228.086 38.4141L228.332 41.7227C230.428 39.1523 233.263 37.8672 236.836 37.8672C240.646 37.8672 243.262 39.3711 244.684 42.3789C246.762 39.3711 249.724 37.8672 253.57 37.8672C256.779 37.8672 259.167 38.806 260.734 40.6836C262.302 42.543 263.086 45.3503 263.086 49.1055V68H255.156V49.1328C255.156 47.4557 254.828 46.2344 254.172 45.4688C253.516 44.6849 252.358 44.293 250.699 44.293C248.329 44.293 246.689 45.4232 245.777 47.6836L245.805 68H237.902V49.1602C237.902 47.4466 237.565 46.207 236.891 45.4414C236.216 44.6758 235.068 44.293 233.445 44.293C231.203 44.293 229.581 45.2227 228.578 47.082V68H220.676V38.4141H228.086ZM282.801 68.5469C278.462 68.5469 274.926 67.2161 272.191 64.5547C269.475 61.8932 268.117 58.3477 268.117 53.918V53.1523C268.117 50.181 268.691 47.5286 269.84 45.1953C270.988 42.8438 272.611 41.0391 274.707 39.7812C276.822 38.5052 279.228 37.8672 281.926 37.8672C285.973 37.8672 289.154 39.1432 291.469 41.6953C293.802 44.2474 294.969 47.8659 294.969 52.5508V55.7773H276.129C276.384 57.7096 277.15 59.2591 278.426 60.4258C279.72 61.5924 281.352 62.1758 283.32 62.1758C286.365 62.1758 288.743 61.0729 290.457 58.8672L294.34 63.2148C293.155 64.8919 291.551 66.2044 289.527 67.1523C287.504 68.082 285.262 68.5469 282.801 68.5469ZM281.898 44.2656C280.331 44.2656 279.055 44.7943 278.07 45.8516C277.104 46.9089 276.484 48.4219 276.211 50.3906H287.203V49.7617C287.167 48.0117 286.693 46.6628 285.781 45.7148C284.87 44.7487 283.576 44.2656 281.898 44.2656ZM306.754 38.4141L307 41.832C309.115 39.1888 311.949 37.8672 315.504 37.8672C318.639 37.8672 320.973 38.7878 322.504 40.6289C324.035 42.4701 324.819 45.2227 324.855 48.8867V68H316.953V49.0781C316.953 47.401 316.589 46.1888 315.859 45.4414C315.13 44.6758 313.918 44.293 312.223 44.293C309.999 44.293 308.331 45.2409 307.219 47.1367V68H299.316V38.4141H306.754ZM340.332 31.1406V38.4141H345.391V44.2109H340.332V58.9766C340.332 60.0703 340.542 60.8542 340.961 61.3281C341.38 61.8021 342.182 62.0391 343.367 62.0391C344.242 62.0391 345.017 61.9753 345.691 61.8477V67.8359C344.142 68.3099 342.547 68.5469 340.906 68.5469C335.365 68.5469 332.539 65.7487 332.43 60.1523V44.2109H328.109V38.4141H332.43V31.1406H340.332Z"
+        d="M52.5781 69V0.75H71.8438C77.7812 0.75 83.0312 2.0625 87.5938 4.6875C92.1562 7.3125 95.6719 11.0469 98.1406 15.8906C100.641 20.7344 101.906 26.2969 101.938 32.5781V36.9375C101.938 43.375 100.688 49.0156 98.1875 53.8594C95.7188 58.7031 92.1719 62.4219 87.5469 65.0156C82.9531 67.6094 77.5938 68.9375 71.4688 69H52.5781ZM61.5781 8.15625V61.6406H71.0469C77.9844 61.6406 83.375 59.4844 87.2188 55.1719C91.0938 50.8594 93.0312 44.7188 93.0312 36.75V32.7656C93.0312 25.0156 91.2031 19 87.5469 14.7188C83.9219 10.4062 78.7656 8.21875 72.0781 8.15625H61.5781ZM124.309 69.5469C119.97 69.5469 116.434 68.2161 113.699 65.5547C110.983 62.8932 109.625 59.3477 109.625 54.918V54.1523C109.625 51.181 110.199 48.5286 111.348 46.1953C112.496 43.8438 114.118 42.0391 116.215 40.7812C118.329 39.5052 120.736 38.8672 123.434 38.8672C127.48 38.8672 130.661 40.1432 132.977 42.6953C135.31 45.2474 136.477 48.8659 136.477 53.5508V56.7773H117.637C117.892 58.7096 118.658 60.2591 119.934 61.4258C121.228 62.5924 122.859 63.1758 124.828 63.1758C127.872 63.1758 130.251 62.0729 131.965 59.8672L135.848 64.2148C134.663 65.8919 133.059 67.2044 131.035 68.1523C129.012 69.082 126.77 69.5469 124.309 69.5469ZM123.406 45.2656C121.839 45.2656 120.562 45.7943 119.578 46.8516C118.612 47.9089 117.992 49.4219 117.719 51.3906H128.711V50.7617C128.674 49.0117 128.201 47.6628 127.289 46.7148C126.378 45.7487 125.083 45.2656 123.406 45.2656ZM167.621 54.4805C167.621 59.0378 166.582 62.6927 164.504 65.4453C162.444 68.1797 159.655 69.5469 156.137 69.5469C153.147 69.5469 150.732 68.5078 148.891 66.4297V80.375H140.988V39.4141H148.316L148.59 42.3125C150.504 40.0156 153.001 38.8672 156.082 38.8672C159.728 38.8672 162.562 40.2161 164.586 42.9141C166.609 45.612 167.621 49.3307 167.621 54.0703V54.4805ZM159.719 53.9062C159.719 51.1536 159.227 49.0299 158.242 47.5352C157.276 46.0404 155.863 45.293 154.004 45.293C151.525 45.293 149.82 46.2409 148.891 48.1367V60.25C149.857 62.2005 151.579 63.1758 154.059 63.1758C157.832 63.1758 159.719 60.0859 159.719 53.9062ZM180.883 69H172.953V27H180.883V69ZM186.188 53.9336C186.188 50.9987 186.753 48.3828 187.883 46.0859C189.013 43.7891 190.635 42.0117 192.75 40.7539C194.883 39.4961 197.353 38.8672 200.16 38.8672C204.152 38.8672 207.406 40.0885 209.922 42.5312C212.456 44.974 213.868 48.2917 214.16 52.4844L214.215 54.5078C214.215 59.0469 212.948 62.6927 210.414 65.4453C207.88 68.1797 204.48 69.5469 200.215 69.5469C195.949 69.5469 192.54 68.1797 189.988 65.4453C187.454 62.7109 186.188 58.9922 186.188 54.2891V53.9336ZM194.09 54.5078C194.09 57.3151 194.618 59.4661 195.676 60.9609C196.733 62.4375 198.246 63.1758 200.215 63.1758C202.129 63.1758 203.624 62.4466 204.699 60.9883C205.775 59.5117 206.312 57.1602 206.312 53.9336C206.312 51.181 205.775 49.0482 204.699 47.5352C203.624 46.0221 202.111 45.2656 200.16 45.2656C198.228 45.2656 196.733 46.0221 195.676 47.5352C194.618 49.0299 194.09 51.3542 194.09 54.5078ZM229.691 57.8164L235.16 39.4141H243.637L231.742 73.5938L231.086 75.1523C229.318 79.0169 226.401 80.9492 222.336 80.9492C221.188 80.9492 220.021 80.776 218.836 80.4297V74.4414L220.039 74.4688C221.534 74.4688 222.646 74.2409 223.375 73.7852C224.122 73.3294 224.706 72.5729 225.125 71.5156L226.055 69.082L215.691 39.4141H224.195L229.691 57.8164ZM254.164 39.4141L254.41 42.7227C256.507 40.1523 259.341 38.8672 262.914 38.8672C266.724 38.8672 269.34 40.3711 270.762 43.3789C272.84 40.3711 275.802 38.8672 279.648 38.8672C282.857 38.8672 285.245 39.806 286.812 41.6836C288.38 43.543 289.164 46.3503 289.164 50.1055V69H281.234V50.1328C281.234 48.4557 280.906 47.2344 280.25 46.4688C279.594 45.6849 278.436 45.293 276.777 45.293C274.408 45.293 272.767 46.4232 271.855 48.6836L271.883 69H263.98V50.1602C263.98 48.4466 263.643 47.207 262.969 46.4414C262.294 45.6758 261.146 45.293 259.523 45.293C257.281 45.293 255.659 46.2227 254.656 48.082V69H246.754V39.4141H254.164ZM308.879 69.5469C304.54 69.5469 301.004 68.2161 298.27 65.5547C295.553 62.8932 294.195 59.3477 294.195 54.918V54.1523C294.195 51.181 294.77 48.5286 295.918 46.1953C297.066 43.8438 298.689 42.0391 300.785 40.7812C302.9 39.5052 305.306 38.8672 308.004 38.8672C312.051 38.8672 315.232 40.1432 317.547 42.6953C319.88 45.2474 321.047 48.8659 321.047 53.5508V56.7773H302.207C302.462 58.7096 303.228 60.2591 304.504 61.4258C305.798 62.5924 307.43 63.1758 309.398 63.1758C312.443 63.1758 314.822 62.0729 316.535 59.8672L320.418 64.2148C319.233 65.8919 317.629 67.2044 315.605 68.1523C313.582 69.082 311.34 69.5469 308.879 69.5469ZM307.977 45.2656C306.409 45.2656 305.133 45.7943 304.148 46.8516C303.182 47.9089 302.562 49.4219 302.289 51.3906H313.281V50.7617C313.245 49.0117 312.771 47.6628 311.859 46.7148C310.948 45.7487 309.654 45.2656 307.977 45.2656ZM332.832 39.4141L333.078 42.832C335.193 40.1888 338.027 38.8672 341.582 38.8672C344.717 38.8672 347.051 39.7878 348.582 41.6289C350.113 43.4701 350.897 46.2227 350.934 49.8867V69H343.031V50.0781C343.031 48.401 342.667 47.1888 341.938 46.4414C341.208 45.6758 339.996 45.293 338.301 45.293C336.077 45.293 334.409 46.2409 333.297 48.1367V69H325.395V39.4141H332.832ZM366.41 32.1406V39.4141H371.469V45.2109H366.41V59.9766C366.41 61.0703 366.62 61.8542 367.039 62.3281C367.458 62.8021 368.26 63.0391 369.445 63.0391C370.32 63.0391 371.095 62.9753 371.77 62.8477V68.8359C370.22 69.3099 368.625 69.5469 366.984 69.5469C361.443 69.5469 358.617 66.7487 358.508 61.1523V45.2109H354.188V39.4141H358.508V32.1406H366.41Z"
         fill={useToken("colors", useHeadingColor())}
       />
     </chakra.svg>
   );
 };
-
-const sectionPt = "16";
 
 const MobileNavTrigger = (props: Partial<IconButtonProps>) => (
   <IconButton
@@ -78,44 +88,193 @@ type NavItem = {
   href: string;
 };
 
-const navItems: NavItem[] = [
-  { title: "Services", href: "#services" },
-  { title: "Portfolio", href: "#portfolio" },
-  { title: "Newsletter", href: "#newsletter" },
-];
+const navItems: NavItem[] = [{ title: "Projects", href: "#projects" }];
 
 const ContactUsButton = (props: ButtonProps) => {
   return (
     <Button
-      colorScheme="blue"
+      as={"a"}
+      href="mailto: vs101ff@gmail.com"
+      colorScheme="brand"
       variant="solid"
       fontSize="sm"
       rounded={"2"}
+      fontWeight="normal"
       {...props}
     >
-      Contact Us
+      Contact us
     </Button>
   );
 };
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Bar",
-    href: "https:://google.com/",
-    image:
-      "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto corporis obcaecati ipsam eveniet, aspernatur pariatur laborum perferendis cum iste sequi non laboriosam recusandae necessitatibus sit autem itaque. Repellat sapiente fugit, excepturi accusamus repellendus in eos fuga laboriosam expedita accusantium ea magnam facere, a iusto dolore. Ipsam minus placeat ad vel.",
-    role: "development",
-  },
-];
-
-const headerHeight = "70px";
+const headerHeight = "4.375rem";
 
 const Container = (props: HTMLChakraProps<"div">) => (
   <Box maxW="90rem" w="full" mx="auto" {...props} />
 );
+
+const servicesSpaceX = { base: "2.5", md: "5" };
+const ServiceTitle = ({ children, ...rest }: TextProps) => (
+  <Text
+    display="inline-block"
+    py={{ base: "1.5", md: "3" }}
+    px={servicesSpaceX}
+    fontSize={{ base: "2.125rem", md: "6xl", lg: "5.83333vw" }}
+    sx={{
+      WebkitTextStroke: useBreakpointValue({
+        lg: `1px ${colors.useTextPrimary()}`,
+      })!,
+    }}
+    transition={{ lg: "color .3s,-webkit-text-stroke .3s" }}
+    lineHeight={{ lg: 1.1 }}
+    color={{ base: colors.useTextPrimary(), lg: "transparent" }}
+    {...rest}
+  >
+    <chakra.span
+      sx={{
+        position: "relative",
+        display: "inline-block",
+        "&::after": {
+          content: `""`,
+          display: "block",
+          position: "absolute",
+          left: "2px",
+          right: "2px",
+          bottom: 0,
+          height: "1px",
+          background: "currentColor",
+        },
+      }}
+    >
+      {children}
+    </chakra.span>
+  </Text>
+);
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  src?: StaticImageData;
+  href: string;
+  role: string;
+}
+
+const ChakraNextImage = chakra(Image);
+
+interface ProjectProps extends BoxProps {
+  project: Project;
+}
+const Project = ({ project, ...boxProps }: ProjectProps) => {
+  return (
+    <Box
+      py={{ base: "10" }}
+      px={{ base: "0", md: "5", lg: "0" }}
+      verticalAlign={{ base: "none", md: "top" }}
+      {...boxProps}
+    >
+      <Box
+        display={{ base: "block", lg: "flex" }}
+        flexDirection="row-reverse"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        {project.src ? (
+          <Box w={{ base: "none", lg: "50%" }} ml={{ lg: 4 }}>
+            <chakra.a
+              href={project.href}
+              target="_blank"
+              w="auto"
+              h="auto"
+              position="relative"
+              display="block"
+              my="0"
+              mx="auto"
+              textAlign={{ base: "center", lg: "left" }}
+              textDecoration="none"
+              _focus={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+              _hover={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <ChakraNextImage
+                src={project.src}
+                sx={{
+                  w: "full",
+                  h: "full",
+                  objectFit: "contain",
+                }}
+                borderRadius={{ base: "10", lg: "0" }}
+                loading="eager"
+                alt=""
+              />
+            </chakra.a>
+          </Box>
+        ) : null}
+        <Box
+          flex="1 1 auto"
+          textAlign={{ base: "center", lg: "left" }}
+          mt={{ base: "9", lg: "0" }}
+          mx={{ base: "auto", lg: "0" }}
+          maxW={{ base: "16.875rem", lg: "none" }}
+          w={{ lg: "50%" }}
+          sx={{
+            "& > * + *": {
+              mt: useBreakpointValue({ lg: "8" }),
+            },
+          }}
+        >
+          <Box display={{ base: "inline", lg: "block" }}>
+            <Link
+              target="_blank"
+              href={project.href}
+              variant="twoColors"
+              colorScheme="blackBrand"
+              display={{ base: "inline", lg: "block" }}
+              fontWeight={{ base: "bold", lg: "normal" }}
+              lineHeight={{ lg: "1" }}
+              fontSize={{ base: "lg", lg: "1.5vw" }}
+            >
+              {project.title}
+            </Link>
+          </Box>
+          <Box
+            display={{ base: "inline", lg: "block" }}
+            lineHeight={{ lg: "short" }}
+            fontSize={{ base: "lg", lg: "2.58333vw" }}
+            letterSpacing={{ lg: "wide" }}
+          >
+            <chakra.p
+              display={{ base: "inline", lg: "block" }}
+              sx={{
+                "&::before": {
+                  content: `" - "`,
+                  display: useBreakpointValue({ lg: "none" }),
+                },
+              }}
+            >
+              {project.description}
+            </chakra.p>
+          </Box>
+          <Box
+            mt={{ lg: "0", base: "4" }}
+            color={colors.useAccents7()}
+            fontSize={{ lg: "1.16667vw", base: "sm" }}
+            letterSpacing="wider"
+          >
+            <p>{project.role}</p>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+const footerLayoutBreakpoint = "md";
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
@@ -159,6 +318,13 @@ export default function Home() {
     };
   }, [activeIndex]);
 
+  const socialSvgProps: HTMLChakraProps<"svg"> = {
+    w: "auto",
+    h: { base: "4", md: "5", lg: "6" },
+    verticalAlign: "middle",
+    display: "inline-block",
+  };
+
   return (
     <>
       <Head>
@@ -169,7 +335,7 @@ export default function Home() {
         </style>
       </Head>
       <chakra.header h={headerHeight}>
-        <Box position="relative" h="full" w="full" bg="white" px="4">
+        <Box position="relative" h="full" w="full" px="4">
           <Container h="full">
             <Flex alignItems="center" h="full" justifyContent="space-between">
               <NextLink href="/">
@@ -179,7 +345,7 @@ export default function Home() {
                     flex: "0 0 auto",
                   }}
                 >
-                  <Logo h={{ base: "28px", md: "36px" }} w="auto" />
+                  <Logo h={{ base: "1.75rem", md: "2.25rem" }} w="auto" />
                 </a>
               </NextLink>
 
@@ -212,7 +378,7 @@ export default function Home() {
                   ))}
                 </Flex>
                 <ContactUsButton
-                  display={{ [mobileBreakpoint]: "block", base: "none" }}
+                  display={{ [mobileBreakpoint]: "inline-flex", base: "none" }}
                   ml={{ base: 3, md: 4 }}
                 />
                 <chakra.span
@@ -222,7 +388,7 @@ export default function Home() {
                   transitionDuration="200ms"
                   transitionTimingFunction="ease"
                   position="absolute"
-                  bg={useColorModeValue("brand.500", "brand.500")}
+                  bg={useBrand5()}
                   sx={{
                     opacity: activeIndex !== null ? 1 : 0,
                     ...navUnderlineStyles,
@@ -277,181 +443,238 @@ export default function Home() {
           </Container>
         </Box>
       </chakra.header>
-      <Section textAlign={"center"}>
-        <Heading as="h1" size="3xl" color={useHeadingColor()} mb="6">
-          Lucid Deployment
-        </Heading>
-        <Text color={useAccents5()}>
-          👨🏻‍💻 Serial Entrepreneurs + Producers + Developers ⚡🚀🛠️
-        </Text>
+      <Section>
+        <Flex>
+          <Box flex="0 0 auto">
+            <Heading
+              as="h1"
+              fontSize={{ base: "1.0625rem", md: "1.125rem", lg: "xl" }}
+              fontWeight="normal"
+              letterSpacing="-.03em"
+            >
+              I make it happen
+            </Heading>
+            <Box
+              mx={Object.entries(servicesSpaceX).reduce(
+                (current, [key, value]) => ({
+                  ...current,
+                  [key]: `-${value}`,
+                }),
+                {}
+              )}
+              whiteSpace={{ lg: "nowrap" }}
+            >
+              <Box display={{ lg: "inline-block" }}>
+                <ServiceTitle>Web-sites</ServiceTitle>
+              </Box>
+            </Box>
+          </Box>
+        </Flex>
+        <Box mt="12" maxW={{ base: "40.3125rem", lg: "52.1875rem" }} w="full">
+          <Box
+            fontSize={{ base: "xl", lg: "2xl" }}
+            letterSpacing="wide"
+            lineHeight={{ lg: "short" }}
+          >
+            Vladislav Savchenko, freelancer with more than two years of
+            experience in backend and frontend.
+          </Box>
+        </Box>
       </Section>
-      <Section textAlign="center">
-        <SectionHeading>Our Projects</SectionHeading>
-        {projects.map((x) => (
-          <Project project={x} key={x.id} />
-        ))}
+      <Section id="projects">
+        <SectionHeading>
+          Featured
+          <br />
+          projects
+        </SectionHeading>
+        <Box>
+          <Project
+            display={{ md: "inline-block", lg: "block" }}
+            w={{ base: "none", md: "50%", lg: "auto" }}
+            project={{
+              id: 0,
+              title: "CarpTime Shop",
+              description: "Online store for carp fishing and fishing tackle.",
+              href: "https://carptimeshop.ru/",
+              role: "Active participationg as a fullstack developer at Difocus",
+            }}
+          />
+        </Box>
       </Section>
       <Chat />
-      <chakra.footer bg="#182538" color={footerColor} py={sectionPt}>
-        <Container
-          sx={{
-            "& > * + *": {
-              mt: "6",
-            },
-          }}
+      <Section as={"footer"} bg={colors.useAccents2()}>
+        <Flex
+          flexWrap="nowrap"
+          alignItems="flex-end"
+          w="full"
+          display={{ base: "block", [footerLayoutBreakpoint]: "flex" }}
         >
-          <Flex
-            flexWrap="wrap"
-            justifyContent="center"
-            alignItems="center"
-            as="ul"
-            m={0}
-            p={0}
-            listStyleType="none"
-            sx={{
-              "& > * + *": {
-                ml: "3",
-              },
-            }}
+          <Box
+            flex="0 1 100%"
+            textAlign={{ base: "center", [footerLayoutBreakpoint]: "left" }}
           >
-            {navItems.map((x, i) => (
-              <li key={i}>
-                <chakra.a
-                  color={footerColor}
-                  textDecoration="none"
-                  _hover={{
-                    color: footerColor,
-                    textDecoration: "underline",
-                  }}
-                  href={x.href}
-                >
-                  {x.title}
-                </chakra.a>
-              </li>
-            ))}
-          </Flex>
-          <Flex
-            flexWrap="wrap"
-            justifyContent="center"
-            alignItems="center"
-            sx={{
-              "& > * + *": {
-                ml: "3",
-              },
-            }}
+            <Link
+              position="relative"
+              display="inline-block"
+              mb="2.5"
+              href="mailto: vs101ff@gmail.com"
+              fontSize="xl"
+              lineHeight="short"
+              letterSpacing="wide"
+              sx={{
+                "&::after": {
+                  content: `""`,
+                  display: "block",
+                  position: "absolute",
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  height: "1px",
+                  background: colors.useAccents7(),
+                  transform: "scaleX(0)",
+                  transition: "transform .8s cubic-bezier(.19,1,.22,1)",
+                },
+                _hover: {
+                  "&::after": {
+                    transform: "scaleX(1)",
+                  },
+                },
+              }}
+            >
+              vs101ff@gmail.com
+            </Link>
+            <Box mt="7">
+              <Text
+                color={colors.useAccents6()}
+                fontSize="md"
+                fontStyle="normal"
+                as="address"
+              >
+                <p>Kransodar, Russian Federation</p>
+                {/*<p>
+                  <Link
+                    href="tel:+79999999999"
+                    display="inline-block"
+                    position="relative"
+                    sx={{
+                      "&::before": {
+                        content: `""`,
+                        position: "absolute",
+                        left: 0,
+                        right: 0,
+                        bottom: "-3px",
+                        height: "1px",
+                        transform: "scaleX(0)",
+                        transformOrigin: "right center",
+                        background: "currentColor",
+                        transition: "transform .4s,transform-origin 0s",
+                      },
+                      _hover: {
+                        "&::before": {
+                          transform: "scaleX(1)",
+                          transformOrigin: "left center",
+                        },
+                      },
+                    }}
+                  >
+                    +79999999999
+                  </Link>
+                  </p>*/}
+              </Text>
+            </Box>
+          </Box>
+          <Box
+            flex="0 1 100%"
+            textAlign={{ base: "center", [footerLayoutBreakpoint]: "left" }}
           >
-            <chakra.a href="/" color={useTextSecondary()}>
-              <VisuallyHidden>Telegram</VisuallyHidden>
-              <svg
-                width="16"
-                height="17"
+            <SocialLink title="Telegram" href="https://t.me/vladislav4000">
+              <chakra.svg
+                {...socialSvgProps}
                 viewBox="0 0 16 17"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   d="M15.953 3.27424L13.5387 13.8594C13.3566 14.6065 12.8816 14.7924 12.2066 14.4404L8.52799 11.9203L6.75299 13.5074C6.55656 13.6901 6.39227 13.8428 6.0137 13.8428L6.27799 10.3598L13.0958 4.63225C13.3923 4.38654 13.0316 4.25041 12.6351 4.49611L4.20656 9.4301L0.577988 8.37424C-0.211298 8.14514 -0.225583 7.64045 0.742274 7.2885L14.9351 2.2051C15.5923 1.976 16.1673 2.34123 15.953 3.27424V3.27424Z"
                   fill="currentcolor"
                 ></path>
-              </svg>
-            </chakra.a>
-          </Flex>
-          <Box
-            textAlign="center"
-            maxW="50%"
-            as="p"
-            my="0"
-            mx="auto"
-            fontSize="sm"
-            lineHeight="shorter"
-          >
-            Made in Krasnodar, Russian Federation
-            <br />
-            Lucid Deployment &copy; 2021
+              </chakra.svg>
+            </SocialLink>
+            <SocialLink
+              title="Facebook"
+              href="https://www.facebook.com/simply.developer"
+            >
+              <chakra.svg
+                {...socialSvgProps}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16.76 32"
+              >
+                <path
+                  d="M13.71 5.33h3.05V.15C16.3.15 14.48 0 12.34 0 7.92 0 5 2.59 5 7.47v4.26H0v5.64h5V32h6V17.37h4.88l.76-5.64h-5.82V8.08c0-1.68.46-2.75 2.89-2.75z"
+                  fill="currentcolor"
+                ></path>
+              </chakra.svg>
+            </SocialLink>
           </Box>
-        </Container>
-      </chakra.footer>
+        </Flex>
+      </Section>
     </>
   );
 }
 
-const useHeadingColor = () => useColorModeValue("brand.900", "brand.50");
-
-interface Project {
-  id: number;
+interface SocialLinkProps {
   title: string;
-  image: string;
-  description: string;
-  role: string;
   href: string;
+  children?: React.ReactNode;
 }
-
-interface ProjectProps {
-  project: Project;
-}
-function Project({ project }: ProjectProps) {
+function SocialLink({ title, href, children }: SocialLinkProps) {
   return (
-    <Flex alignItems="stretch" textAlign="left">
-      <Box flex="0 0 auto" mt="1" mr="6">
-        <chakra.a
-          display="block"
-          rounded="full"
-          href={project.href}
-          w="14"
-          h="14"
-        >
-          <chakra.img
-            src={project.image}
-            alt={project.title}
-            sx={{
-              objectFit: "contain",
-              w: "full",
-              h: "full",
-            }}
-          />
-        </chakra.a>
-      </Box>
-      <Box flex="1 1 auto">
-        <Heading
-          as="h3"
-          mb="5"
-          size="lg"
-          fontWeight="normal"
-          color={useHeadingColor()}
-          sx={{
-            "&::after": {
-              position: "abolsute",
-              left: 0,
-              bottom: "-3",
-              height: "2px",
-              width: "2",
-              background: useAccents3(),
-            },
-          }}
-        >
-          {project.title}
-        </Heading>
-        <Text>{project.description}</Text>
-        <Text mb="3">
-          <strong>Role: </strong> {project.role}
-        </Text>
-        <Text>
-          <Link href={project.href} color={"brand.500"}>
-            {project.href}
-          </Link>
-        </Text>
-      </Box>
-    </Flex>
+    <Link
+      href={href}
+      color={colors.useAccents7()}
+      _hover={{
+        color: useBrand5(),
+      }}
+      target="_blank"
+      w="24"
+      h="16"
+      lineHeight="calc(4rem - 1px)"
+      display="inline-block"
+      textAlign="center"
+      fontSize="xl"
+    >
+      <VisuallyHidden>{title}</VisuallyHidden>
+      {children}
+    </Link>
   );
 }
 
-const footerColor = "#6b7a90";
+const useHeadingColor = () => colors.useTextPrimary();
 
 function SectionHeading(props: HeadingProps) {
   return (
-    <Heading as="h2" size="2xl" color={useHeadingColor()} mb="6" {...props} />
+    <Heading
+      as="h2"
+      color={useHeadingColor()}
+      fontWeight="normal"
+      fontSize={{ base: "4xl", lg: "6xl" }}
+      lineHeight="100%"
+      textTransform="lowercase"
+      {...props}
+    />
   );
 }
+
+interface ChatFormValues {
+  name: string;
+  subject: string;
+  email: string;
+}
+
+const initialChatFormValues: ChatFormValues = {
+  name: "",
+  subject: "",
+  email: "",
+};
 
 interface ChatProps {}
 function Chat(props: ChatProps) {
@@ -459,13 +682,17 @@ function Chat(props: ChatProps) {
   const toggle = () => setIsOpen((x) => !x);
   const close = () => setIsOpen(false);
 
+  const inputFocusBorderColor = useBrand5();
+  const popoverBodyPx = "3";
+  const bottomAbsoluteFieldH = "11.25rem";
+
   return (
     <Popover isOpen={isOpen} onClose={close} placement="top">
       <PopoverTrigger>
         <IconButton
           position="fixed"
           rounded="full"
-          colorScheme="darkGray"
+          colorScheme="brand"
           variant="solid"
           aria-label="Chat"
           icon={<ChatIcon />}
@@ -478,21 +705,136 @@ function Chat(props: ChatProps) {
         />
       </PopoverTrigger>
       <Portal>
-        <PopoverContent>
-          <PopoverBody></PopoverBody>
+        <PopoverContent border="none">
+          <PopoverBody px="0" pt="6" pb="0" position="relative" rounded="lg">
+            <Formik
+              initialValues={initialChatFormValues}
+              onSubmit={async (values, actions) => {}}
+              validationSchema={yup.object({
+                name: yup.string().required().label("Name"),
+                subject: yup.string().required(),
+                email: yup.string().email().required().label("Email"),
+              })}
+            >
+              {(props) => (
+                <Form>
+                  <Field name="name">
+                    {({ field, form }: any) => (
+                      <FormControl
+                        px={popoverBodyPx}
+                        isInvalid={form.errors.name && form.touched.name}
+                      >
+                        <Input
+                          {...field}
+                          id="name"
+                          placeholder="Your name"
+                          aria-label="Your name"
+                          variant="flushed"
+                          focusBorderColor={inputFocusBorderColor}
+                        />
+                        <FormErrorMessage>{form.errors.name}</FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Field name="email">
+                    {({ field, form }: any) => (
+                      <FormControl
+                        px={popoverBodyPx}
+                        mb={`calc(${bottomAbsoluteFieldH} + 0.5rem)`}
+                        isInvalid={form.errors.email && form.touched.email}
+                      >
+                        <Input
+                          {...field}
+                          id="email"
+                          placeholder="Your Email"
+                          aria-label="Your Email"
+                          variant="flushed"
+                          focusBorderColor={inputFocusBorderColor}
+                        />
+                        <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Field name="subject">
+                    {({ field, form }: any) => (
+                      <FormControl
+                        isInvalid={form.errors.subject && form.touched.subject}
+                      >
+                        <Box
+                          position="absolute"
+                          bottom="0"
+                          left="0"
+                          right="0"
+                          height={bottomAbsoluteFieldH}
+                        >
+                          <Textarea
+                            {...field}
+                            roundedTop="0"
+                            roundedBottom="lg"
+                            placeholder="Tell me about your project"
+                            aria-label="Tell me about your project"
+                            w="full"
+                            lineHeight="short"
+                            whiteSpace="pre-wrap"
+                            overflowWrap="break-word"
+                            pb="12"
+                            pt="2"
+                            px={popoverBodyPx}
+                            id="subject"
+                            resize={"none"}
+                            position="absolute"
+                            bottom="0"
+                            left="0"
+                            color={colors.useTextPrimary()}
+                            border="none"
+                            outlineOffset="-5px"
+                            h="100% !important"
+                            focusBorderColor={inputFocusBorderColor}
+                          />
+                        </Box>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Box position="absolute" right="4" bottom="2" zIndex="1">
+                    <ChatIconButton
+                      aria-label="Send"
+                      icon={<ChatIcon />}
+                      type="submit"
+                      disabled={props.isSubmitting}
+                    />
+                  </Box>
+                </Form>
+              )}
+            </Formik>
+          </PopoverBody>
         </PopoverContent>
       </Portal>
     </Popover>
   );
 }
 
-interface SectionProps extends HTMLChakraProps<"section"> {
-  children?: React.ReactNode;
-}
-function Section({ children, ...rest }: SectionProps) {
+function ChatIconButton(props: IconButtonProps) {
   return (
-    <chakra.section pt={sectionPt} pb="24" px="24" {...rest}>
+    <IconButton
+      variant="link"
+      px="2"
+      mt="2px"
+      display="inline-flex"
+      {...props}
+    />
+  );
+}
+
+function Section({ children, as, ...rest }: BoxProps) {
+  return (
+    <Box
+      as={as ?? "section"}
+      pt={{ base: "14", sm: "20", md: "40", lg: "40", xl: "64" }}
+      pb={{ base: "10", sm: "14", md: "20", lg: "28", xl: "40" }}
+      px={{ base: "5", sm: "7", md: "10", lg: "20", xl: "28" }}
+      {...rest}
+    >
       <Container>{children}</Container>
-    </chakra.section>
+    </Box>
   );
 }
