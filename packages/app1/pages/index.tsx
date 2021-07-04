@@ -23,15 +23,18 @@ import {
   PopoverBody,
   Portal,
   VisuallyHidden,
+  HeadingProps,
 } from "@chakra-ui/react";
-import { NavLink } from "../components/NavLink";
-import Link from "next/link";
+import NavLink from "../components/NavLink";
+import Link from "../components/Link";
+import NextLink from "next/link";
 import * as React from "react";
 import { HamburgerIcon, CloseIcon, ChatIcon } from "@chakra-ui/icons";
 import Head from "next/head";
 import {
   useTextPrimary,
   useAccents5,
+  useAccents3,
   useTextSecondary,
 } from "../../app1-ui-theme/dist/colors";
 
@@ -94,6 +97,19 @@ const ContactUsButton = (props: ButtonProps) => {
   );
 };
 
+const projects: Project[] = [
+  {
+    id: 1,
+    title: "Bar",
+    href: "https:://google.com/",
+    image:
+      "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto corporis obcaecati ipsam eveniet, aspernatur pariatur laborum perferendis cum iste sequi non laboriosam recusandae necessitatibus sit autem itaque. Repellat sapiente fugit, excepturi accusamus repellendus in eos fuga laboriosam expedita accusantium ea magnam facere, a iusto dolore. Ipsam minus placeat ad vel.",
+    role: "development",
+  },
+];
+
 const headerHeight = "70px";
 
 const Container = (props: HTMLChakraProps<"div">) => (
@@ -155,7 +171,7 @@ export default function Home() {
         <Box position="relative" h="full" w="full" bg="white" px="4">
           <Container h="full">
             <Flex alignItems="center" h="full" justifyContent="space-between">
-              <Link href="/">
+              <NextLink href="/">
                 <a
                   style={{
                     display: "block",
@@ -164,7 +180,7 @@ export default function Home() {
                 >
                   <Logo h={{ base: "28px", md: "36px" }} w="auto" />
                 </a>
-              </Link>
+              </NextLink>
 
               <Flex flex="0 0 auto" as="nav" alignItems="center">
                 <Flex
@@ -261,12 +277,18 @@ export default function Home() {
         </Box>
       </chakra.header>
       <Section textAlign={"center"}>
-        <Heading as="h1" size="3xl" color={useTextPrimary()} mb="6">
+        <Heading as="h1" size="3xl" color={useHeadingColor()} mb="6">
           Lucid Deployment
         </Heading>
         <Text color={useAccents5()}>
           👨🏻‍💻 Serial Entrepreneurs + Producers + Developers ⚡🚀🛠️
         </Text>
+      </Section>
+      <Section textAlign="center">
+        <SectionHeading>Our Projects</SectionHeading>
+        {projects.map((x) => (
+          <Project project={x} key={x.id} />
+        ))}
       </Section>
       <Chat />
       <chakra.footer bg="#182538" color={footerColor} py={sectionPt}>
@@ -352,7 +374,80 @@ export default function Home() {
   );
 }
 
+const useHeadingColor = () => useTextPrimary();
+
+interface Project {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+  role: string;
+  href: string;
+}
+
+interface ProjectProps {
+  project: Project;
+}
+function Project({ project }: ProjectProps) {
+  return (
+    <Flex alignItems="stretch" textAlign="left">
+      <Box flex="0 0 auto" mt="1" mr="6">
+        <chakra.a
+          display="block"
+          rounded="full"
+          href={project.href}
+          w="14"
+          h="14"
+        >
+          <chakra.img
+            src={project.image}
+            alt={project.title}
+            sx={{
+              objectFit: "contain",
+              w: "full",
+              h: "full",
+            }}
+          />
+        </chakra.a>
+      </Box>
+      <Box flex="1 1 auto">
+        <Heading
+          as="h3"
+          mb="7"
+          size="xl"
+          color={useHeadingColor()}
+          sx={{
+            "&::after": {
+              position: "abolsute",
+              left: 0,
+              bottom: "-3",
+              height: "2px",
+              width: "2",
+              background: useAccents3(),
+            },
+          }}
+        >
+          {project.title}
+        </Heading>
+        <Text mb="2">{project.description}</Text>
+        <Text>
+          <strong>Role: </strong> {project.role}
+        </Text>
+        <Text mb="6">
+          <Link href={project.href}>{project.href}</Link>
+        </Text>
+      </Box>
+    </Flex>
+  );
+}
+
 const footerColor = "#6b7a90";
+
+function SectionHeading(props: HeadingProps) {
+  return (
+    <Heading as="h2" size="2xl" color={useHeadingColor()} mb="6" {...props} />
+  );
+}
 
 interface ChatProps {}
 function Chat(props: ChatProps) {
@@ -392,7 +487,7 @@ interface SectionProps extends HTMLChakraProps<"section"> {
 }
 function Section({ children, ...rest }: SectionProps) {
   return (
-    <chakra.section pt={sectionPt} pb="24" {...rest}>
+    <chakra.section pt={sectionPt} pb="24" px="24" {...rest}>
       <Container>{children}</Container>
     </chakra.section>
   );

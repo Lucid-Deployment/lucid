@@ -1,31 +1,12 @@
 import * as React from "react";
-import { useColorModeValue, HTMLChakraProps, chakra } from "@chakra-ui/react";
+import { chakra, Link, LinkProps } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-const useLinkHoverColor = () => useColorModeValue("brand.500", "brand.500");
-
-const Link = React.forwardRef<HTMLAnchorElement, HTMLChakraProps<"a">>(
-  (props, ref) => {
-    return (
-      <chakra.a
-        ref={ref}
-        color={useColorModeValue("black", "whiteAlpha.900")}
-        sx={{
-          _hover: { color: useLinkHoverColor() },
-        }}
-        display={"block"}
-        {...props}
-      />
-    );
-  }
-);
-Link.displayName = "Link";
-
-export interface NavLinkProps extends Omit<HTMLChakraProps<"a">, "href"> {
+export interface NavLinkProps extends Omit<LinkProps, "href"> {
   hasSubmenu: boolean;
   href: string;
 }
-export const NavLink = ({
+const NavLink = ({
   hasSubmenu,
   children,
   href,
@@ -36,6 +17,9 @@ export const NavLink = ({
       p={{ base: 2, md: 3 }}
       position="relative"
       fontSize="sm"
+      display={"block"}
+      variant="twoColors"
+      colorScheme="blackBrand"
       {...linkProps}
     >
       <>
@@ -64,3 +48,5 @@ export const NavLink = ({
     </Link>
   </NextLink>
 );
+
+export default NavLink;
