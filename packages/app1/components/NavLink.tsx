@@ -32,7 +32,12 @@ export const NavLink = ({
   ...linkProps
 }: NavLinkProps) => (
   <NextLink href={href} passHref>
-    <Link p={3} position="relative" {...linkProps}>
+    <Link
+      p={{ base: 2, md: 3 }}
+      position="relative"
+      fontSize="sm"
+      {...linkProps}
+    >
       <>
         {children}
         {hasSubmenu ? (
