@@ -5,6 +5,7 @@ declare namespace NodeJS {
   // https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces
   export interface ProcessEnv {
     ATLAS_URL: string;
+    ATLAS_DB: string;
     NEXT_API_URL: string;
   }
 }

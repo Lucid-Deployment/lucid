@@ -3,7 +3,6 @@ import {
   chakra,
   Flex,
   useToken,
-  useColorModeValue,
   Drawer,
   DrawerBody,
   DrawerOverlay,
@@ -26,11 +25,9 @@ import {
   HeadingProps,
   Link,
   FormControl,
-  FormLabel,
   FormErrorMessage,
   Input,
   Textarea,
-  LinkProps,
   BoxProps,
   useBreakpointValue,
   TextProps,
@@ -38,18 +35,13 @@ import {
 import NavLink from "../components/NavLink";
 import NextLink from "next/link";
 import * as React from "react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChatIcon,
-  AttachmentIcon,
-} from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, ChatIcon } from "@chakra-ui/icons";
 import Head from "next/head";
 import { Formik, Field, Form } from "formik";
-import * as yup from "yup";
 import Image from "next/image";
 import { colors } from "@lucid/app1-ui-theme";
 import { useBrand5 } from "../../app1-ui-theme/dist/colors";
+import { validationSchema } from "../features/request/lib/validation";
 
 const mobileBreakpoint = "sm";
 
@@ -501,7 +493,7 @@ export default function Home() {
           />
         </Box>
       </Section>
-      <Chat />
+      <Request />
       <Section as={"footer"} bg={colors.useAccents2()}>
         <Flex
           flexWrap="nowrap"
@@ -664,20 +656,20 @@ function SectionHeading(props: HeadingProps) {
   );
 }
 
-interface ChatFormValues {
+interface RequestFormValues {
   name: string;
   subject: string;
   email: string;
 }
 
-const initialChatFormValues: ChatFormValues = {
+const initialChatFormValues: RequestFormValues = {
   name: "",
   subject: "",
   email: "",
 };
 
-interface ChatProps {}
-function Chat(props: ChatProps) {
+interface RequestProps {}
+function Request(props: RequestProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => setIsOpen((x) => !x);
   const close = () => setIsOpen(false);
@@ -685,6 +677,8 @@ function Chat(props: ChatProps) {
   const inputFocusBorderColor = useBrand5();
   const popoverBodyPx = "3";
   const bottomAbsoluteFieldH = "11.25rem";
+
+  const [status, setStatus] = React.useState<"idle" | "pending">("idle");
 
   return (
     <Popover isOpen={isOpen} onClose={close} placement="top">
@@ -709,12 +703,27 @@ function Chat(props: ChatProps) {
           <PopoverBody px="0" pt="6" pb="0" position="relative" rounded="lg">
             <Formik
               initialValues={initialChatFormValues}
-              onSubmit={async (values, actions) => {}}
-              validationSchema={yup.object({
-                name: yup.string().required().label("Name"),
-                subject: yup.string().required(),
-                email: yup.string().email().required().label("Email"),
-              })}
+              onSubmit={async (values, actions) => {
+                setStatus("pending");
+                try {
+                  const res = await fetch(`/api/request`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(values),
+                  });
+
+                  if (res.ok) {
+                    await res.json();
+                  }
+                } finally {
+                  setStatus("idle");
+                  actions.setSubmitting(false);
+                  close();
+                }
+              }}
+              validationSchema={validationSchema}
             >
               {(props) => (
                 <Form>
@@ -800,7 +809,7 @@ function Chat(props: ChatProps) {
                       aria-label="Send"
                       icon={<ChatIcon />}
                       type="submit"
-                      disabled={props.isSubmitting}
+                      isLoading={props.isSubmitting}
                     />
                   </Box>
                 </Form>

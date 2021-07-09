@@ -5,5 +5,5 @@ export interface Error {
     source: string;
     path?: string;
   }[];
-  status: number;
+  message?: string;
 }
