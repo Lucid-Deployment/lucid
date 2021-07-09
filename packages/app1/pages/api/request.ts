@@ -1,9 +1,12 @@
 import { validationSchema } from "../../features/request/lib/validation";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ValidationError } from "yup";
-import { Error } from "../../util/api-interfaces";
 import { createRequest } from "../../features/request/lib/db";
-import { CreateRequestData } from "../../features/request/api-interfaces/create-request";
+import {
+  CreateRequestData,
+  CreateRequestError,
+} from "../../features/request/api-interfaces/create-request";
+import * as messages from "../../lib/messages";
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,8 +29,8 @@ export default async function handler(
       await createRequest({ subject, email, name });
       res.status(201).json(data);
     } catch (err: unknown) {
-      const error: Error = {
-        message: "Server error occured. Please, try again in a few minutes.",
+      const error: CreateRequestError = {
+        message: messages.api.unexpectedError,
         errors: [],
       };
       res.status(500).json(error);

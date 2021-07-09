@@ -41,7 +41,13 @@ import { Formik, Field, Form } from "formik";
 import Image from "next/image";
 import { colors } from "@lucid/app1-ui-theme";
 import { useBrand5 } from "../../app1-ui-theme/dist/colors";
+import { useToast } from "../features/toast/context";
 import { validationSchema } from "../features/request/lib/validation";
+import {
+  CreateRequestData,
+  CreateRequestError,
+} from "../features/request/api-interfaces/create-request";
+import * as messages from "../lib/messages";
 
 const mobileBreakpoint = "sm";
 
@@ -680,6 +686,8 @@ function Request(props: RequestProps) {
 
   const [status, setStatus] = React.useState<"idle" | "pending">("idle");
 
+  const { setToast } = useToast();
+
   return (
     <Popover isOpen={isOpen} onClose={close} placement="top">
       <PopoverTrigger>
@@ -715,8 +723,17 @@ function Request(props: RequestProps) {
                   });
 
                   if (res.ok) {
-                    await res.json();
+                    const data: CreateRequestData = await res.json();
+                    setToast({ message: data.message, type: "success" });
+                  } else {
+                    const error: CreateRequestError = await res.json();
+                    setToast({ message: error.message, type: "success" });
                   }
+                } catch (err: unknown) {
+                  setToast({
+                    message: messages.api.unexpectedError,
+                    type: "error",
+                  });
                 } finally {
                   setStatus("idle");
                   actions.setSubmitting(false);
