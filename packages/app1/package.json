@@ -33,6 +33,7 @@
     "@types/jsonwebtoken": "^8.5.1",
     "@types/mongodb": "^3.6.12",
     "@types/node": "^14.14.41",
+    "eslint-config-next": "^11.0.1",
     "postcss": "^8.3.4",
     "postcss-cli": "^8.3.1"
   }
