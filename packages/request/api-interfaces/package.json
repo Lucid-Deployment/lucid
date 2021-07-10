@@ -1,6 +1,6 @@
 {
   "name": "@lucid/request-api-interfaces",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -12,7 +12,7 @@
     "build": "scripty"
   },
   "dependencies": {
-    "@lucid/api-interfaces": "^0.0.0"
+    "@lucid/api-interfaces": "0.0.1"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

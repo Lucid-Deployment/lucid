@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/vladislav1010/lucid/compare/@lucid/util-data-access@0.2.1...@lucid/util-data-access@0.4.0) (2021-07-10)
+
+
+### Features
+
+* **app1:** home header ([e45cd95](https://github.com/vladislav1010/lucid/commit/e45cd95b636f6fd57fcbdebc989bd316eff8108e))
+* **app2:** init with TailwindCSS ([9a190bc](https://github.com/vladislav1010/lucid/commit/9a190bc6f4e60691b571a1dc8525798bc1122a14))
+
+
+
+
+
 # [0.3.0](https://github.com/vladislav1010/lucid/compare/@lucid/util-data-access@0.2.1...@lucid/util-data-access@0.3.0) (2021-06-26)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@lucid/cart-data-access",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -12,10 +12,10 @@
     "build": "scripty"
   },
   "dependencies": {
-    "@lucid/util-data-access": "^0.3.0",
+    "@lucid/api-interfaces": "0.0.1",
+    "@lucid/util-data-access": "0.4.0",
     "react": "^17.0.2",
-    "react-query": "^3.13.6",
-    "@lucid/api-interfaces": "^0.0.0"
+    "react-query": "^3.13.6"
   },
   "devDependencies": {
     "@types/react": "^17.0.3",

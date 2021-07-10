@@ -1,6 +1,6 @@
 {
   "name": "@lucid/identity-ui-auth-firebase",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -12,17 +12,17 @@
     "build": "scripty"
   },
   "dependencies": {
-    "@lucid/identity-ui-auth": "^0.0.0",
-    "@lucid/util-react": "^0.3.0",
+    "@lucid/identity-ui-auth": "0.0.1",
+    "@lucid/util-react": "0.4.0",
     "firebase": "9.0.0-beta.6",
-    "yup": "^0.32.9",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
-    "lerna": "^4.0.0",
     "@types/react": "^17.0.14",
-    "@types/react-dom": "^17.0.9"
+    "@types/react-dom": "^17.0.9",
+    "lerna": "^4.0.0"
   },
   "scripty": {
     "path": "../../../scripts/packages"

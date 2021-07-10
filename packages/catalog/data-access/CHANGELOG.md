@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/vladislav1010/lucid/compare/@lucid/catalog-data-access@0.2.6...@lucid/catalog-data-access@0.3.0) (2021-07-10)
+
+
+### Features
+
+* **app1:** home header ([e45cd95](https://github.com/vladislav1010/lucid/commit/e45cd95b636f6fd57fcbdebc989bd316eff8108e))
+
+
+
+
+
 ## [0.2.7](https://github.com/vladislav1010/lucid/compare/@lucid/catalog-data-access@0.2.6...@lucid/catalog-data-access@0.2.7) (2021-06-26)
 
 **Note:** Version bump only for package @lucid/catalog-data-access

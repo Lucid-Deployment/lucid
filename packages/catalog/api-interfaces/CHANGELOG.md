@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/vladislav1010/lucid/compare/@lucid/catalog-api-interfaces@1.2.1...@lucid/catalog-api-interfaces@1.3.0) (2021-07-10)
+
+
+### Features
+
+* **app1:** home header ([e45cd95](https://github.com/vladislav1010/lucid/commit/e45cd95b636f6fd57fcbdebc989bd316eff8108e))
+
+
+
+
+
 ## [1.2.1](https://github.com/Lucid-Deployment/lucid/compare/@lucid/catalog-api-interfaces@1.2.0...@lucid/catalog-api-interfaces@1.2.1) (2021-04-22)
 
 **Note:** Version bump only for package @lucid/catalog-api-interfaces

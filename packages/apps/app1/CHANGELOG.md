@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1@0.3.1...@lucid/app1@0.6.0) (2021-07-10)
+
+
+### Features
+
+* **app1:** find and test for reflected XSS vulnerabilities ([4ec9f24](https://github.com/vladislav1010/lucid/commit/4ec9f24040de472063a82a1fd1f6dfa2dd403e4b))
+
+
+
+
+
 # [0.5.0](https://github.com/vladislav1010/lucid/compare/@lucid/app1@0.4.0...@lucid/app1@0.5.0) (2021-06-26)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@lucid/ui-toast",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -17,8 +17,8 @@
     "@chakra-ui/theme-tools": "^1.1.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "react": "^17.0.2",
-    "@lucid/ui-toast": "^0.0.0"
+    "@lucid/ui-toast": "0.0.1",
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.12.0",

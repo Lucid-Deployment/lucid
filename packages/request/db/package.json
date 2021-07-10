@@ -1,6 +1,6 @@
 {
   "name": "@lucid/request-db",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": true,
@@ -18,7 +18,7 @@
     "path": "../../../scripts/packages"
   },
   "dependencies": {
-    "mongodb": "^3.6.10",
-    "@lucid/request-domain": "^0.0.0"
+    "@lucid/request-domain": "0.0.1",
+    "mongodb": "^3.6.10"
   }
 }
