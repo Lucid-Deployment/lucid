@@ -13,7 +13,7 @@ handler.delete(async (_req: NextApiRequest, res: NextApiResponse) => {
 
     res.setHeader("Set-Cookie", cookie);
     res.json({ message: "Logged out" });
-  } catch (err) {
+  } catch (err: unknown) {
     console.log(err);
     return res.status(400).json({ message: "Something went wrong." });
   }

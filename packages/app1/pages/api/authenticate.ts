@@ -54,7 +54,7 @@ handler.post(async (req: NextApiRequestWithDb, res: NextApiResponse) => {
         message: "Wrong email or password.",
       });
     }
-  } catch (err) {
+  } catch (err: unknown) {
     console.log(err);
     return res.status(400).json({ message: "Something went wrong." });
   }

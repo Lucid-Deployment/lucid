@@ -7,7 +7,7 @@ async function authorize(
   _next: () => void
 ) {
   try {
-  } catch (err) {
+  } catch (err: unknown) {
     return res.status(401).json({ message: "Not authorized" });
   }
 }
