@@ -1,0 +1,20 @@
+{
+  "name": "@lucid/identity-ui-auth-session",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "api-report": "scripty",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "test": "scripty",
+    "lint": "scripty",
+    "build": "scripty"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripty": {
+    "path": "../../../scripts/packages"
+  }
+}

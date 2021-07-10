@@ -1,0 +1,40 @@
+{
+  "name": "@lucid/ui-toast",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": true,
+  "scripts": {
+    "api-report": "scripty",
+    "clean": "rimraf dist *.tsbuildinfo",
+    "test": "scripty",
+    "lint": "scripty",
+    "build": "scripty"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.12",
+    "@chakra-ui/react": "^1.5.1",
+    "@chakra-ui/theme-tools": "^1.1.4",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "@lucid/feature-component": "0.1.0",
+    "formik": "^2.2.6",
+    "framer-motion": "^4",
+    "react": "^17.0.2",
+    "yup": "^0.32.9",
+    "@lucid/ui-toast": "0.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@types/react": "^17.0.3",
+    "lerna": "^4.0.0"
+  },
+  "scripty": {
+    "path": "../../scripts/packages"
+  }
+}

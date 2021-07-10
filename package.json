@@ -23,6 +23,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
+      "packages/app1/*",
+      "packages/apps/app1",
       "packages/catalog/api-interfaces",
       "packages/catalog/data-access",
       "packages/test/handler-resolver",

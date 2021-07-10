@@ -2,13 +2,7 @@
   "files": [],
   "references": [
     {
-      "path": "./feature-component"
-    },
-    {
-      "path": "./ui-table"
-    },
-    {
-      "path": "./identity/api-interfaces"
+      "path": "./test/handler-resolver"
     },
     {
       "path": "./util-react"
@@ -17,25 +11,70 @@
       "path": "./util-data-access"
     },
     {
+      "path": "./component"
+    },
+    {
+      "path": "./ui-table"
+    },
+    {
+      "path": "./ui-dashboard-shell"
+    },
+    {
+      "path": "./ui-toast"
+    },
+    {
+      "path": "./identity/api-interfaces"
+    },
+    {
+      "path": "./identity/auth-session"
+    },
+    {
+      "path": "./identity/domain"
+    },
+    {
+      "path": "./identity/ui-auth"
+    },
+    {
+      "path": "./identity/ui-auth-firebase"
+    },
+    {
+      "path": "./identity/ui-auth-session"
+    },
+    {
+      "path": "./request/api-interfaces"
+    },
+    {
+      "path": "./request/application"
+    },
+    {
+      "path": "./request/db"
+    },
+    {
+      "path": "./request/domain"
+    },
+    {
       "path": "./catalog/api-interfaces"
     },
     {
       "path": "./catalog/data-access"
     },
     {
-      "path": "./app1-ui-theme"
+      "path": "./cart/data-access"
+    },
+    {
+      "path": "./app1/ui-shared"
+    },
+    {
+      "path": "./app1/ui-theme"
+    },
+    {
+      "path": "./app1/api-interfaces"
     },
     {
       "path": "./ui-dashboard-shell"
     },
     {
-      "path": "./app1"
-    },
-    {
-      "path": "./test/handler-resolver"
-    },
-    {
-      "path": "./app1-ui-shared"
+      "path": "./apps/app1"
     }
   ]
 }
