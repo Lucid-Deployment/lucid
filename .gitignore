@@ -122,3 +122,4 @@ dist
 _config.yml
 
 storybook-static
+.vercel
