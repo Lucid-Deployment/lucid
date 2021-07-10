@@ -7,7 +7,7 @@ import {
   NextApiRequestWithDb,
   setTokenCookie,
   TokenPayload,
-} from "./util";
+} from "../../features/identity/util";
 import type { NextApiResponse } from "next";
 import jwtDecode from "jwt-decode";
 

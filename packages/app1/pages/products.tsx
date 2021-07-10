@@ -20,12 +20,12 @@ const useFilters = ({ categoryId }: FiltersInput = {}) => {
       // Using a temp allows me to refer to the value while explaining its meaning
       // If you have to spend effort looking at a fragment of code and figuring out what it’s doing,
       // then you should extract it into a function and name the function after the “what.”
-      const url = new URL(`/filters`, process.env.NEXT_API_URL);
+      const url = new URL(`/filters`, "https://a");
       if (categoryId !== undefined) {
         url.searchParams.set("category_id", String(categoryId));
       }
 
-      return client(url.toString());
+      return client(url.pathname + url.search);
     }
   );
 };

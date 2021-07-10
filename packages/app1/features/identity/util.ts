@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { serialize, parse } from "cookie";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { User } from "../../features/identity";
+import { User } from ".";
 import { Db, MongoClient } from "mongodb";
 import { UserInfo } from "@lucid/identity-api-interfaces";
 

@@ -7,7 +7,7 @@ import {
   setTokenCookie,
   TokenPayload,
   verifyPassword,
-} from "./util";
+} from "../../features/identity/util";
 import type { NextApiResponse } from "next";
 import { User } from "../../features/identity";
 import { AuthenticateInput } from "@lucid/identity-api-interfaces";

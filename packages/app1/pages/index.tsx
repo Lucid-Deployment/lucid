@@ -727,7 +727,7 @@ function Request(props: RequestProps) {
                     setToast({ message: data.message, type: "success" });
                   } else {
                     const error: CreateRequestError = await res.json();
-                    setToast({ message: error.message, type: "success" });
+                    setToast({ message: error.message, type: "error" });
                   }
                 } catch (err: unknown) {
                   setToast({
@@ -803,7 +803,7 @@ function Request(props: RequestProps) {
                             lineHeight="short"
                             whiteSpace="pre-wrap"
                             overflowWrap="break-word"
-                            pb="12"
+                            pb="2.75rem"
                             pt="2"
                             px={popoverBodyPx}
                             id="subject"
@@ -840,15 +840,7 @@ function Request(props: RequestProps) {
 }
 
 function ChatIconButton(props: IconButtonProps) {
-  return (
-    <IconButton
-      variant="link"
-      px="2"
-      mt="2px"
-      display="inline-flex"
-      {...props}
-    />
-  );
+  return <IconButton variant="link" p="2" display="inline-flex" {...props} />;
 }
 
 function Section({ children, as, ...rest }: BoxProps) {

@@ -31,6 +31,9 @@ export const Toast = ({ toast, setToast, ...flexProps }: ToastProps) => {
 
   return (
     <Flex
+      position="fixed"
+      left="10"
+      bottom="10"
       direction={{ base: "column", sm: "row" }}
       width="md"
       boxShadow="lg"

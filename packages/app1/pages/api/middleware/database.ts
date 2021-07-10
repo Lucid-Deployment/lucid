@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import nextConnect from "next-connect";
 import type { NextApiResponse } from "next";
-import { NextApiRequestWithDb } from "../util";
+import { NextApiRequestWithDb } from "../../../features/identity/util";
 
 const client = new MongoClient(process.env.ATLAS_URL, {
   useNewUrlParser: true,

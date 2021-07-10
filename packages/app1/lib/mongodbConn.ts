@@ -3,7 +3,10 @@ import { MongoClient } from "mongodb";
 const dbName = process.env.ATLAS_DB;
 
 const uri = process.env.ATLAS_URL;
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 export default client;
 

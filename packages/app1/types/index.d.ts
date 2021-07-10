@@ -6,6 +6,5 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     ATLAS_URL: string;
     ATLAS_DB: string;
-    NEXT_API_URL: string;
   }
 }
