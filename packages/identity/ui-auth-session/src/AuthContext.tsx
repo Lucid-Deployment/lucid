@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import { publicFetch } from "../../../apps/app1/util/fetch";
-import { AuthenticateResult } from "@lucid/identity-api-interfaces";
+import { client } from "@lucid/util-data-access";
+import type { AuthenticateResult } from "@lucid/identity-api-interfaces";
+import type { Error as IError } from "@lucid/api-interfaces";
 
 interface AuthState
   extends Partial<Omit<AuthenticateResult, "message" | "userInfo">> {
@@ -39,11 +40,12 @@ const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
 
   const logout = async () => {
     try {
-      await publicFetch("logout", { method: "DELETE" });
+      await client<IError>("logout", { method: "DELETE" });
       window.localStorage.removeItem("userInfo");
       window.localStorage.removeItem("expiresAt");
       setAuthState({ userInfo: null });
       router.push("/login").catch(console.error);
+      return;
     } catch (err: unknown) {
       return Promise.reject(err);
     }

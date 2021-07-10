@@ -12,8 +12,8 @@
     "build": "scripty"
   },
   "dependencies": {
-    "@lucid/catalog-api-interfaces": "1.2.1",
-    "@lucid/util-data-access": "0.3.0",
+    "@lucid/catalog-api-interfaces": "^1.2.1",
+    "@lucid/util-data-access": "^0.3.0",
     "react": "^17.0.2",
     "react-query": "^3.13.6"
   },

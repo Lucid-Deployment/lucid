@@ -1,7 +1,8 @@
 import nextConnect from "next-connect";
 import type { NextApiResponse } from "next";
 import client, { dbName } from "../../../lib/mongodbConn";
-import { NextApiRequestWithDb } from "../../../features/identity/util";
+import { NextApiRequest } from "next";
+import { Db, MongoClient } from "mongodb";
 
 async function database(
   req: NextApiRequestWithDb,
@@ -17,5 +18,12 @@ async function database(
 const middleware = nextConnect();
 
 middleware.use(database);
+
+export type NextApiRequestWithDb<
+  TRequest extends NextApiRequest = NextApiRequest
+> = TRequest & {
+  dbClient: MongoClient;
+  db: Db;
+};
 
 export default middleware;

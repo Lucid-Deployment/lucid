@@ -1,16 +1,15 @@
 import nextConnect from "next-connect";
 import jwtDecode from "jwt-decode";
-import database from "./middleware/database";
+import database, { NextApiRequestWithDb } from "./middleware/database";
 import {
   createToken,
-  NextApiRequestWithDb,
   setTokenCookie,
   TokenPayload,
   verifyPassword,
-} from "../../features/identity/util";
+} from "@lucid/identity-auth-session";
 import type { NextApiResponse } from "next";
-import { User } from "../../features/identity";
-import { AuthenticateInput } from "@lucid/identity-api-interfaces";
+import type { User } from "@lucid/identity-domain";
+import type { AuthenticateInput } from "@lucid/identity-api-interfaces";
 
 const handler = nextConnect();
 

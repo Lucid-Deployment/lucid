@@ -1,9 +1,9 @@
 import * as React from "react";
-import { ApiError } from "@lucid/util-data-access";
-import { publicFetch } from "../../../apps/app1/util/fetch";
-import type { Error } from "../../../app1/api-interfaces/src";
+import type { ApiError } from "@lucid/util-data-access";
+import type { Error as IError } from "@lucid/api-interfaces";
+import { client } from "@lucid/util-data-access";
 
-export type AuthFetchError = ApiError<Error> | { message: string };
+export type AuthFetchError = ApiError<IError> | { message: string };
 
 type FetchContextValue = {
   authFetch: (
@@ -25,27 +25,28 @@ const FetchProvider = ({ children }: { children?: React.ReactNode }) => {
 
   // TODO: cookie support
   const authFetch: FetchContextValue["authFetch"] = (endpoint, config) =>
-    publicFetch(endpoint, {
+    client<IError>(endpoint, {
       ...config,
-    }).catch(async (error) => {
+    }).catch(async (error: unknown) => {
+      const err: ApiError<IError> = error as any;
       // We haven't gotten response from the server
-      if (error instanceof Error) {
-        throw error;
+      if (err instanceof Error) {
+        throw err;
       }
 
-      const code = error?.status ?? 0;
+      const code = err?.status ?? 0;
 
       // If the user's token expires or the user does something they're not supposed to, the backend can send a 401 request.
       // If that happens, then we'll want to log the user out and refresh the page automatically so all data is removed from the page.
       if (code === 401) {
-        await publicFetch("logout", {
+        await client<IError>("logout", {
           method: "DELETE",
         }).catch(console.error);
         window.location.assign(String(window.location));
         return Promise.reject({ message: "Please re-authenticate." });
       }
 
-      throw error;
+      throw err;
     });
 
   return (

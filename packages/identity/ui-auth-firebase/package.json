@@ -11,8 +11,18 @@
     "lint": "scripty",
     "build": "scripty"
   },
+  "dependencies": {
+    "@lucid/identity-ui-auth": "^0.0.0",
+    "@lucid/util-react": "^0.3.0",
+    "firebase": "9.0.0-beta.6",
+    "yup": "^0.32.9",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9"
   },
   "scripty": {
     "path": "../../../scripts/packages"

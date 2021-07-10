@@ -1,5 +1,5 @@
 {
-  "name": "@lucid/app1-api-interfaces",
+  "name": "@lucid/api-interfaces",
   "version": "0.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,6 +15,6 @@
     "lerna": "^4.0.0"
   },
   "scripty": {
-    "path": "../../../scripts/packages"
+    "path": "../../scripts/packages"
   }
 }

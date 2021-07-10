@@ -16,5 +16,8 @@
   },
   "scripty": {
     "path": "../../../scripts/packages"
+  },
+  "dependencies": {
+    "yup": "0.32.9"
   }
 }

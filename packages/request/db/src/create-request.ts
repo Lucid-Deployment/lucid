@@ -16,12 +16,14 @@ export async function createRequest(
     const requests = db.collection("requests");
     const result = await requests.insertOne(doc);
 
+    await client.close();
     if (result.insertedCount === 0) {
       return Promise.reject();
+    } else {
+      return;
     }
   } catch (err: unknown) {
+    await client.close();
     return Promise.reject();
-  } finally {
-    client.close();
   }
 }

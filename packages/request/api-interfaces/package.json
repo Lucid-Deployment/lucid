@@ -11,6 +11,9 @@
     "lint": "scripty",
     "build": "scripty"
   },
+  "dependencies": {
+    "@lucid/api-interfaces": "^0.0.0"
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   },

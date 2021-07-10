@@ -14,8 +14,14 @@ import { useToast } from "@lucid/ui-toast";
 export const Toast = (flexProps: FlexProps) => {
   const errorColor = useColorModeValue("red.500", "red.300");
   const successColor = useColorModeValue("green.500", "green.300");
+  const whiteGray700 = useColorModeValue("white", "gray.700");
+  const whiteGray900 = useColorModeValue("white", "gray.900");
 
   const { toast } = useToast();
+
+  if (toast === null) {
+    return null;
+  }
 
   return (
     <Flex
@@ -25,7 +31,7 @@ export const Toast = (flexProps: FlexProps) => {
       direction={{ base: "column", sm: "row" }}
       width="md"
       boxShadow="lg"
-      bg={useColorModeValue("white", "gray.700")}
+      bg={whiteGray700}
       borderRadius={{ base: "none", sm: "base" }}
       overflow="hidden"
       borderTopWidth={{ base: "4px", sm: "0" }}
@@ -40,7 +46,7 @@ export const Toast = (flexProps: FlexProps) => {
         <Icon
           as={toast.type === "error" ? WarningIcon : CheckIcon}
           boxSize="9"
-          color={useColorModeValue("white", "gray.900")}
+          color={whiteGray900}
         />
       </Center>
       <Box px="4" py="3">

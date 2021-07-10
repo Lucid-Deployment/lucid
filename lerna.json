@@ -2,11 +2,12 @@
   "packages": [
     "packages/*",
     "packages/app1/*",
-    "packages/apps/app1",
-    "packages/catalog/api-interfaces",
-    "packages/catalog/data-access",
-    "packages/test/handler-resolver",
-    "packages/identity/api-interfaces"
+    "packages/apps/*",
+    "packages/catalog/*",
+    "packages/cart/*",
+    "packages/test/*",
+    "packages/identity/*",
+    "packages/request/*"
   ],
   "npmClient": "yarn",
   "version": "independent",

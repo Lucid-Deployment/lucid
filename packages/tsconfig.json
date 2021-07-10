@@ -11,10 +11,13 @@
       "path": "./util-data-access"
     },
     {
+      "path": "./api-interfaces"
+    },
+    {
       "path": "./component"
     },
     {
-      "path": "./ui-table"
+      "path": "./table"
     },
     {
       "path": "./ui-dashboard-shell"
@@ -66,9 +69,6 @@
     },
     {
       "path": "./app1/ui-theme"
-    },
-    {
-      "path": "./app1/api-interfaces"
     },
     {
       "path": "./ui-dashboard-shell"

@@ -1,12 +1,13 @@
-import { validationSchema } from "../../features/request/lib/validation";
+import { validationSchema } from "@lucid/request-application";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ValidationError } from "yup";
-import { createRequest } from "../../features/request/lib/db";
-import {
+import { createRequest } from "@lucid/request-db";
+import type {
   CreateRequestData,
   CreateRequestError,
-} from "../../features/request/api-interfaces/create-request";
+} from "@lucid/request-api-interfaces";
 import * as messages from "../../lib/messages";
+import client, { dbName } from "../../lib/mongodbConn";
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,7 +27,7 @@ export default async function handler(
       const data: CreateRequestData = {
         message: "Your message is delivered.",
       };
-      await createRequest({ subject, email, name });
+      await createRequest({ subject, email, name }, client, dbName);
       res.status(201).json(data);
     } catch (err: unknown) {
       const error: CreateRequestError = {

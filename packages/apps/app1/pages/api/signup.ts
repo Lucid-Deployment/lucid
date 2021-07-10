@@ -1,13 +1,12 @@
 import nextConnect from "next-connect";
-import database from "./middleware/database";
+import database, { NextApiRequestWithDb } from "./middleware/database";
 import { ObjectId } from "mongodb";
 import {
   createToken,
   hashPassword,
-  NextApiRequestWithDb,
   setTokenCookie,
   TokenPayload,
-} from "../../features/identity/util";
+} from "@lucid/identity-auth-session";
 import type { NextApiResponse } from "next";
 import jwtDecode from "jwt-decode";
 

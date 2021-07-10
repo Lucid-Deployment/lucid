@@ -18,6 +18,7 @@
     "path": "../../../scripts/packages"
   },
   "dependencies": {
-    "mongodb": "^3.6.10"
+    "mongodb": "^3.6.10",
+    "@lucid/request-domain": "^0.0.0"
   }
 }

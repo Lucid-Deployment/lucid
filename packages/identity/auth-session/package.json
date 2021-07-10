@@ -1,5 +1,5 @@
 {
-  "name": "@lucid/identity-domain",
+  "name": "@lucid/identity-auth-session",
   "version": "0.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,9 +12,21 @@
     "build": "scripty"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/mongodb": "^3.6.12",
+    "@types/node": "^14.14.41"
   },
   "scripty": {
     "path": "../../../scripts/packages"
+  },
+  "dependencies": {
+    "@lucid/identity-domain": "^0.0.0",
+    "mongodb": "^3.6.10",
+    "next": "^11.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "bcryptjs": "^2.4.3"
   }
 }

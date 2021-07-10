@@ -1,4 +1,4 @@
-import type { ComponentProps } from "@lucid/feature-component";
+import type { ComponentProps } from "@lucid/component";
 import {
   Grid,
   GridItem,

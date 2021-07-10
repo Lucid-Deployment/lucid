@@ -40,13 +40,12 @@ import Head from "next/head";
 import { Formik, Field, Form } from "formik";
 import Image from "next/image";
 import { colors } from "@lucid/app1-ui-theme";
-import { useBrand5 } from "../../app1-ui-theme/dist/colors";
-import { useToast } from "../../../ui-toast/src/context";
-import { validationSchema } from "../features/request/lib/validation";
+import { useToast } from "@lucid/ui-toast";
+import { validationSchema } from "@lucid/request-application";
 import {
   CreateRequestData,
   CreateRequestError,
-} from "../features/request/api-interfaces/create-request";
+} from "@lucid/request-api-interfaces";
 import * as messages from "../lib/messages";
 
 const mobileBreakpoint = "sm";
@@ -386,7 +385,7 @@ export default function Home() {
                   transitionDuration="200ms"
                   transitionTimingFunction="ease"
                   position="absolute"
-                  bg={useBrand5()}
+                  bg={colors.useBrand5()}
                   sx={{
                     opacity: activeIndex !== null ? 1 : 0,
                     ...navUnderlineStyles,
@@ -630,7 +629,7 @@ function SocialLink({ title, href, children }: SocialLinkProps) {
       href={href}
       color={colors.useAccents7()}
       _hover={{
-        color: useBrand5(),
+        color: colors.useBrand5(),
       }}
       target="_blank"
       w="24"
@@ -680,7 +679,7 @@ function Request(props: RequestProps) {
   const toggle = () => setIsOpen((x) => !x);
   const close = () => setIsOpen(false);
 
-  const inputFocusBorderColor = useBrand5();
+  const inputFocusBorderColor = colors.useBrand5();
   const popoverBodyPx = "3";
   const bottomAbsoluteFieldH = "11.25rem";
 

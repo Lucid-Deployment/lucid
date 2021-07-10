@@ -1,5 +1,5 @@
 export interface Error {
-  errors: {
+  errors?: {
     message: string;
     type: string;
     source: string;

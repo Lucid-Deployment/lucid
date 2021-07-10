@@ -1,4 +1,4 @@
-import type { ComponentProps } from "@lucid/feature-component";
+import type { ComponentProps } from "@lucid/component";
 
 export type ColumnType = "default" | "boolean" | "button";
 

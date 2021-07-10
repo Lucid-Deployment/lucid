@@ -1,4 +1,4 @@
-const preset = require("../../../jest.preset");
+const preset = require("../jest.preset");
 
 module.exports = {
   ...preset,
