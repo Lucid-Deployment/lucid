@@ -26,13 +26,13 @@
       "path": "./ui-toast"
     },
     {
+      "path": "./identity/domain"
+    },
+    {
       "path": "./identity/api-interfaces"
     },
     {
       "path": "./identity/auth-session"
-    },
-    {
-      "path": "./identity/domain"
     },
     {
       "path": "./identity/ui-auth"
@@ -44,6 +44,9 @@
       "path": "./identity/ui-auth-session"
     },
     {
+      "path": "./request/domain"
+    },
+    {
       "path": "./request/api-interfaces"
     },
     {
@@ -51,9 +54,6 @@
     },
     {
       "path": "./request/db"
-    },
-    {
-      "path": "./request/domain"
     },
     {
       "path": "./catalog/api-interfaces"
