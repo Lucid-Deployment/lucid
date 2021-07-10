@@ -44,8 +44,8 @@ const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
       window.localStorage.removeItem("expiresAt");
       setAuthState({ userInfo: null });
       router.push("/login").catch(console.error);
-    } catch (err) {
-      return err;
+    } catch (err: unknown) {
+      return Promise.reject(err);
     }
   };
 
