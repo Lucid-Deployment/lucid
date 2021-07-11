@@ -6,4 +6,17 @@ module.exports = {
     },
   },
   env: {},
+  async headers() {
+    return [
+      {
+        source: "/clickjacking-embedded",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'none'",
+          },
+        ],
+      },
+    ];
+  },
 };
