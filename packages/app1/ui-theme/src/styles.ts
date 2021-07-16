@@ -1,10 +1,11 @@
 import { mode, Styles } from "@chakra-ui/theme-tools";
+import { textPrimary } from "./colors";
 
 const styles: Styles = {
   global: (props) => ({
     body: {
       fontFamily: "body",
-      color: mode("gray.800", "whiteAlpha.900")(props),
+      color: textPrimary(props),
       bg: mode("white", "gray.800")(props),
       transition: "background-color 0.2s",
       overflowX: "hidden",
