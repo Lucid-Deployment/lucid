@@ -91,42 +91,20 @@ const Container = (props: HTMLChakraProps<"div">) => (
 );
 
 const servicesSpaceX = { base: "2.5", md: "5" };
-const ServiceTitle = ({ children, ...rest }: TextProps) => (
-  <Text
-    display="inline-block"
-    py={{ base: "1.5", md: "3" }}
-    px={servicesSpaceX}
-    fontSize={{ base: "2.125rem", md: "6xl", lg: "5.83333vw" }}
-    sx={{
-      WebkitTextStroke: useBreakpointValue({
-        lg: `1px ${colors.useTextPrimary()}`,
-      })!,
-    }}
-    transition={{ lg: "color .3s,-webkit-text-stroke .3s" }}
-    lineHeight={{ lg: 1.1 }}
-    color={{ base: colors.useTextPrimary(), lg: "transparent" }}
-    {...rest}
-  >
-    <chakra.span
-      sx={{
-        position: "relative",
-        display: "inline-block",
-        "&::after": {
-          content: `""`,
-          display: "block",
-          position: "absolute",
-          left: "2px",
-          right: "2px",
-          bottom: 0,
-          height: "1px",
-          background: "currentColor",
-        },
-      }}
-    >
-      {children}
-    </chakra.span>
-  </Text>
-);
+
+interface Service {
+  id: number;
+  title: string;
+  slug: string;
+}
+
+const services: Service[] = [
+  {
+    id: 0,
+    title: "Frontend",
+    slug: "frontend",
+  },
+];
 
 interface Project {
   id: number;
@@ -302,6 +280,10 @@ export default function Home() {
     display: "inline-block",
   };
 
+  const serviceLinkWebkitTextStroke = useBreakpointValue({
+    lg: `1px ${colors.useTextPrimary()}`,
+  })!;
+
   return (
     <>
       <Head>
@@ -448,9 +430,50 @@ export default function Home() {
               )}
               whiteSpace={{ lg: "nowrap" }}
             >
-              <Box display={{ lg: "inline-block" }}>
-                <ServiceTitle>Web-sites</ServiceTitle>
-              </Box>
+              {services.map((x) => (
+                <Box display={{ lg: "inline-block" }} key={x.id}>
+                  <NextLink href={`/services/${x.slug}`} passHref>
+                    <Link
+                      display="inline-block"
+                      py={{ base: "1.5", md: "3" }}
+                      px={servicesSpaceX}
+                      fontSize={{
+                        base: "2.125rem",
+                        md: "6xl",
+                        lg: "5.83333vw",
+                      }}
+                      sx={{
+                        WebkitTextStroke: serviceLinkWebkitTextStroke,
+                      }}
+                      transition={{ lg: "color .3s,-webkit-text-stroke .3s" }}
+                      lineHeight={{ lg: 1.1 }}
+                      color={{
+                        base: colors.useTextPrimary(),
+                        lg: "transparent",
+                      }}
+                    >
+                      <chakra.span
+                        sx={{
+                          position: "relative",
+                          display: "inline-block",
+                          "&::after": {
+                            content: `""`,
+                            display: "block",
+                            position: "absolute",
+                            left: "2px",
+                            right: "2px",
+                            bottom: 0,
+                            height: "1px",
+                            background: "currentColor",
+                          },
+                        }}
+                      >
+                        {x.title}
+                      </chakra.span>
+                    </Link>
+                  </NextLink>
+                </Box>
+              ))}
             </Box>
           </Box>
         </Flex>
