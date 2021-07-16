@@ -460,8 +460,10 @@ export default function Home() {
             letterSpacing="wide"
             lineHeight={{ lg: "short" }}
           >
-            Vladislav Savchenko, freelancer with more than two years of
-            experience in backend and frontend.
+            I studied computer science in Kuban State University, then worked at
+            Difocus as well as with small businesses for 2 years as
+            frontend/backend developer. My main assets include sense of
+            observation and analytical mind.
           </Box>
         </Box>
       </Section>
