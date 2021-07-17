@@ -24,7 +24,7 @@ const baseStyle = (props: Dict) => ({
   },
 });
 
-function plain() {
+function unstyled() {
   return {
     _hover: {
       textDecoration: "none",
@@ -53,12 +53,12 @@ function twoColors(props: Dict) {
 }
 
 const variants = {
-  plain,
+  unstyled,
   twoColors,
 };
 
 const defaultProps = {
-  variant: "plain",
+  variant: "unstyled",
 };
 
 export default {
