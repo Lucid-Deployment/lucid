@@ -558,7 +558,11 @@ export default function Home() {
         <Portal>
           <Button
             ref={btnMenuRef}
-            onClick={mobileNavDisclosure.onOpen}
+            onClick={
+              mobileNavDisclosure.isOpen
+                ? mobileNavDisclosure.onClose
+                : mobileNavDisclosure.onOpen
+            }
             variant="ghost"
             colorScheme="gray"
             position="fixed"
