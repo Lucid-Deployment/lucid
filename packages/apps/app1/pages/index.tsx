@@ -852,11 +852,11 @@ export default function Home() {
               role: "Active participationg as a frontend developer at Difocus",
             }}
           />
-          <Box mt="20">
+          {/* <Box mt="20">
             <NextLink passHref href="#">
               <BrandLink>View all projects</BrandLink>
             </NextLink>
-          </Box>
+          </Box> */}
         </Box>
       </Section>
       <Request />
