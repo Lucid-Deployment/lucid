@@ -641,9 +641,19 @@ export default function Home() {
           finalFocusRef={btnMenuRef}
         >
           <DrawerOverlay bg="rgba(238,238,238,.7)" />
-          <DrawerContent border={0} rounded={0} w={"full"}>
+          <DrawerContent
+            border={0}
+            rounded={0}
+            w={{ md: "30rem !important" }}
+            maxW="none"
+          >
             <DrawerBody>
-              <Box>
+              <Flex
+                h="full"
+                justifyContent="center"
+                alignItems="flex-start"
+                flexDirection="column"
+              >
                 <H5 mb="1.875rem">Menu</H5>
                 <nav>
                   <chakra.ul m="0" p="0" listStyleType="none">
@@ -712,7 +722,7 @@ export default function Home() {
                   </chakra.ul>
                 </nav>
                 <EmailMeLink mt="6" />
-              </Box>
+              </Flex>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
