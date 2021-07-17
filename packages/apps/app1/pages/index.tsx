@@ -339,6 +339,7 @@ export default function Home() {
 
   const headerTop = "2.125rem";
   const headerX = "1.875rem";
+  const headerH = "5.75rem";
 
   return (
     <>
@@ -349,7 +350,7 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
         </style>
       </Head>
-      <header>
+      <chakra.header h={headerH}>
         <Portal>
           <NextLink passHref href="/">
             <chakra.a
@@ -378,7 +379,7 @@ export default function Home() {
         <Flex
           as="nav"
           alignItems="center"
-          h="5.75rem"
+          h={headerH}
           mr="calc(4.375rem + 1.5rem)" // 4.275rem - до кнопки Меню
           position="fixed"
           top="0"
@@ -566,7 +567,7 @@ export default function Home() {
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-      </header>
+      </chakra.header>
       <Section>
         <Flex>
           <Box flex="0 0 auto">
