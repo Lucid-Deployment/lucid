@@ -370,10 +370,6 @@ const menuItems: MenuItem[] = [
     href: "#projects",
     title: "Projects",
   },
-  {
-    href: "#contacts",
-    title: "Contacts",
-  },
 ];
 
 const MenuIconLine = () => (
