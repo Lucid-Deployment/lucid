@@ -226,6 +226,125 @@ const EmailMeLink = (props: Omit<LinkProps, "children">) => (
   </NextLink>
 );
 
+const menuOpenTop = keyframes`
+0% {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scaleX(1);
+  -moz-transform: rotate(0) scaleX(1);
+  -o-transform: rotate(0) scaleX(1);
+  transform: rotate(0) scaleX(1);
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center
+}
+
+30% {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scaleX(0);
+  -moz-transform: rotate(0) scaleX(0);
+  -o-transform: rotate(0) scaleX(0);
+  transform: rotate(0) scaleX(0)
+}
+
+30.1% {
+  opacity: 0;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scaleX(0);
+  -moz-transform: rotate(0) scaleX(0);
+  -o-transform: rotate(0) scaleX(0);
+  transform: rotate(0) scaleX(0)
+}
+
+31% {
+  opacity: 1;
+  top: -5px;
+  left: 4px;
+  -webkit-transform: rotate(45deg) scaleX(0);
+  -moz-transform: rotate(45deg) scaleX(0);
+  -o-transform: rotate(45deg) scaleX(0);
+  transform: rotate(45deg) scaleX(0)
+}
+
+99%,80% {
+  opacity: 1;
+  top: -5px;
+  left: 4px;
+  -webkit-transform: rotate(45deg) scaleX(1);
+  -moz-transform: rotate(45deg) scaleX(1);
+  -o-transform: rotate(45deg) scaleX(1);
+  transform: rotate(45deg) scaleX(1);
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center
+}
+`;
+
+const menuOpenBottom = keyframes`
+0% {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scaleX(1);
+  -moz-transform: rotate(0) scaleX(1);
+  -o-transform: rotate(0) scaleX(1);
+  transform: rotate(0) scaleX(1);
+  -webkit-transform-origin: right center;
+  -moz-transform-origin: right center;
+  -o-transform-origin: right center;
+  transform-origin: right center
+}
+
+50% {
+  opacity: 1;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scaleX(0);
+  -moz-transform: rotate(0) scaleX(0);
+  -o-transform: rotate(0) scaleX(0);
+  transform: rotate(0) scaleX(0)
+}
+
+50.1% {
+  opacity: 0;
+  top: 0;
+  left: 0;
+  -webkit-transform: rotate(0) scaleX(0);
+  -moz-transform: rotate(0) scaleX(0);
+  -o-transform: rotate(0) scaleX(0);
+  transform: rotate(0) scaleX(0)
+}
+
+51%,55% {
+  opacity: 1;
+  top: -13px;
+  left: -4px;
+  -webkit-transform: rotate(-45deg) scaleX(0);
+  -moz-transform: rotate(-45deg) scaleX(0);
+  -o-transform: rotate(-45deg) scaleX(0);
+  transform: rotate(-45deg) scaleX(0)
+}
+
+100% {
+  opacity: 1;
+  top: -13px;
+  left: -4px;
+  -webkit-transform: rotate(-45deg) scaleX(1);
+  -moz-transform: rotate(-45deg) scaleX(1);
+  -o-transform: rotate(-45deg) scaleX(1);
+  transform: rotate(-45deg) scaleX(1);
+  -webkit-transform-origin: right center;
+  -moz-transform-origin: right center;
+  -o-transform-origin: right center;
+  transform-origin: right center
+}`;
+
 const rippleIn = keyframes`
     0% {
         -webkit-border-radius: 100%;
@@ -452,8 +571,27 @@ export default function Home() {
             p="0"
             minW="auto"
             display="block"
+            color={
+              mobileNavDisclosure.isOpen ? colors.useTextPrimary() : undefined
+            }
             sx={{
               willChange: "transform",
+              ...(mobileNavDisclosure.isOpen
+                ? {
+                    "&>span>span:first-child": {
+                      transitionDuration: "0s, 0s",
+                      transform: "rotate(45deg) scaleX(1)",
+                      top: "4px",
+                      animation: `${menuOpenTop} 0.75s`,
+                    },
+                    "&>span>span:last-child": {
+                      transitionDuration: "0s, 0s",
+                      transform: "rotate(-45deg) scaleX(1)",
+                      top: "-4px",
+                      animation: `${menuOpenBottom} 0.75s`,
+                    },
+                  }
+                : undefined),
               "&::before": {
                 // TODO: for large screens
                 // top: '-1.875rem',
@@ -471,23 +609,26 @@ export default function Home() {
                 transition:
                   "transform .45s cubic-bezier(.34,2,.64,1),background-color .6s cubic-bezier(.33,1,.68,1)",
               },
-              "&::after": {
-                // TODO: for large screens
-                top: "-2.5",
-                bottom: "-2.5",
-                right: "-2.5",
-                left: "-2.5",
-                position: "absolute",
-                content: `''`,
-              },
               "&:hover::before": {
                 transform: "scale(1)",
                 bg: useColorModeValue(`gray.100`, `whiteAlpha.200`),
               },
             }}
           >
-            <MenuIconLine />
-            <MenuIconLine />
+            <chakra.span
+              sx={{
+                position: "relative",
+                top: "-1px",
+                display: "inline-block",
+                width: "25px",
+                lineHeight: "25px",
+                verticalAlign: "middle",
+                transition: "color .2s",
+              }}
+            >
+              <MenuIconLine />
+              <MenuIconLine />
+            </chakra.span>
           </Button>
         </Portal>
         <Drawer
