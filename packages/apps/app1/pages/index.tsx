@@ -538,7 +538,10 @@ export default function Home() {
               </li>
             ))}
           </Flex>
-          <EmailMeLink display={{ base: "none", [mobileBreakpoint]: "flex" }} />
+          <EmailMeLink
+            display={{ base: "none", [mobileBreakpoint]: "flex" }}
+            fontSize={{ base: "sm", lg: "lg" }}
+          />
         </Flex>
         <chakra.span
           display={{ base: "none", [mobileBreakpoint]: "block" }}
@@ -999,7 +1002,7 @@ const BrandLink = React.forwardRef<
   Omit<LinkProps, "children"> & {
     children: string;
   }
->(({ children: title, ...props }, ref) => {
+>(({ children: title, fontSize, ...props }, ref) => {
   return (
     <Link
       ref={ref}
@@ -1072,7 +1075,7 @@ const BrandLink = React.forwardRef<
               transition: "transform .4s",
             },
           }}
-          fontSize={{ base: "sm", xl: "lg" }}
+          fontSize={fontSize ?? { base: "sm", md: "lg" }}
           data-text={title}
         >
           {title}
