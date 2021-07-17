@@ -749,46 +749,46 @@ export default function Home() {
             >
               {services.map((x) => (
                 <Box display={{ xl: "inline-block" }} key={x.id}>
-                  <NextLink href={`/services/${x.slug}`} passHref>
-                    <Link
-                      display="inline-block"
-                      py={{ base: "1.5", md: "3" }}
-                      px={servicesSpaceX}
-                      fontSize={{
-                        base: "2.375rem",
-                        md: "3.75rem",
-                        xl: "6.66667vw",
-                      }}
+                  {/*<NextLink href={`/services/${x.slug}`} passHref>*/}
+                  <Text
+                    display="inline-block"
+                    py={{ base: "1.5", md: "3" }}
+                    px={servicesSpaceX}
+                    fontSize={{
+                      base: "2.375rem",
+                      md: "3.75rem",
+                      xl: "6.66667vw",
+                    }}
+                    sx={{
+                      WebkitTextStroke: serviceLinkWebkitTextStroke,
+                    }}
+                    transition={{ xl: "color .3s,-webkit-text-stroke .3s" }}
+                    lineHeight={{ base: "shorter", md: "4.0625rem", xl: 1.1 }}
+                    color={{
+                      base: colors.useTextPrimary(),
+                      xl: "transparent",
+                    }}
+                  >
+                    <chakra.span
                       sx={{
-                        WebkitTextStroke: serviceLinkWebkitTextStroke,
-                      }}
-                      transition={{ xl: "color .3s,-webkit-text-stroke .3s" }}
-                      lineHeight={{ base: "shorter", md: "4.0625rem", xl: 1.1 }}
-                      color={{
-                        base: colors.useTextPrimary(),
-                        xl: "transparent",
+                        position: "relative",
+                        display: "inline-block",
+                        "&::after": {
+                          content: `""`,
+                          display: "block",
+                          position: "absolute",
+                          left: "2px",
+                          right: "2px",
+                          bottom: 0,
+                          height: "1px",
+                          background: "currentColor",
+                        },
                       }}
                     >
-                      <chakra.span
-                        sx={{
-                          position: "relative",
-                          display: "inline-block",
-                          "&::after": {
-                            content: `""`,
-                            display: "block",
-                            position: "absolute",
-                            left: "2px",
-                            right: "2px",
-                            bottom: 0,
-                            height: "1px",
-                            background: "currentColor",
-                          },
-                        }}
-                      >
-                        {x.title}
-                      </chakra.span>
-                    </Link>
-                  </NextLink>
+                      {x.title}
+                    </chakra.span>
+                  </Text>
+                  {/*</NextLink>*/}
                 </Box>
               ))}
             </Box>
