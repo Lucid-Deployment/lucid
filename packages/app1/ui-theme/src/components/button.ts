@@ -15,7 +15,7 @@ const ringShadow = (
 
 const baseStyle = {
   lineHeight: "1.2",
-  borderRadius: "md",
+  borderRadius: "0",
   fontWeight: "medium",
   _focus: {
     boxShadow: "none",
@@ -197,10 +197,7 @@ function variantLink(props: Dict) {
 const variantUnstyled = {
   bg: "none",
   color: "inherit",
-  display: "inline",
   lineHeight: "inherit",
-  m: 0,
-  p: 0,
 };
 
 const variants = {
