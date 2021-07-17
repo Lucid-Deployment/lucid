@@ -87,11 +87,6 @@ const services: Service[] = [
     title: "Frontend",
     slug: "frontend",
   },
-  {
-    id: 1,
-    title: "Shopify",
-    slug: "shopify",
-  },
 ];
 
 interface Project {
@@ -371,10 +366,6 @@ type MenuItem = {
 };
 
 const menuItems: MenuItem[] = [
-  {
-    href: "#services",
-    title: "Services",
-  },
   {
     href: "#projects",
     title: "Projects",
