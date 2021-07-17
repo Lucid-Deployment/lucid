@@ -31,6 +31,7 @@ import {
   BoxProps,
   useBreakpointValue,
   TextProps,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import NavLink from "../components/NavLink";
 import NextLink from "next/link";
@@ -50,23 +51,6 @@ import * as messages from "../lib/messages";
 
 const mobileBreakpoint = "sm";
 
-const MobileNavTrigger = (props: Partial<IconButtonProps>) => (
-  <IconButton
-    variant="ghost"
-    rounded="full"
-    zIndex={"20"}
-    aria-label="Меню"
-    {...props}
-  />
-);
-
-type NavItem = {
-  title: string;
-  href: string;
-};
-
-const navItems: NavItem[] = [{ title: "Projects", href: "#projects" }];
-
 const ContactUsButton = (props: ButtonProps) => {
   return (
     <Button
@@ -74,8 +58,8 @@ const ContactUsButton = (props: ButtonProps) => {
       href="mailto: vs101ff@gmail.com"
       colorScheme="brand"
       variant="solid"
-      fontSize="sm"
-      rounded={"2"}
+      fontSize="md"
+      rounded={"0"}
       fontWeight="normal"
       {...props}
     >
@@ -257,6 +241,49 @@ const rippleIn = keyframes`
         transform: translateY(0) translateZ(0)
     }`;
 
+type MenuItem = {
+  href: string;
+  title: string;
+};
+
+const menuItems: MenuItem[] = [
+  {
+    href: "#services",
+    title: "Services",
+  },
+  {
+    href: "#projects",
+    title: "Projects",
+  },
+  {
+    href: "#contacts",
+    title: "Contacts",
+  },
+];
+
+const MenuIconLine = () => (
+  <chakra.span
+    display="block"
+    w="full"
+    h="2px"
+    my="1.5"
+    position="relative"
+    top="0"
+    bg={colors.useTextPrimary()}
+    transition="top .2s .3s,transform .3s 0s,opacity .3s .1s,background .4s"
+  />
+);
+
+const H5 = ({ as, ...props }: HeadingProps) => (
+  <Heading
+    size="xs"
+    as={as ?? "h5"}
+    color={colors.useAccents7()}
+    fontWeight="normal"
+    {...props}
+  />
+);
+
 export default function Home() {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [navUnderlineStyles, setNavUnderlineStyles] =
@@ -310,6 +337,11 @@ export default function Home() {
     lg: `1px ${colors.useTextPrimary()}`,
   })!;
 
+  const btnMenuRef = React.useRef<HTMLButtonElement>(null);
+
+  const headerTop = "2.125rem";
+  const headerX = "1.875rem";
+
   return (
     <>
       <Head>
@@ -352,7 +384,7 @@ export default function Home() {
                   p={0}
                   display={{ base: "none", [mobileBreakpoint]: "flex" }}
                 >
-                  {navItems.map((x, i) => (
+                  {menuItems.map((x, i) => (
                     <li key={x.title}>
                       <NavLink
                         href={x.href}
@@ -390,42 +422,138 @@ export default function Home() {
                   }}
                 />
                 <Box display={{ base: "block", [mobileBreakpoint]: "none" }}>
-                  <MobileNavTrigger
-                    onClick={() => {
-                      mobileNavDisclosure.onOpen();
-                    }}
-                    icon={<HamburgerIcon />}
-                  />
+                  <Portal>
+                    <Button
+                      ref={btnMenuRef}
+                      onClick={mobileNavDisclosure.onOpen}
+                      variant="ghost"
+                      colorScheme="gray"
+                      position="fixed"
+                      top={headerTop}
+                      right={headerX}
+                      zIndex="skipLink"
+                      borderRadius="full"
+                      w="6"
+                      h="6"
+                      p="0"
+                      minW="auto"
+                      display="block"
+                      sx={{
+                        willChange: "transform",
+                        "&::before": {
+                          // TODO: for large screens
+                          // top: '-1.875rem',
+                          // left: '-1.875rem',
+                          // right: '-1.875rem',
+                          // bottom: '-1.875rem',
+                          top: "-4",
+                          bottom: "-4",
+                          right: "-4",
+                          left: "-4",
+                          position: "absolute",
+                          content: `''`,
+                          borderRadius: "full",
+                          transform: "scale(0.5)",
+                          transition:
+                            "transform .45s cubic-bezier(.34,2,.64,1),background-color .6s cubic-bezier(.33,1,.68,1)",
+                        },
+                        "&::after": {
+                          // TODO: for large screens
+                          top: "-2.5",
+                          bottom: "-2.5",
+                          right: "-2.5",
+                          left: "-2.5",
+                          position: "absolute",
+                          content: `''`,
+                        },
+                        "&:hover::before": {
+                          transform: "scale(1)",
+                          bg: useColorModeValue(`gray.100`, `whiteAlpha.200`),
+                        },
+                      }}
+                    >
+                      <MenuIconLine />
+                      <MenuIconLine />
+                    </Button>
+                  </Portal>
                   <Drawer
                     isOpen={mobileNavDisclosure.isOpen}
                     onClose={mobileNavDisclosure.onClose}
+                    finalFocusRef={btnMenuRef}
                   >
-                    <DrawerOverlay />
+                    <DrawerOverlay bg="rgba(238,238,238,.7)" />
                     <DrawerContent border={0} rounded={0} w={"full"}>
-                      <DrawerHeader
-                        h={headerHeight}
-                        display="flex"
-                        alignItems={"center"}
-                        justifyContent={"flex-end"}
-                      >
-                        <MobileNavTrigger
-                          onClick={() => {
-                            mobileNavDisclosure.onClose();
-                          }}
-                          icon={<CloseIcon />}
-                        />
-                      </DrawerHeader>
-                      <DrawerBody textAlign="center">
-                        <chakra.ul listStyleType={"none"} m={0} p={0} mb="4">
-                          {navItems.map((x, i) => (
-                            <li key={x.title}>
-                              <NavLink href={x.href} hasSubmenu={false}>
-                                {x.title}
-                              </NavLink>
-                            </li>
-                          ))}
-                        </chakra.ul>
-                        <ContactUsButton />
+                      <DrawerBody>
+                        <Box>
+                          <H5 mb="1.875rem">Menu</H5>
+                          <nav>
+                            <chakra.ul m="0" p="0" listStyleType="none">
+                              {menuItems.map((x) => (
+                                <li key={x.title}>
+                                  <NextLink href={x.href} passHref>
+                                    <Link
+                                      fontSize={{ base: "2xl", md: "3.5rem" }}
+                                      letterSpacing="tighter"
+                                      color={colors.useTextPrimary()}
+                                      lineHeight="base"
+                                      display="inline-block"
+                                      _hover={{
+                                        "& > span > span": {
+                                          transform: "translateY(-105%)",
+                                          "&::before": {
+                                            transform: "skewY(7deg)",
+                                          },
+                                          "&::after": {
+                                            transform: "skewY(0deg)",
+                                          },
+                                        },
+                                      }}
+                                    >
+                                      <chakra.span
+                                        display="block"
+                                        overflow="hidden"
+                                        position="relative"
+                                        padding="0 .01em 0 0"
+                                      >
+                                        <chakra.span
+                                          data-text={x.title}
+                                          display="inline-block"
+                                          color="transparent"
+                                          transition="transform 1.2s cubic-bezier(.19,1,.22,1)"
+                                          sx={{
+                                            "&::before, &::after": {
+                                              content: "attr(data-text)",
+                                              display: "block",
+                                              position: "absolute",
+                                              color: colors.useTextPrimary(),
+                                            },
+                                            "&::before": {
+                                              top: 0,
+                                              transform: "skewY(0)",
+                                              transformOrigin: "right bottom",
+                                              transition:
+                                                "transform 2s cubic-bezier(.19,1,.22,1)",
+                                            },
+                                            "&::after": {
+                                              top: "105%",
+                                              transform: "skewY(7deg)",
+                                              transformOrigin: "left top",
+                                              transition:
+                                                "transform 2s cubic-bezier(.19,1,.22,1)",
+                                            },
+                                          }}
+                                        >
+                                          {x.title}
+                                        </chakra.span>
+                                      </chakra.span>
+                                    </Link>
+                                  </NextLink>
+                                </li>
+                              ))}
+                            </chakra.ul>
+                          </nav>
+                          <ContactUsButton />
+                        </Box>
                       </DrawerBody>
                     </DrawerContent>
                   </Drawer>
@@ -546,7 +674,7 @@ export default function Home() {
             <Button
               variant={"unstyled"}
               h={"3.5625rem"}
-              px="8"
+              px="2rem !important"
               sx={{
                 borderRadius: "full",
                 position: "relative",
@@ -702,7 +830,7 @@ export default function Home() {
             </Link>
             <Box mt="7">
               <Text
-                color={colors.useAccents6()}
+                color={colors.useAccents7()}
                 fontSize="md"
                 fontStyle="normal"
                 as="address"
