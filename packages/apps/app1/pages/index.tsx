@@ -114,6 +114,8 @@ const Project = ({ project, ...boxProps }: ProjectProps) => {
       py={{ base: "10" }}
       px={{ base: "0", md: "5", lg: "0" }}
       verticalAlign={{ base: "none", md: "top" }}
+      display={{ md: "inline-block", lg: "block" }}
+      w={{ base: "none", md: "50%", lg: "auto" }}
       {...boxProps}
     >
       <Box
@@ -823,14 +825,31 @@ export default function Home() {
         </SectionHeading>
         <Box>
           <Project
-            display={{ md: "inline-block", lg: "block" }}
-            w={{ base: "none", md: "50%", lg: "auto" }}
             project={{
               id: 0,
-              title: "CarpTime Shop",
-              description: "Online store for carp fishing and fishing tackle.",
+              title: "CarpTime shop",
+              description: "Online store for carp fishing and tackle",
               href: "https://carptimeshop.ru/",
               role: "Active participationg as a fullstack developer at Difocus",
+            }}
+          />
+          <Project
+            project={{
+              id: 1,
+              title: "Click and Grow",
+              description:
+                "Official distributor Click and Grow in Russian Federation",
+              href: "https://clickandgrow.ru/",
+              role: "Active participationg as a frontend developer at Difocus",
+            }}
+          />
+          <Project
+            project={{
+              id: 2,
+              title: "Thermal underwear Lopoma",
+              description: "Official Lopoma online store",
+              href: "https://lopoma-shop.ru/",
+              role: "Active participationg as a frontend developer at Difocus",
             }}
           />
           <Box mt="20">
