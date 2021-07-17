@@ -104,6 +104,11 @@ const services: Service[] = [
     title: "Frontend",
     slug: "frontend",
   },
+  {
+    id: 1,
+    title: "Shopify",
+    slug: "shopify",
+  },
 ];
 
 interface Project {
@@ -231,6 +236,27 @@ const Project = ({ project, ...boxProps }: ProjectProps) => {
 
 const footerLayoutBreakpoint = "md";
 
+import { keyframes } from "@emotion/react";
+
+const rippleIn = keyframes`
+    0% {
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        -webkit-transform: translateY(-100%) translateZ(0);
+        -moz-transform: translateY(-100%) translateZ(0);
+        transform: translateY(-100%) translateZ(0)
+    }
+
+    100% {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        -webkit-transform: translateY(0) translateZ(0);
+        -moz-transform: translateY(0) translateZ(0);
+        transform: translateY(0) translateZ(0)
+    }`;
+
 export default function Home() {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [navUnderlineStyles, setNavUnderlineStyles] =
@@ -290,7 +316,7 @@ export default function Home() {
         <title></title>
         <style>
           @import
-          url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&display=swap');
+          url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
         </style>
       </Head>
       <chakra.header h={headerHeight}>
@@ -414,7 +440,7 @@ export default function Home() {
           <Box flex="0 0 auto">
             <Heading
               as="h1"
-              fontSize={{ base: "1.0625rem", md: "1.125rem", lg: "xl" }}
+              fontSize={{ base: "1.0625rem", md: "1.125rem", xl: "xl" }}
               fontWeight="normal"
               letterSpacing="-.03em"
             >
@@ -431,25 +457,25 @@ export default function Home() {
               whiteSpace={{ lg: "nowrap" }}
             >
               {services.map((x) => (
-                <Box display={{ lg: "inline-block" }} key={x.id}>
+                <Box display={{ xl: "inline-block" }} key={x.id}>
                   <NextLink href={`/services/${x.slug}`} passHref>
                     <Link
                       display="inline-block"
                       py={{ base: "1.5", md: "3" }}
                       px={servicesSpaceX}
                       fontSize={{
-                        base: "2.125rem",
-                        md: "6xl",
-                        lg: "5.83333vw",
+                        base: "2.375rem",
+                        md: "3.75rem",
+                        xl: "6.66667vw",
                       }}
                       sx={{
                         WebkitTextStroke: serviceLinkWebkitTextStroke,
                       }}
-                      transition={{ lg: "color .3s,-webkit-text-stroke .3s" }}
-                      lineHeight={{ lg: 1.1 }}
+                      transition={{ xl: "color .3s,-webkit-text-stroke .3s" }}
+                      lineHeight={{ base: "shorter", md: "4.0625rem", xl: 1.1 }}
                       color={{
                         base: colors.useTextPrimary(),
-                        lg: "transparent",
+                        xl: "transparent",
                       }}
                     >
                       <chakra.span
@@ -479,7 +505,7 @@ export default function Home() {
         </Flex>
         <Box mt="12" maxW={{ base: "40.3125rem", lg: "52.1875rem" }} w="full">
           <Box
-            fontSize={{ base: "xl", lg: "2xl" }}
+            fontSize={{ base: "xl", xl: "1.875rem" }}
             letterSpacing="wide"
             lineHeight={{ lg: "short" }}
           >
@@ -490,11 +516,19 @@ export default function Home() {
           </Box>
         </Box>
       </Section>
-      <Section id="projects">
+      <Section
+        id="projects"
+        pt={{ base: "8.125rem", md: "11.25rem", xl: "16.875rem" }}
+        pb={{
+          base: "3.75rem",
+          md: "10.9375rem",
+          lg: "6.25rem",
+          xl: "9.375rem",
+        }}
+      >
         <SectionHeading>
           Featured
-          <br />
-          projects
+          <span>projects</span>
         </SectionHeading>
         <Box>
           <Project
@@ -508,10 +542,124 @@ export default function Home() {
               role: "Active participationg as a fullstack developer at Difocus",
             }}
           />
+          <Box mt="20">
+            <Button
+              variant={"unstyled"}
+              h={"3.5625rem"}
+              px="8"
+              sx={{
+                borderRadius: "full",
+                position: "relative",
+                "&::after": {
+                  content: `""`,
+                  position: "absolute",
+                  top: "1px",
+                  left: "1px",
+                  right: "1px",
+                  bottom: "1px",
+                  border: "1px rgba(0,0,0,.1) solid",
+                  borderRadius: "full",
+                  transition: "border-color .2s",
+                },
+                _hover: {
+                  "& > span:first-child > span": {
+                    "@media (pointer: fine)": {
+                      color: colors.useTextSecondary(),
+                      transform: "translateY(-150%) skewY(-7deg)",
+                    },
+                    "&::after": {
+                      transform: "skewY(7deg)",
+                    },
+                  },
+                  "& > span:last-child > span": {
+                    "@media (pointer: fine)": {
+                      borderRadius: 0,
+                      transform: "translateY(0)",
+                      transitionDuration: "0s,0s",
+                      animation: `${rippleIn} .5s cubic-bezier(.4,0,0,1)`,
+                    },
+                  },
+                },
+              }}
+            >
+              <chakra.span
+                position="relative"
+                top="-1px"
+                display="block"
+                overflow="hidden"
+                zIndex={2}
+              >
+                <chakra.span
+                  sx={{
+                    display: "block",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    transformOrigin: "left top",
+                    transition: "color .2s,transform .4s",
+                    "&::after": {
+                      content: "attr(data-text)",
+                      display: "block",
+                      position: "absolute",
+                      top: "150%",
+                      left: 0,
+                      transform: "skewY(5deg)",
+                      transformOrigin: "left top",
+                      transition: "transform .4s",
+                    },
+                  }}
+                  fontSize={{ base: "sm", xl: "lg" }}
+                  data-text={"View all projects"}
+                >
+                  View all projects
+                </chakra.span>
+              </chakra.span>
+              <chakra.span
+                sx={{
+                  display: "block",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  zIndex: 1,
+                  overflow: "hidden",
+                  transform: "translateZ(0)",
+                  borderRadius: "inherit",
+                }}
+              >
+                <chakra.span
+                  display={"block"}
+                  w={"full"}
+                  h={"full"}
+                  transform={"translateY(100%)"}
+                  bg={"currentColor"}
+                  borderRadius={"50%"}
+                  transition={
+                    "transform .5s cubic-bezier(.4,0,0,1), border-radius .5s cubic-bezier(.4,0,0,1)"
+                  }
+                />
+              </chakra.span>
+            </Button>
+          </Box>
         </Box>
       </Section>
       <Request />
-      <Section as={"footer"} bg={colors.useAccents2()}>
+      <Section
+        as={"footer"}
+        bg={colors.useAccents2()}
+        pt={{
+          base: "3.75rem",
+          md: "10.9375rem",
+          lg: "6.25rem",
+          xl: "9.375rem",
+        }}
+        pb={{
+          base: "3.75rem",
+          md: "7rem",
+          lg: "4.75rem",
+          xl: "6rem",
+        }}
+      >
         <Flex
           flexWrap="nowrap"
           alignItems="flex-end"
@@ -668,6 +816,14 @@ function SectionHeading(props: HeadingProps) {
       fontSize={{ base: "4xl", lg: "6xl" }}
       lineHeight="100%"
       textTransform="lowercase"
+      sx={{
+        "&> span": {
+          color: "transparent",
+          textShadow: "none",
+          WebkitTextStroke: ".8px #000",
+          display: "block",
+        },
+      }}
       {...props}
     />
   );
