@@ -42,6 +42,7 @@ import { Formik, Field, Form } from "formik";
 import Image from "next/image";
 import { colors } from "@lucid/app1-ui-theme";
 import { useToast } from "@lucid/ui-toast";
+import { keyframes } from "@emotion/react";
 import { validationSchema } from "@lucid/request-application";
 import {
   CreateRequestData,
@@ -49,7 +50,7 @@ import {
 } from "@lucid/request-api-interfaces";
 import * as messages from "../lib/messages";
 
-const mobileBreakpoint = "sm";
+const mobileBreakpoint = "md";
 
 const ContactUsButton = (props: ButtonProps) => {
   return (
@@ -217,8 +218,6 @@ const Project = ({ project, ...boxProps }: ProjectProps) => {
 };
 
 const footerLayoutBreakpoint = "md";
-
-import { keyframes } from "@emotion/react";
 
 const EmailMeLink = (props: Omit<LinkProps, "children">) => (
   <NextLink passHref href="mailto:vs101ff@gmail.com">
@@ -537,7 +536,7 @@ export default function Home() {
               </li>
             ))}
           </Flex>
-          <EmailMeLink />
+          <EmailMeLink display={{ base: "none", [mobileBreakpoint]: "flex" }} />
         </Flex>
         <chakra.span
           display={{ base: "none", [mobileBreakpoint]: "block" }}
@@ -644,7 +643,7 @@ export default function Home() {
           <DrawerContent
             border={0}
             rounded={0}
-            w={{ md: "30rem !important" }}
+            w={{ sm: "20rem !important", md: "30rem !important" }}
             maxW="none"
           >
             <DrawerBody>
