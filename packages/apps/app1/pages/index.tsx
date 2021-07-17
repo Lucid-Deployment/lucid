@@ -30,7 +30,9 @@ import {
   useBreakpointValue,
   useColorModeValue,
   LinkProps,
+  useTheme,
 } from "@chakra-ui/react";
+import { transparentize } from "@chakra-ui/theme-tools";
 import NavLink from "../components/NavLink";
 import NextLink from "next/link";
 import * as React from "react";
@@ -838,7 +840,10 @@ const BrandLink = React.forwardRef<
           left: "1px",
           right: "1px",
           bottom: "1px",
-          border: "1px rgba(0,0,0,.1) solid",
+          border: `1px ${transparentize(
+            colors.useBrand5(),
+            0.1
+          )(useTheme())} solid`,
           borderRadius: "full",
           transition: "border-color .2s",
         },
@@ -914,7 +919,7 @@ const BrandLink = React.forwardRef<
           w={"full"}
           h={"full"}
           transform={"translateY(100%)"}
-          bg={"currentColor"}
+          bg={colors.useBrand5()}
           borderRadius={"50%"}
           transition={
             "transform .5s cubic-bezier(.4,0,0,1), border-radius .5s cubic-bezier(.4,0,0,1)"
@@ -969,7 +974,7 @@ function SectionHeading(props: HeadingProps) {
         "&> span": {
           color: "transparent",
           textShadow: "none",
-          WebkitTextStroke: ".8px #000",
+          WebkitTextStroke: `.8px ${colors.useTextPrimary()}`,
           display: "block",
         },
       }}
