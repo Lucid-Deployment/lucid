@@ -16,7 +16,7 @@ const NavLink = ({
     <Link
       p={{ base: 2, md: 3 }}
       position="relative"
-      fontSize="sm"
+      fontSize={{ base: "sm", xl: "lg" }}
       display={"block"}
       variant="twoColors"
       colorScheme="blackBrand"
