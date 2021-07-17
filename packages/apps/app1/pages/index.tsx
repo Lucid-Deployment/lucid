@@ -220,6 +220,12 @@ const footerLayoutBreakpoint = "md";
 
 import { keyframes } from "@emotion/react";
 
+const EmailMeLink = (props: Omit<LinkProps, "children">) => (
+  <NextLink passHref href="mailto:vs101ff@gmail.com">
+    <BrandLink {...props}>Email me</BrandLink>
+  </NextLink>
+);
+
 const rippleIn = keyframes`
     0% {
         -webkit-border-radius: 100%;
@@ -412,9 +418,7 @@ export default function Home() {
               </li>
             ))}
           </Flex>
-          <NextLink passHref href="mailto:vs101ff@gmail.com">
-            <BrandLink>Email me</BrandLink>
-          </NextLink>
+          <EmailMeLink />
         </Flex>
         <chakra.span
           display={{ base: "none", [mobileBreakpoint]: "block" }}
@@ -562,7 +566,7 @@ export default function Home() {
                     ))}
                   </chakra.ul>
                 </nav>
-                <ContactUsButton />
+                <EmailMeLink mt="6" />
               </Box>
             </DrawerBody>
           </DrawerContent>
