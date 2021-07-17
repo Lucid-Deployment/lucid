@@ -66,8 +66,6 @@ const ContactUsButton = (props: ButtonProps) => {
   );
 };
 
-const headerHeight = "4.375rem";
-
 const Container = (props: HTMLChakraProps<"div">) => (
   <Box maxW="90rem" w="full" mx="auto" {...props} />
 );
@@ -349,7 +347,7 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
         </style>
       </Head>
-      <chakra.header h={headerHeight}>
+      <header>
         <Portal>
           <NextLink passHref href="/">
             <chakra.a
@@ -374,7 +372,16 @@ export default function Home() {
             </chakra.a>
           </NextLink>
         </Portal>
-        <Flex as="nav" alignItems="center">
+        {/* TODO: h, mr */}
+        <Flex
+          as="nav"
+          alignItems="center"
+          h="5.75rem"
+          mr="calc(4.375rem + 1.5rem)" // 4.275rem - до кнопки Меню
+          position="fixed"
+          top="0"
+          right="0"
+        >
           <Flex
             ref={navRef}
             flexWrap="nowrap"
@@ -557,7 +564,7 @@ export default function Home() {
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-      </chakra.header>
+      </header>
       <Section>
         <Flex>
           <Box flex="0 0 auto">
