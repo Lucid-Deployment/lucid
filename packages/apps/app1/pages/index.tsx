@@ -52,23 +52,6 @@ import * as messages from "../lib/messages";
 
 const mobileBreakpoint = "md";
 
-const ContactUsButton = (props: ButtonProps) => {
-  return (
-    <Button
-      as={"a"}
-      href="mailto: vs101ff@gmail.com"
-      colorScheme="brand"
-      variant="solid"
-      fontSize="md"
-      rounded={"0"}
-      fontWeight="normal"
-      {...props}
-    >
-      Contact us
-    </Button>
-  );
-};
-
 const Container = (props: HTMLChakraProps<"div">) => (
   <Box maxW="90rem" w="full" mx="auto" {...props} />
 );
@@ -218,7 +201,7 @@ const footerLayoutBreakpoint = "md";
 
 const EmailMeLink = (props: Omit<LinkProps, "children">) => (
   <NextLink passHref href="mailto:vs101ff@gmail.com">
-    <BrandLink {...props}>Email me</BrandLink>
+    <BrandLink {...props}>Email</BrandLink>
   </NextLink>
 );
 
@@ -368,7 +351,7 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
   {
     href: "#projects",
-    title: "Projects",
+    title: "Проекты",
   },
 ];
 
@@ -645,7 +628,7 @@ export default function Home() {
                 alignItems="flex-start"
                 flexDirection="column"
               >
-                <H5 mb="1.875rem">Menu</H5>
+                <H5 mb="1.875rem">Меню</H5>
                 <nav>
                   <chakra.ul m="0" p="0" listStyleType="none">
                     {menuItems.map((x) => (
@@ -727,7 +710,7 @@ export default function Home() {
               fontWeight="normal"
               letterSpacing="-.03em"
             >
-              I make it happen
+              Я занимаюсь
             </Heading>
             <Box
               mx={Object.entries(servicesSpaceX).reduce(
@@ -792,10 +775,9 @@ export default function Home() {
             letterSpacing="wide"
             lineHeight={{ lg: "short" }}
           >
-            I studied computer science in Kuban State University, then worked at
-            Difocus as well as with small businesses for 2 years as
-            frontend/backend developer. My main assets include sense of
-            observation and analytical mind.
+            Я учился на факультете прикладной математики в Кубанском
+            Государственном Университете, затем работал в Difocus, а также с
+            малым бизнесом 2 года как frontend/backend разработчик.
           </Box>
         </Box>
       </Section>
@@ -810,17 +792,18 @@ export default function Home() {
         }}
       >
         <SectionHeading>
-          Featured
-          <span>projects</span>
+          Выбранные
+          <span>проекты</span>
         </SectionHeading>
         <Box>
           <Project
             project={{
               id: 0,
-              title: "CarpTime shop",
-              description: "Online store for carp fishing and tackle",
+              title: "Интернет-магазин CarpTime",
+              description:
+                'CarpTime - крупнейший официальный эксклюзивный торговый представитель лучших Английских и Французских производителей карпового оборудования, снастей, карповых прикормок и насадок на пост советском пространстве. Их команда, состоящая из раболовов - карпятников, продвигает бережное отношение к природе и принцип "Поймал - отпусти".',
               href: "https://carptimeshop.ru/",
-              role: "Active participationg as a fullstack developer at Difocus",
+              role: "Активное участие как fullstack developer в Difocus",
             }}
           />
           <Project
@@ -828,18 +811,19 @@ export default function Home() {
               id: 1,
               title: "Click and Grow",
               description:
-                "Official distributor Click and Grow in Russian Federation",
+                "Официальный дистрибьютор Click & Grow LLC в России и СНГ",
               href: "https://clickandgrow.ru/",
-              role: "Active participationg as a frontend developer at Difocus",
+              role: "Активное участие как frontend developer в Difocus",
             }}
           />
           <Project
             project={{
               id: 2,
-              title: "Thermal underwear Lopoma",
-              description: "Official Lopoma online store",
+              title: "Термобелье Lopoma",
+              description:
+                "Интернет-магазин оригинальной продукции финской торговой марки Lopoma",
               href: "https://lopoma-shop.ru/",
-              role: "Active participationg as a frontend developer at Difocus",
+              role: "Активное участие как frontend developer в Difocus",
             }}
           />
           {/* <Box mt="20">
@@ -913,7 +897,7 @@ export default function Home() {
                 fontStyle="normal"
                 as="address"
               >
-                <p>Kransodar, Russian Federation</p>
+                <p>Краснодар, Российская Федерация</p>
                 {/*<p>
                   <Link
                     href="tel:+79999999999"
@@ -946,7 +930,7 @@ export default function Home() {
               </Text>
             </Box>
           </Box>
-          <Box
+          {/* <Box
             flex="0 1 100%"
             textAlign={{ base: "center", [footerLayoutBreakpoint]: "left" }}
           >
@@ -977,7 +961,7 @@ export default function Home() {
                 />
               </chakra.svg>
             </SocialLink>
-          </Box>
+          </Box> */}
         </Flex>
       </Section>
     </>
@@ -1242,8 +1226,8 @@ function Request(props: RequestProps) {
                         <Input
                           {...field}
                           id="name"
-                          placeholder="Your name"
-                          aria-label="Your name"
+                          placeholder="Имя"
+                          aria-label="Имя"
                           variant="flushed"
                           focusBorderColor={inputFocusBorderColor}
                         />
@@ -1261,8 +1245,8 @@ function Request(props: RequestProps) {
                         <Input
                           {...field}
                           id="email"
-                          placeholder="Your Email"
-                          aria-label="Your Email"
+                          placeholder="Email"
+                          aria-label="Email"
                           variant="flushed"
                           focusBorderColor={inputFocusBorderColor}
                         />
@@ -1286,8 +1270,8 @@ function Request(props: RequestProps) {
                             {...field}
                             roundedTop="0"
                             roundedBottom="lg"
-                            placeholder="Tell me about your project"
-                            aria-label="Tell me about your project"
+                            placeholder="Краткое описание проекта"
+                            aria-label="Краткое описание проекта"
                             w="full"
                             lineHeight="short"
                             whiteSpace="pre-wrap"
@@ -1312,7 +1296,7 @@ function Request(props: RequestProps) {
                   </Field>
                   <Box position="absolute" right="4" bottom="2" zIndex="1">
                     <ChatIconButton
-                      aria-label="Send"
+                      aria-label="Отправить"
                       icon={<ChatIcon />}
                       type="submit"
                       isLoading={props.isSubmitting}
